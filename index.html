@@ -1,11 +1,698 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Personal Site</title>
+  <title>Griffin Hampton | Portfolio</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>hello my name is griffin</h1>
+    <nav id="main-navbar" style="position:fixed;top:36px;left:0;width:100vw;height:80px;z-index:2147483647;display:flex;align-items:center;justify-content:flex-end;padding:0 0 0 0;background:transparent;border:none;box-shadow:none;pointer-events:none;">
+      <button id="hamburger" aria-label="Open menu" style="width:60px;height:60px;background:rgba(30,30,50,0.7);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;z-index:2147483647;box-shadow:0 2px 8px 0 #0004;pointer-events:auto;margin-right:48px;position:fixed;top:36px;right:48px;">
+        <div id="hamburger-icon" style="width:36px;height:36px;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+          <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
+          <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:opacity 0.3s;"></span>
+          <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
+        </div>
+      </button>
+    </nav>
+  <div id="gh-logo" style="position:fixed;bottom:36px;left:88px;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 60% 40%,#e0b3ff 0%,#a259ff 60%,#3a1c71 100%);box-shadow:0 0 10px 3px #a259ff55,0 0 20px 4px #e0b3ff22;display:flex;align-items:center;justify-content:center;z-index:2147483647;">
+      <span style="font-family:'Segoe UI',sans-serif;font-weight:900;font-size:2.2rem;color:#fff;letter-spacing:-2px;text-shadow:0 0 3px #fff,0 0 6px #a259ff;">GH</span>
+    </div>
+      <canvas id="bg-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;"></canvas>
+  <div id="side-menu" style="position:fixed;top:0;left:0;height:100vh;width:0;z-index:2147483648;background:rgba(20,20,40,0.98);box-shadow:8px 0 32px 0 #0008;overflow:hidden;transition:width 0.4s cubic-bezier(.68,-0.55,.27,1.55);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:80px;">
+        <nav style="width:100%;">
+          <ul id="side-menu-list" style="list-style:none;padding:0;margin:0;width:100%;">
+            <li><a href="index.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Home</a></li>
+            <li><a href="about.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">About Me</a></li>
+            <li><a href="portfolio.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Portfolio</a></li>
+            <li><a href="contact.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+  </nav>
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="crack crack1"></div>
+    <div class="crack crack2"></div>
+    <div class="crack crack3"></div>
+    <div class="menu-content">
+      <a href="contact.html">Contact</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">About Me</a>
+    </div>
+  </div>
+  <canvas id="diamond-bg"></canvas>
+  <div class="center-content">
+    <h1>Griffin Hampton</h1>
+    <p>Creative Developer & Designer</p>
+  </div>
+  <style>
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-size: 1vw;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      box-sizing: border-box;
+    }
+    function animateDiamonds(t) {
+      ctx.clearRect(0, 0, width, height);
+      drawSmokeyGlow(t);
+      // Calculate orbiting diamonds' positions and z for sorting
+      let orbitDiamonds = diamonds.filter(d => d.orbit).map(d => {
+        let orbitSpeed = 0.7;
+        let theta = d.orbitAngle + t * 0.0005 * orbitSpeed;
+        let z = Math.sin(theta + d.orbitZ) * 0.7;
+        let scale = 0.7 + 0.5 * (z + 1);
+        let x = clumpCenter.x + Math.cos(theta) * d.orbitRadius;
+        let y = clumpCenter.y + Math.sin(theta) * d.orbitRadius * 0.38 + z * 18;
+        return { d, z, scale, x, y };
+      });
+      // Sort by z (back to front)
+      orbitDiamonds.sort((a, b) => a.z - b.z);
+      // Draw those behind the sphere (z < 0)
+      for (let od of orbitDiamonds) {
+        if (od.z >= 0) continue;
+        ctx.save();
+        ctx.globalAlpha = 0.45 + 0.25 * od.scale;
+        ctx.filter = `blur(${(1-od.scale)*2.5}px)`;
+        ctx.translate(od.x, od.y);
+        ctx.scale(od.scale, od.scale);
+        drawDiamond(0, 0, od.d.size, od.d.color, od.d.angle);
+        ctx.restore();
+      }
+      // Draw spinning red sphere in center, rotating on x and y axes with mouse
+      const xRot = -mouseNorm.y * Math.PI * 0.7; // Mirror up/down (x) rotation
+      const yRot = mouseNorm.x * Math.PI * 0.7; // Follow mouse for left/right (y) rotation
+      drawRedSphere(clumpCenter.x, clumpCenter.y, Math.min(width, height) / 8, xRot, yRot);
+      // Draw those in front of the sphere (z >= 0)
+      for (let od of orbitDiamonds) {
+        if (od.z < 0) continue;
+        ctx.save();
+        ctx.globalAlpha = 0.45 + 0.25 * od.scale;
+        ctx.filter = `blur(${(1-od.scale)*2.5}px)`;
+        ctx.translate(od.x, od.y);
+        ctx.scale(od.scale, od.scale);
+        drawDiamond(0, 0, od.d.size, od.d.color, od.d.angle);
+        ctx.restore();
+      }
+      // Draw main diamonds (in front of sphere)
+      animateDiamondColors(t);
+      for (let d of diamonds) {
+        if (d.orbit) continue;
+        let dx = d.x - mouse.x;
+        let dy = d.y - mouse.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        let repel = 0;
+        if (dist < 140) {
+          let force = (140 - dist) * 0.18;
+          let angle = Math.atan2(dy, dx);
+          d.vx += Math.cos(angle) * force;
+          d.vy += Math.sin(angle) * force;
+        }
+        let toBaseX = d.baseX - d.x;
+        let toBaseY = d.baseY - d.y;
+        d.vx += toBaseX * 0.012;
+        d.vy += toBaseY * 0.012;
+        d.vx *= 0.88;
+        d.vy *= 0.88;
+        d.x += d.vx * 0.5;
+        d.y += d.vy * 0.5;
+        let float = Math.sin(t / 1200 + d.offset) * 6;
+        drawDiamond(d.x, d.y + float, d.size, d.color, d.angle + Math.sin(t / 900 + d.offset) * 0.2);
+      }
+      requestAnimationFrame(animateDiamonds);
+    }
+    animateDiamonds(performance.now());
+      z-index: 2147483647;
+      pointer-events: auto;
+      transition: background 0.3s;
+    }
+    .hamburger span {
+      display: block;
+      width: 3vw;
+      min-width: 24px;
+      height: 0.4vw;
+      min-height: 3px;
+      margin: 0.4vw 0;
+      background: #fff;
+      border-radius: 2px;
+      transition: 0.4s cubic-bezier(.68,-0.55,.27,1.55);
+      box-shadow: 0 2px 8px #bc6cff44;
+    }
+    .hamburger.active span:nth-child(1),
+    .menu-overlay.active ~ .hamburger span:nth-child(1) {
+      transform: translateY(1vw) rotate(45deg);
+      background: #bc6cff;
+    }
+    .hamburger.active span:nth-child(2),
+    .menu-overlay.active ~ .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3),
+    .menu-overlay.active ~ .hamburger span:nth-child(3) {
+      transform: translateY(-1vw) rotate(-45deg);
+      background: #bc6cff;
+    }
+    .menu-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: transparent;
+      pointer-events: none;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    .menu-overlay.active {
+      background: rgba(30, 10, 40, 0.98);
+      pointer-events: all;
+    }
+    .crack {
+      position: absolute;
+      width: 0; height: 0;
+      background: transparent;
+      z-index: 111;
+      pointer-events: none;
+      transition: all 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+      opacity: 0.7;
+    }
+    .menu-overlay.active .crack1 {
+      left: 0; top: 0; width: 34vw; height: 100vh;
+      background: linear-gradient(120deg, #bc6cff 60%, #fff0 100%);
+      box-shadow: 0 0 80px 24px #bc6cff55;
+      opacity: 1;
+    }
+    .menu-overlay.active .crack2 {
+      left: 33vw; top: 0; width: 34vw; height: 100vh;
+      background: linear-gradient(120deg, #fff0 0%, #bc6cff 60%, #fff0 100%);
+      box-shadow: 0 0 80px 24px #bc6cff55;
+      opacity: 1;
+    }
+    .menu-overlay.active .crack3 {
+      left: 66vw; top: 0; width: 34vw; height: 100vh;
+      background: linear-gradient(120deg, #fff0 0%, #bc6cff 60%);
+      box-shadow: 0 0 80px 24px #bc6cff55;
+      opacity: 1;
+    }
+    .menu-content {
+      position: relative;
+      z-index: 112;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      gap: 2.5vw;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
+    }
+    .menu-overlay.active .menu-content {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .menu-content a {
+      font-size: 2.2vw;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      background: linear-gradient(90deg, #bc6cff 0%, #fff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 16px #bc6cff55;
+      transition: color 0.2s;
+    }
+    .menu-content a:hover {
+      color: #bc6cff;
+      -webkit-text-fill-color: #bc6cff;
+    }
+    @media (max-width: 600px) {
+      .navbar { padding: 0 2vw; height: 9vw; min-height: 36px; }
+      .nav-logo { font-size: 4vw; }
+      .hamburger { right: 2vw; top: 2vw; width: 7vw; height: 7vw; min-width: 28px; min-height: 28px; }
+      .hamburger span { width: 5vw; min-width: 16px; height: 0.6vw; min-height: 2px; }
+      .menu-content a { font-size: 4vw; }
+    }
+  </style>
+  <script>
+      // Navbar hamburger animation
+      const hamburger = document.getElementById('hamburger');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+  const sideMenu = document.getElementById('side-menu');
+      let menuOpen = false;
+      hamburger.onclick = function() {
+        menuOpen = !menuOpen;
+        const bars = hamburgerIcon.querySelectorAll('.hamburger-bar');
+        if (menuOpen) {
+          bars[0].style.transform = 'translateY(12px) rotate(45deg)';
+          bars[1].style.opacity = '0';
+          bars[2].style.transform = 'translateY(-12px) rotate(-45deg)';
+          sideMenu.style.width = '340px';
+        } else {
+          bars[0].style.transform = '';
+          bars[1].style.opacity = '1';
+          bars[2].style.transform = '';
+          sideMenu.style.width = '0';
+        }
+      };
+    // Close menu if user clicks outside the menu area
+    document.addEventListener('mousedown', function(e) {
+      if (menuOpen && sideMenu.style.width !== '0') {
+        if (!sideMenu.contains(e.target) && !hamburger.contains(e.target)) {
+          const bars = hamburgerIcon.querySelectorAll('.hamburger-bar');
+          bars[0].style.transform = '';
+          bars[1].style.opacity = '1';
+          bars[2].style.transform = '';
+          sideMenu.style.width = '0';
+          menuOpen = false;
+        }
+      }
+    });
+  </script>
+  <script>
+    // Diamond 3D clump animation
+    const canvas = document.getElementById('diamond-bg');
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    window.addEventListener('resize', resize);
+
+    // Diamond shape points (2D projection of 3D diamond)
+    function drawDiamond(x, y, size, color, angle = 0) {
+      // 3D diamond with 4 facets: top, left, right, bottom, with a potent static shadow and glow
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+      // Colors for facets
+      const base = color;
+      const left = shadeColor(base, -18);
+      const right = shadeColor(base, 18);
+      const top = shadeColor(base, 32);
+      const bottom = shadeColor(base, -32);
+
+
+      // Potent static shadow directly under diamond
+      ctx.save();
+      ctx.globalAlpha = 0.32;
+      ctx.filter = 'blur(8px)';
+      ctx.beginPath();
+      ctx.ellipse(0, size * 0.7, size * 0.7, size * 0.22, 0, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(20,20,40,0.85)';
+      ctx.fill();
+      ctx.filter = 'none';
+      ctx.globalAlpha = 1;
+      ctx.restore();
+
+      // Top facet
+      ctx.beginPath();
+      ctx.moveTo(0, -size);
+      ctx.lineTo(size * 0.7, 0);
+      ctx.lineTo(0, 0);
+      ctx.lineTo(-size * 0.7, 0);
+      ctx.closePath();
+      ctx.fillStyle = top;
+      ctx.globalAlpha = 0.92;
+      ctx.fill();
+
+      // Left facet
+      ctx.beginPath();
+      ctx.moveTo(-size * 0.7, 0);
+      ctx.lineTo(0, 0);
+      ctx.lineTo(0, size);
+      ctx.closePath();
+      ctx.fillStyle = left;
+      ctx.globalAlpha = 0.88;
+      ctx.fill();
+
+      // Right facet
+      ctx.beginPath();
+      ctx.moveTo(size * 0.7, 0);
+      ctx.lineTo(0, 0);
+      ctx.lineTo(0, size);
+      ctx.closePath();
+      ctx.fillStyle = right;
+      ctx.globalAlpha = 0.88;
+      ctx.fill();
+
+      // Bottom facet
+      ctx.beginPath();
+      ctx.moveTo(-size * 0.7, 0);
+      ctx.lineTo(0, size);
+      ctx.lineTo(size * 0.7, 0);
+      ctx.closePath();
+      ctx.fillStyle = bottom;
+      ctx.globalAlpha = 0.82;
+      ctx.fill();
+
+      // Outline
+      ctx.globalAlpha = 0.5;
+      ctx.strokeStyle = shadeColor(base, -40);
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.moveTo(0, -size);
+      ctx.lineTo(size * 0.7, 0);
+      ctx.lineTo(0, size);
+      ctx.lineTo(-size * 0.7, 0);
+      ctx.closePath();
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    // Helper: shade a color (hsl string) by lightness delta
+    function shadeColor(hsl, delta) {
+      // hsl(hue, sat%, light%)
+      const m = hsl.match(/hsl\((\d+), ?(\d+)%?, ?(\d+)%?\)/);
+      if (!m) return hsl;
+      let h = +m[1], s = +m[2], l = +m[3];
+      l = Math.max(0, Math.min(100, l + delta));
+      return `hsl(${h}, ${s}%, ${l}%)`;
+    }
+
+    // Generate clump of diamonds
+    // Generate clump of diamonds
+  const diamonds = [];
+  // Always center the clump in the user's browser
+  let clumpCenter = { x: width / 2, y: height / 2 };
+    // Always keep the clump centered on resize
+    function recenterDiamonds() {
+      const newCenter = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      const dx = newCenter.x - clumpCenter.x;
+      const dy = newCenter.y - clumpCenter.y;
+      for (let d of diamonds) {
+        d.baseX += dx;
+        d.baseY += dy;
+        d.x += dx;
+        d.y += dy;
+      }
+      clumpCenter = newCenter;
+    }
+    window.addEventListener('resize', () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      recenterDiamonds();
+    });
+
+
+    // Animate diamond colors over time
+    function animateDiamondColors(t) {
+      // Only animate the first half of non-orbit diamonds
+      const nonOrbit = diamonds.filter(d => !d.orbit);
+      const half = Math.floor(nonOrbit.length / 2);
+      for (let i = 0; i < nonOrbit.length; i++) {
+        let d = nonOrbit[i];
+        if (i < half) {
+          // Animate hue in a range (200-280)
+          let baseHue = 200 + (d.offset * 17) % 80;
+          let hue = baseHue + Math.sin(t / 1800 + d.offset) * 38;
+          d.color = `hsl(${hue}, 80%, 60%)`;
+        }
+        // else: keep color static
+      }
+    }
+  const clumpRadius = Math.min(width, height) / 2.2;
+  const diamondCount = 36;
+    // Eye shape: ellipse with sharper corners
+    for (let i = 0; i < diamondCount; i++) {
+      const angle = (Math.PI * 2 * i) / diamondCount;
+      let rx = clumpRadius * (0.7 + 0.3 * Math.abs(Math.cos(angle)));
+      let ry = clumpRadius * 0.55 * (0.9 + 0.2 * Math.abs(Math.sin(angle)));
+      if (Math.abs(Math.cos(angle)) > 0.92) rx *= 1.18;
+      if (Math.abs(Math.sin(angle)) > 0.92) ry *= 1.18;
+      const baseX = clumpCenter.x + Math.cos(angle) * rx;
+      const baseY = clumpCenter.y + Math.sin(angle) * ry;
+      diamonds.push({
+        baseX,
+        baseY,
+        x: baseX,
+        y: baseY,
+        vx: 0,
+        vy: 0,
+        size: 32 + Math.random() * 32,
+        color: `hsl(${200 + Math.random() * 80}, 80%, 60%)`,
+        angle: Math.random() * Math.PI * 2,
+        offset: Math.random() * 1000
+      });
+    }
+    // Add 3 white diamonds that orbit the red sphere along the z axis, not affected by mouse
+    const orbitDiamonds = 3;
+    for (let i = 0; i < orbitDiamonds; i++) {
+      diamonds.push({
+        orbit: true,
+        orbitAngle: (Math.PI * 2 * i) / orbitDiamonds,
+        orbitRadius: Math.min(width, height) / 8 + 38,
+        orbitZ: (i - 1) * 0.5, // -0.5, 0, 0.5 for z-depth
+        size: 18,
+        color: 'hsl(0,0%,100%)',
+        angle: Math.random() * Math.PI * 2,
+        offset: Math.random() * 1000
+      });
+    }
+
+    let mouse = { x: width / 2, y: height / 2 };
+    let mouseNorm = { x: 0, y: 0 };
+    window.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouseNorm.x = (e.clientX / width - 0.5) * 2; // -1 to 1
+      mouseNorm.y = (e.clientY / height - 0.5) * 2;
+    });
+
+    function drawRedSphere(centerX, centerY, radius, xRot, yRot) {
+      // Simulate a 3D sphere with a shadow, spinning on x and y axes (no glare)
+      // Calculate the highlight center based on xRot and yRot for a 3D effect
+      const highlightX = centerX + Math.sin(yRot) * radius * 0.4;
+      const highlightY = centerY - Math.sin(xRot) * radius * 0.4;
+      // Fortnite purple: #a259ff, #bc6cff, #fff
+      const grad = ctx.createRadialGradient(
+        highlightX,
+        highlightY,
+        radius * 0.08,
+        centerX,
+        centerY,
+        radius
+      );
+      grad.addColorStop(0, '#fff'); // Intense white center
+      grad.addColorStop(0.13, '#bc6cff'); // Bright Fortnite purple
+      grad.addColorStop(0.38, '#a259ff'); // Fortnite purple
+      grad.addColorStop(1, '#2d0a4d'); // Deep purple
+  ctx.save();
+  // Black hole event horizon glow: left/right stretching grape glow
+  let horizonGrad = ctx.createLinearGradient(centerX - radius * 3, centerY, centerX + radius * 3, centerY);
+  horizonGrad.addColorStop(0, 'rgba(200,160,255,0.01)');
+  horizonGrad.addColorStop(0.18, 'rgba(200,160,255,0.18)');
+  horizonGrad.addColorStop(0.48, 'rgba(200,160,255,0.32)');
+  horizonGrad.addColorStop(0.52, 'rgba(200,160,255,0.32)');
+  horizonGrad.addColorStop(0.82, 'rgba(200,160,255,0.18)');
+  horizonGrad.addColorStop(1, 'rgba(200,160,255,0.01)');
+  ctx.save();
+  ctx.globalAlpha = 0.7;
+  ctx.filter = 'blur(48px)';
+  ctx.beginPath();
+  ctx.ellipse(centerX, centerY, radius * 3, radius * 0.55, 0, 0, Math.PI * 2);
+  ctx.closePath();
+  ctx.fillStyle = horizonGrad;
+  ctx.fill();
+  ctx.filter = 'none';
+  ctx.globalAlpha = 1;
+  ctx.restore();
+
+  // Sphere
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.shadowColor = '#bc6cff';
+  ctx.shadowBlur = 80;
+  ctx.globalAlpha = 0.98;
+  ctx.fill();
+  ctx.globalAlpha = 1;
+  ctx.shadowBlur = 0;
+  ctx.restore();
+    }
+
+    // Animate glows: each has a phase and speed for fade in/out
+    // Persistent high glows state
+    const highGlowCount = 3;
+    let highGlows = Array.from({length: highGlowCount}).map(() => ({
+      x: Math.random() * width,
+      y: -Math.random() * height * 0.3,
+      r: Math.max(width, height) * (0.32 + Math.random() * 0.18),
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.22 + Math.random() * 0.18,
+      tOffset: performance.now() // track time offset for each glow
+    }));
+    const animatedGlows = [
+      // Eye corners
+  { x: () => clumpCenter.x - clumpRadius * 1.18, y: () => clumpCenter.y, r: () => clumpRadius * 0.55, phase: 0.0, speed: 0.32 },
+  { x: () => clumpCenter.x + clumpRadius * 1.18, y: () => clumpCenter.y, r: () => clumpRadius * 0.55, phase: 1.2, speed: 0.28 },
+  { x: () => clumpCenter.x, y: () => clumpCenter.y - clumpRadius * 0.65, r: () => clumpRadius * 0.55, phase: 2.1, speed: 0.36 },
+  { x: () => clumpCenter.x, y: () => clumpCenter.y + clumpRadius * 0.65, r: () => clumpRadius * 0.55, phase: 3.0, speed: 0.22 },
+  // Higher up glows
+  { x: () => clumpCenter.x - clumpRadius * 0.7, y: () => clumpCenter.y - clumpRadius * 1.1, r: () => clumpRadius * 0.38, phase: 0.8, speed: 0.32 },
+  { x: () => clumpCenter.x + clumpRadius * 0.7, y: () => clumpCenter.y - clumpRadius * 1.1, r: () => clumpRadius * 0.38, phase: 1.6, speed: 0.28 },
+  // Persistent high glows
+      ...highGlows.map(g => ({
+        x: () => g.x,
+        y: () => g.y,
+        r: () => g.r,
+        phase: g.phase,
+        speed: g.speed,
+        tOffset: g.tOffset
+      })),
+      // Page corners
+      { x: () => 0, y: () => 0, r: () => Math.max(width, height) * 0.32, phase: 0.5, speed: 0.4 },
+      { x: () => width, y: () => 0, r: () => Math.max(width, height) * 0.32, phase: 1.7, speed: 0.6 },
+      { x: () => 0, y: () => height, r: () => Math.max(width, height) * 0.32, phase: 2.5, speed: 0.5 },
+      { x: () => width, y: () => height, r: () => Math.max(width, height) * 0.32, phase: 3.2, speed: 0.7 }
+    ];
+
+    function drawSmokeyGlow(t = 0) {
+      for (let i = 0; i < animatedGlows.length; i++) {
+        const glow = animatedGlows[i];
+        // Animate alpha with a faster sine wave
+        let alpha = 0.5 + 0.5 * Math.sin(t * 0.001 * glow.speed + glow.phase);
+        alpha = 0.25 + 0.65 * Math.pow(alpha, 1.5); // more time near 0, quick fade in
+        // Animate falling by drifting y downward over time
+        // Make fall speed proportional to fade speed, so glows cycle and reappear
+        let fadeCycle = Math.PI * 2 / (0.001 * glow.speed); // period of fade
+        let fallDistance = height + glow.r();
+        let fallSpeed = fallDistance / fadeCycle; // pixels per ms
+        let tLocal = t - (glow.tOffset || 0);
+        let fallPhase = ((tLocal * fallSpeed) % fallDistance) / fallDistance;
+        let yFallen = glow.y() + fallPhase * fallDistance;
+        // Fade in as they reappear at the top
+        let fadeIn = Math.min(1, fallPhase * 3); // fade in over first third
+        alpha *= fadeIn;
+        // If this is a persistent high glow and just respawned, randomize its position
+        if (glow.tOffset !== undefined && fallPhase < 0.01 && tLocal > 100) {
+          let idx = highGlows.findIndex(g => g.tOffset === glow.tOffset);
+          if (idx !== -1) {
+            highGlows[idx] = {
+              x: Math.random() * width,
+              y: -Math.random() * height * 0.3,
+              r: Math.max(width, height) * (0.18 + Math.random() * 0.18),
+              phase: Math.random() * Math.PI * 2,
+              speed: 0.5 + Math.random() * 0.5,
+              tOffset: t
+            };
+          }
+        }
+        let grad = ctx.createRadialGradient(
+          glow.x(), yFallen, glow.r() * 0.18,
+          glow.x(), yFallen, glow.r()
+        );
+        grad.addColorStop(0, 'rgba(123,92,255,0.32)');
+        grad.addColorStop(0.18, 'rgba(30,144,255,0.22)');
+        grad.addColorStop(0.38, 'rgba(123,92,255,0.18)');
+        grad.addColorStop(0.6, 'rgba(30,144,255,0.10)');
+        grad.addColorStop(1, 'rgba(10,10,19,0.01)');
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.beginPath();
+        ctx.arc(glow.x(), yFallen, glow.r(), 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fillStyle = grad;
+        ctx.filter = 'blur(40px)';
+        ctx.fill();
+        ctx.filter = 'none';
+        ctx.globalAlpha = 1;
+        ctx.restore();
+      }
+    }
+
+    function animateDiamonds(t) {
+      ctx.clearRect(0, 0, width, height);
+  drawSmokeyGlow(t);
+  // Calculate orbiting diamonds' positions and z for sorting
+      let orbitDiamonds = diamonds.filter(d => d.orbit).map(d => {
+        let orbitSpeed = 0.7;
+        let theta = d.orbitAngle + t * 0.0005 * orbitSpeed;
+        let z = Math.sin(theta + d.orbitZ) * 0.7;
+        let scale = 0.7 + 0.5 * (z + 1);
+        let x = clumpCenter.x + Math.cos(theta) * d.orbitRadius;
+        let y = clumpCenter.y + Math.sin(theta) * d.orbitRadius * 0.38 + z * 18;
+        return { d, z, scale, x, y };
+      });
+      // Sort by z (back to front)
+      orbitDiamonds.sort((a, b) => a.z - b.z);
+      // Draw those behind the sphere (z < 0)
+      for (let od of orbitDiamonds) {
+        if (od.z >= 0) continue;
+        ctx.save();
+        ctx.globalAlpha = 0.45 + 0.25 * od.scale;
+        ctx.filter = `blur(${(1-od.scale)*2.5}px)`;
+        ctx.translate(od.x, od.y);
+        ctx.scale(od.scale, od.scale);
+  drawDiamond(0, 0, od.d.size, od.d.color, od.d.angle);
+        ctx.restore();
+      }
+  // Draw spinning red sphere in center, rotating on x and y axes with mouse
+  const xRot = -mouseNorm.y * Math.PI * 0.7; // Mirror up/down (x) rotation
+  const yRot = mouseNorm.x * Math.PI * 0.7; // Follow mouse for left/right (y) rotation
+  drawRedSphere(clumpCenter.x, clumpCenter.y, Math.min(width, height) / 8, xRot, yRot);
+      // Draw those in front of the sphere (z >= 0)
+      for (let od of orbitDiamonds) {
+        if (od.z < 0) continue;
+        ctx.save();
+        ctx.globalAlpha = 0.45 + 0.25 * od.scale;
+        ctx.filter = `blur(${(1-od.scale)*2.5}px)`;
+        ctx.translate(od.x, od.y);
+        ctx.scale(od.scale, od.scale);
+  drawDiamond(0, 0, od.d.size, od.d.color, od.d.angle);
+        ctx.restore();
+      }
+      // Draw main diamonds (in front of sphere)
+      animateDiamondColors(t);
+      for (let d of diamonds) {
+        if (d.orbit) continue;
+        let dx = d.x - mouse.x;
+        let dy = d.y - mouse.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        let repel = 0;
+        if (dist < 140) {
+          let force = (140 - dist) * 0.18;
+          let angle = Math.atan2(dy, dx);
+          d.vx += Math.cos(angle) * force;
+          d.vy += Math.sin(angle) * force;
+        }
+        let toBaseX = d.baseX - d.x;
+        let toBaseY = d.baseY - d.y;
+        d.vx += toBaseX * 0.012;
+        d.vy += toBaseY * 0.012;
+        d.vx *= 0.88;
+        d.vy *= 0.88;
+        d.x += d.vx * 0.5;
+        d.y += d.vy * 0.5;
+        let float = Math.sin(t / 1200 + d.offset) * 6;
+        drawDiamond(d.x, d.y + float, d.size, d.color, d.angle + Math.sin(t / 900 + d.offset) * 0.2);
+      }
+      requestAnimationFrame(animateDiamonds);
+    }
+    animateDiamonds(performance.now());
+  </script>
 </body>
 </html>
