@@ -51,6 +51,7 @@
       margin-top: 6vh;
       margin-bottom: 2vh;
       text-align: center;
+      padding: 5%;
     }
     .about-title {
   font-size: 3.2rem;
@@ -231,34 +232,76 @@
   </div>
   <div class="about-bg"></div>
   <main class="about-main">
-    <section class="about-hero">
-      <div class="about-photo">
-        <img src="IMG_5171.webp" alt="Profile Photo" class="about-photo-img" />
+    <section class="about-hero" style="width:100%;max-width:900px;display:grid;grid-template-columns:1fr 2fr;gap:2.5rem;align-items:center;margin-bottom:2.5rem;background:rgba(255,255,255,0.10);border-radius:24px;box-shadow:0 4px 24px 0 #bc6cff22;">
+      <div class="about-photo" style="display:flex;align-items:center;justify-content:center;">
+        <img src="Screenshot 2025-08-21 164655.png" alt="FNAD World Screenshot" class="about-photo-img" style="width:320px;height:320px;max-width:100%;border-radius:18px;box-shadow:0 0 18px #bc6cff44,0 2px 8px #a259ff22;border:3px solid #a259ff;background:#2a174d;" />
       </div>
-      <h1 class="about-title">ABOUT ME!!</h1>
-      <p class="about-role">The Incredible Life of Griffin Hampton!!</p>
-      <p class="about-desc"></p>
+      <div class="about-info" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:1.1em;padding:1.8em 1.5em 1.8em 1.5em;">
+  <h1 class="about-title" style="font-size:3.8rem;margin-bottom:0.3em;color:#fff;text-shadow:0 2px 8px #23243a,0 0 2px #fff;">FNAD World</h1>
+  <p class="about-role" style="font-size:1.25rem;color:#fff;margin-bottom:0.3em;text-shadow:0 2px 8px #23243a,0 0 2px #fff;">One of my most ambitious projects to date, and my intro into managing data.</p>
+  <p class="about-desc" style="font-size:1.08rem;color:#fff;max-width:600px;margin-bottom:0.7em;text-shadow:0 2px 8px #23243a,0 0 2px #fff;">This project was born from an undying curiosity to venture into CSV file maps, and served as a much needed refresher with excel. It would be no stretch to say that this game prepared me for eventually becoming the coding contractor I am today. What started as a silly game for me and my friends to play in high school turned into the spark that ignited my love for computer science.</p>
+        <div class="about-skills-row" style="display:flex;flex-wrap:wrap;gap:0.7em;margin-top:0.7em;">
+          <a href="https://en.wikipedia.org/wiki/Game_development" target="_blank" class="about-skill-title" style="background:#fff;padding:0.7em 1.6em;border-radius:14px;color:#23243a;font-weight:700;text-decoration:none;box-shadow:0 2px 8px #bc6cff22;">Game Development</a>
+          <a href="https://en.wikipedia.org/wiki/Comma-separated_values" target="_blank" class="about-skill-title" style="background:#fff;padding:0.7em 1.6em;border-radius:14px;color:#23243a;font-weight:700;text-decoration:none;box-shadow:0 2px 8px #bc6cff22;">CSV File Formatting</a>
+          <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank" class="about-skill-title" style="background:#fff;padding:0.7em 1.6em;border-radius:14px;color:#23243a;font-weight:700;text-decoration:none;box-shadow:0 2px 8px #bc6cff22;">Python</a>
+          <a href="https://en.wikipedia.org/wiki/Graphical_user_interface" target="_blank" class="about-skill-title" style="background:#fff;padding:0.7em 1.6em;border-radius:14px;color:#23243a;font-weight:700;text-decoration:none;box-shadow:0 2px 8px #bc6cff22;">GUI Development</a>
+          <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" class="about-skill-title" style="background:#fff;padding:0.7em 1.6em;border-radius:14px;color:#23243a;font-weight:700;text-decoration:none;box-shadow:0 2px 8px #bc6cff22;">UX/UI Design</a>
+  </div>
+      </div>
     </section>
+    
     <section class="about-section">
-      <h2 class="about-subtitle">I Hope You're Ready to Read....</h2>
-      </p>
-
-      <h3 class="about-section-title">Intro</h3>
-      <p class="about-text">I guess I'd start an intro from the beginning of my life, well to start I was GOING to be named Apollo (which is like the coolest name ever) but my parents decided that a mythical creature was better.. Sigh... Wait that's a bit TOO early of an intro. I guess my life really started when I realized the direction I wanted to take with it, the meaning of life is finding meaning in your life I suppose. That direction for me came from my love of anything and everything on computers. It showed itself in strange ways at first, like the only time I got in trouble in Junior High was when my teacher kept catching me poking around in the inspect element of webpages. She thought I was some sort of kid hacker, which like I WISH?? (I'm still mad that she sent me to the principals office) (not really) (kinda). But from there it just kept growing, and growing, and growing, and growing, and now I'm sitting here making a website for fun. Imagine what I could do if I was employed...</p>
-      <h3 class="about-section-title">Places I've Been</h3>
-      <p class="about-text">I love talking about travel because it is what I want to make money to do. I want to see as much of the world as I see fit, and that love for travel definitely came from my parents. Shoutout mom and dad, I doubt you'll read this but maybe someone will. Anyways, I've been to the Dominican Republic, Japan, Germany, Belgium, England, France, Canada, and the Czech Republic. Every single one of those countries showed me something I had never seen prior, and I adore expanding my worldview. It makes me more creative, and understanding, just through immersing myself in a foreign culture.</p>
-      <div class="about-image-row">
-        <div class="about-image-col"><img src="IMG_8242.jpeg" alt="Travel 1" class="about-image" /></div>
-        <div class="about-image-col"><img src="IMG_7395.jpeg" alt="Travel 2" class="about-image" /></div>
-        <div class="about-image-col"><img src="IMG_3907.jpeg" alt="Travel 3" class="about-image" /></div>
-      </div>
-      <h3 class="about-section-title">Hopes For the Future</h3>
-      <p class="about-text">My only wish for the future is that I land in a place where I can do what I love happily, I'm aiming as high as I can for now but at the end of the day all I want is to code for my career. Even if it means I have to make a startup of my own, I am willing to do anything I can to secure that one hope.</p>
+      <h2 class="about-subtitle">Intro</h2>
+      <p class="about-text">FNAD World was my first major college project and one of the most technically ambitious games I’ve made. Inspired by FNAF World, I set out to expand my own FNAD universe while also pushing myself to explore new programming challenges. The biggest hurdle — and greatest learning opportunity — was figuring out how to use CSV files to auto-generate massive sprite maps. What started as a fun idea for a class project quickly became something much more meaningful: a way to blend my love for coding with practical skills that apply far beyond game development.</p>
+      <h3 class="about-section-title">Skills Applied</h3>
+      <p class="about-text">Developing FNAD World required me to step into unfamiliar territory and adapt quickly. I used Python as the core language, but this time I focused heavily on data management. By leveraging CSV parsing, I built a system that could dynamically read, interpret, and generate large maps from raw spreadsheet data — essentially automating what would have otherwise been hours of manual work. Along the way, I reinforced my understanding of Excel data structures, file I/O operations, and modular program design. This project was also a lesson in balancing GUI design and gameplay logic, ensuring the game was both functional and fun to interact with.</p>
+      <h3 class="about-section-title">The Future of FNAD World</h3>
+      <p class="about-text">While FNAD World is a finished project, the techniques I developed for it are skills I carry into nearly everything I build. The ability to take structured data (like a CSV file) and transform it into something interactive has obvious applications in software engineering, data processing, and automation. Looking forward, I see this project as a prototype for more advanced tools and systems that merge entertainment with real-world utility. And as with FNAD 2, it reinforced the simple truth that I love coding too much to stop at “good enough.”</p>
       <h3 class="about-section-title">Conclusion</h3>
-      <p class="about-text">Well I hope you enjoyed getting to know more about me, feel free to browse my website as long as you want! (I don't pay for the bandwidth xD)</p>
+      <p class="about-text">FNAD World wasn’t just another game — it was a gateway into understanding how data can shape entire systems. It taught me that even something as simple as a spreadsheet can unlock creativity when paired with the right logic and design. Most importantly, it reminded me why I code: because I love solving problems, building experiences, and pushing myself to create things that didn’t exist before.</p>
     </section>
-    
-    
+  <marquee behavior="scroll" direction="right" scrollamount="18" style="width:100%;margin-top:2rem;position:relative;left:50%;transform:translateX(-50%);loop:infinite;">
+    <div id="bounce-image-row" class="about-image-row" style="width:120vw; margin-left:-10vw;">
+      <div class="about-image-col">
+        <img src="Screenshot 2025-08-21 164725.png" alt="FNAD World Screenshot" class="about-image" />
+      </div>
+      <div class="about-image-col">
+        <img src="Screenshot 2025-08-21 165705.png" alt="FNAD World Screenshot" class="about-image" />
+      </div>
+      <div class="about-image-col">
+        <img src="Screenshot 2025-08-21 164709.png" alt="FNAD World Screenshot" class="about-image" />
+      </div>
+    </div>
+    <script>
+    // Bounce animation for image row
+    const bounceRow = document.getElementById('bounce-image-row');
+    let bouncePos = -10; // vw
+    let bounceDir = 1;
+    const imageCols = bounceRow.querySelectorAll('.about-image-col');
+    function getImageBounds() {
+      const rowRect = bounceRow.getBoundingClientRect();
+      const firstRect = imageCols[0].getBoundingClientRect();
+      const lastRect = imageCols[imageCols.length-1].getBoundingClientRect();
+      return {
+        left: firstRect.left,
+        right: lastRect.right,
+        containerLeft: rowRect.left,
+        containerRight: rowRect.right
+      };
+    }
+    function animateBounce() {
+      bouncePos += bounceDir * 0.35;
+      bounceRow.style.marginLeft = bouncePos + 'vw';
+      // Check bounds
+      const bounds = getImageBounds();
+      // If first image hits left edge, reverse
+      if (bounds.left <= bounds.containerLeft + 8) bounceDir = 1;
+      // If last image hits right edge, reverse
+      if (bounds.right >= bounds.containerRight - 8) bounceDir = -1;
+      requestAnimationFrame(animateBounce);
+    }
+    animateBounce();
+    </script>
   </main>
   <footer class="about-footer">
     <div class="footer-content">

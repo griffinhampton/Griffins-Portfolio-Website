@@ -1,13 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="image__2_-removebg-preview (2).png" type="image/x-icon">
   <meta charset="UTF-8">
   <title>Griffin Hampton | Portfolio</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="center-content">
+      <h1 style="font-family:'Montserrat',sans-serif;font-size:8vw;font-weight:900;letter-spacing:-0.04em;line-height:1.05;
+  background: linear-gradient(90deg, #fff 0%, #000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: white;
+  color: transparent;
+  text-shadow: 0 2px 6px #fff, 0 2px 2px #000;
+  filter: none; margin-bottom:0.2em; font-size:6.5vw;">GRIFFIN HAMPTON</h1>
+      <div id="typed-subtitle" style="font-family:'Montserrat',sans-serif;font-size:3vw;font-weight:500;font-style: italic;color:#fff;line-height:1.2;text-shadow:0 2px 16px #0008,0 0 8px #fff;opacity:0.98;margin-top:0.1em;height:3.6vw;overflow:hidden;display:flex;align-items:center;justify-content:center;width:100%;"></div>
+    </div>
     <nav id="main-navbar" style="position:fixed;top:36px;left:0;width:100vw;height:80px;z-index:2147483647;display:flex;align-items:center;justify-content:flex-end;padding:0 0 0 0;background:transparent;border:none;box-shadow:none;pointer-events:none;">
       <button id="hamburger" aria-label="Open menu" style="width:60px;height:60px;background:rgba(30,30,50,0.7);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;z-index:2147483647;box-shadow:0 2px 8px 0 #0004;pointer-events:auto;margin-right:48px;position:fixed;top:36px;right:48px;">
         <div id="hamburger-icon" style="width:36px;height:36px;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;">
@@ -17,10 +28,13 @@
         </div>
       </button>
     </nav>
-  <div id="gh-logo" style="position:fixed;bottom:36px;left:88px;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 60% 40%,#e0b3ff 0%,#a259ff 60%,#3a1c71 100%);box-shadow:0 0 10px 3px #a259ff55,0 0 20px 4px #e0b3ff22;display:flex;align-items:center;justify-content:center;z-index:2147483647;">
++  <a href="about.html"><div id="gh-logo" style="position:fixed;bottom:36px;left:88px;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 60% 40%,#e0b3ff 0%,#a259ff 60%,#3a1c71 100%);box-shadow:0 0 10px 3px #a259ff55,0 0 20px 4px #e0b3ff22;display:flex;align-items:center;justify-content:center;z-index:2147483647;">
       <span style="font-family:'Segoe UI',sans-serif;font-weight:900;font-size:2.2rem;color:#fff;letter-spacing:-2px;text-shadow:0 0 3px #fff,0 0 6px #a259ff;">GH</span>
-    </div>
-      <canvas id="bg-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;"></canvas>
+    </div></a>  
+  
+      <canvas id="bg-orbs" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;"></canvas>
+      <canvas id="bg-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;"></canvas>
+      <canvas id="diamond-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:2;"></canvas>
   <div id="side-menu" style="position:fixed;top:0;left:0;height:100vh;width:0;z-index:2147483648;background:rgba(20,20,40,0.98);box-shadow:8px 0 32px 0 #0008;overflow:hidden;transition:width 0.4s cubic-bezier(.68,-0.55,.27,1.55);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:80px;">
         <nav style="width:100%;">
           <ul id="side-menu-list" style="list-style:none;padding:0;margin:0;width:100%;">
@@ -42,11 +56,7 @@
       <a href="about.html">About Me</a>
     </div>
   </div>
-  <canvas id="diamond-bg"></canvas>
-  <div class="center-content">
-    <h1>Griffin Hampton</h1>
-    <p>Creative Developer & Designer</p>
-  </div>
+ 
   <style>
     html, body {
       width: 100vw;
@@ -55,84 +65,13 @@
       padding: 0;
       overflow: hidden;
       font-size: 1vw;
-    }
+  /* End of global body styles */
     body {
       min-height: 100vh;
       min-width: 100vw;
       box-sizing: border-box;
     }
-    function animateDiamonds(t) {
-      ctx.clearRect(0, 0, width, height);
-      drawSmokeyGlow(t);
-      // Calculate orbiting diamonds' positions and z for sorting
-      let orbitDiamonds = diamonds.filter(d => d.orbit).map(d => {
-        let orbitSpeed = 0.7;
-        let theta = d.orbitAngle + t * 0.0005 * orbitSpeed;
-        let z = Math.sin(theta + d.orbitZ) * 0.7;
-        let scale = 0.7 + 0.5 * (z + 1);
-        let x = clumpCenter.x + Math.cos(theta) * d.orbitRadius;
-        let y = clumpCenter.y + Math.sin(theta) * d.orbitRadius * 0.38 + z * 18;
-        return { d, z, scale, x, y };
-      });
-      // Sort by z (back to front)
-      orbitDiamonds.sort((a, b) => a.z - b.z);
-      // Draw those behind the sphere (z < 0)
-      for (let od of orbitDiamonds) {
-        if (od.z >= 0) continue;
-        ctx.save();
-        ctx.globalAlpha = 0.45 + 0.25 * od.scale;
-        ctx.filter = `blur(${(1-od.scale)*2.5}px)`;
-        ctx.translate(od.x, od.y);
-        ctx.scale(od.scale, od.scale);
-        drawDiamond(0, 0, od.d.size, od.d.color, od.d.angle);
-        ctx.restore();
-      }
-      // Draw spinning red sphere in center, rotating on x and y axes with mouse
-      const xRot = -mouseNorm.y * Math.PI * 0.7; // Mirror up/down (x) rotation
-      const yRot = mouseNorm.x * Math.PI * 0.7; // Follow mouse for left/right (y) rotation
-      drawRedSphere(clumpCenter.x, clumpCenter.y, Math.min(width, height) / 8, xRot, yRot);
-      // Draw those in front of the sphere (z >= 0)
-      for (let od of orbitDiamonds) {
-        if (od.z < 0) continue;
-        ctx.save();
-        ctx.globalAlpha = 0.45 + 0.25 * od.scale;
-        ctx.filter = `blur(${(1-od.scale)*2.5}px)`;
-        ctx.translate(od.x, od.y);
-        ctx.scale(od.scale, od.scale);
-        drawDiamond(0, 0, od.d.size, od.d.color, od.d.angle);
-        ctx.restore();
-      }
-      // Draw main diamonds (in front of sphere)
-      animateDiamondColors(t);
-      for (let d of diamonds) {
-        if (d.orbit) continue;
-        let dx = d.x - mouse.x;
-        let dy = d.y - mouse.y;
-        let dist = Math.sqrt(dx * dx + dy * dy);
-        let repel = 0;
-        if (dist < 140) {
-          let force = (140 - dist) * 0.18;
-          let angle = Math.atan2(dy, dx);
-          d.vx += Math.cos(angle) * force;
-          d.vy += Math.sin(angle) * force;
-        }
-        let toBaseX = d.baseX - d.x;
-        let toBaseY = d.baseY - d.y;
-        d.vx += toBaseX * 0.012;
-        d.vy += toBaseY * 0.012;
-        d.vx *= 0.88;
-        d.vy *= 0.88;
-        d.x += d.vx * 0.5;
-        d.y += d.vy * 0.5;
-        let float = Math.sin(t / 1200 + d.offset) * 6;
-        drawDiamond(d.x, d.y + float, d.size, d.color, d.angle + Math.sin(t / 900 + d.offset) * 0.2);
-      }
-      requestAnimationFrame(animateDiamonds);
-    }
-    animateDiamonds(performance.now());
-      z-index: 2147483647;
-      pointer-events: auto;
-      transition: background 0.3s;
+  /* Removed stray JS lines. All CSS below is valid. */
     }
     .hamburger span {
       display: block;
@@ -236,6 +175,37 @@
     .menu-content a:hover {
       color: #bc6cff;
       -webkit-text-fill-color: #bc6cff;
+    }
+    .center-content {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      text-align: center;
+      width: max-content;
+      pointer-events: none;
+    }
+    .center-content h1 {
+      margin-bottom: 0.6em;
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      background: linear-gradient(90deg, #ff2a2a 0%, #1a0e2d 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 2px #fff;
+    }
+    .center-content .subtitle {
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1.3;
+      background: linear-gradient(90deg, #ff2a2a 0%, #1a0e2d 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 2px #fff;
     }
     @media (max-width: 600px) {
       .navbar { padding: 0 2vw; height: 9vw; min-height: 36px; }
@@ -481,6 +451,16 @@
       mouseNorm.y = (e.clientY / height - 0.5) * 2;
     });
 
+    // Sphere color palette
+    const sphereColors = [
+      ['#fff', '#bc6cff', '#a259ff', '#2d0a4d'], // purple
+      ['#fff', '#3ad0ff', '#1e90ff', '#1a1457'], // blue
+      ['#fff', '#ff6cbb', '#a259ff', '#2d0a4d'], // pink
+      ['#fff', '#ffe066', '#bc6cff', '#2d0a4d'], // gold
+      ['#fff', '#6cffbc', '#59ffa2', '#14572d']  // teal
+    ];
+    let sphereColorIdx = 0;
+
     function drawRedSphere(centerX, centerY, radius, xRot, yRot) {
       // Simulate a 3D sphere with a shadow, spinning on x and y axes (no glare)
       // Calculate the highlight center based on xRot and yRot for a 3D effect
@@ -499,39 +479,36 @@
       grad.addColorStop(0.13, '#bc6cff'); // Bright Fortnite purple
       grad.addColorStop(0.38, '#a259ff'); // Fortnite purple
       grad.addColorStop(1, '#2d0a4d'); // Deep purple
-  ctx.save();
-  // Black hole event horizon glow: left/right stretching grape glow
-  let horizonGrad = ctx.createLinearGradient(centerX - radius * 3, centerY, centerX + radius * 3, centerY);
-  horizonGrad.addColorStop(0, 'rgba(200,160,255,0.01)');
-  horizonGrad.addColorStop(0.18, 'rgba(200,160,255,0.18)');
-  horizonGrad.addColorStop(0.48, 'rgba(200,160,255,0.32)');
-  horizonGrad.addColorStop(0.52, 'rgba(200,160,255,0.32)');
-  horizonGrad.addColorStop(0.82, 'rgba(200,160,255,0.18)');
-  horizonGrad.addColorStop(1, 'rgba(200,160,255,0.01)');
-  ctx.save();
-  ctx.globalAlpha = 0.7;
-  ctx.filter = 'blur(48px)';
-  ctx.beginPath();
-  ctx.ellipse(centerX, centerY, radius * 3, radius * 0.55, 0, 0, Math.PI * 2);
-  ctx.closePath();
-  ctx.fillStyle = horizonGrad;
-  ctx.fill();
-  ctx.filter = 'none';
-  ctx.globalAlpha = 1;
-  ctx.restore();
-
-  // Sphere
-  ctx.beginPath();
-  ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-  ctx.closePath();
-  ctx.fillStyle = grad;
-  ctx.shadowColor = '#bc6cff';
-  ctx.shadowBlur = 80;
-  ctx.globalAlpha = 0.98;
-  ctx.fill();
-  ctx.globalAlpha = 1;
-  ctx.shadowBlur = 0;
-  ctx.restore();
+      ctx.save();
+      // Black hole event horizon glow: left/right stretching grape glow
+      let horizonGrad = ctx.createLinearGradient(centerX - radius * 3, centerY, centerX + radius * 3, centerY);
+      horizonGrad.addColorStop(0, 'rgba(200,160,255,0.01)');
+      horizonGrad.addColorStop(0.18, 'rgba(200,160,255,0.18)');
+      horizonGrad.addColorStop(0.48, 'rgba(200,160,255,0.32)');
+      horizonGrad.addColorStop(0.52, 'rgba(200,160,255,0.32)');
+      horizonGrad.addColorStop(0.82, 'rgba(200,160,255,0.18)');
+      ctx.globalAlpha = 0.7;
+      ctx.filter = 'blur(48px)';
+      ctx.beginPath();
+      ctx.ellipse(centerX, centerY, radius * 3, radius * 0.55, 0, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fillStyle = horizonGrad;
+      ctx.fill();
+      ctx.filter = 'none';
+      ctx.globalAlpha = 1;
+      ctx.restore();
+      // Sphere
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fillStyle = grad;
+      ctx.shadowColor = '#bc6cff';
+      ctx.shadowBlur = 80;
+      ctx.globalAlpha = 0.98;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur = 0;
+      ctx.restore();
     }
 
     // Animate glows: each has a phase and speed for fade in/out
@@ -570,7 +547,7 @@
       { x: () => width, y: () => height, r: () => Math.max(width, height) * 0.32, phase: 3.2, speed: 0.7 }
     ];
 
-    function drawSmokeyGlow(t = 0) {
+    function drawSmokeyGlow(t) {
       for (let i = 0; i < animatedGlows.length; i++) {
         const glow = animatedGlows[i];
         // Animate alpha with a faster sine wave
@@ -694,5 +671,131 @@
     }
     animateDiamonds(performance.now());
   </script>
+  <script>
+    // Glowing orbs background animation (now uses bg-orbs canvas)
+    const orbCanvas = document.getElementById('bg-orbs');
+    const orbCtx = orbCanvas.getContext('2d');
+    let orbWidth = window.innerWidth;
+    let orbHeight = window.innerHeight;
+    orbCanvas.width = orbWidth;
+    orbCanvas.height = orbHeight;
+    function resizeOrbCanvas() {
+      orbWidth = window.innerWidth;
+      orbHeight = window.innerHeight;
+      orbCanvas.width = orbWidth;
+      orbCanvas.height = orbHeight;
+    }
+    window.addEventListener('resize', resizeOrbCanvas);
+    // Orb properties
+    const orbCount = 12;
+    const orbs = Array.from({length: orbCount}).map(() => ({
+      x: Math.random() * orbWidth,
+      y: Math.random() * orbHeight,
+      r: 60 + Math.random() * 80,
+      color: `hsla(${180 + Math.random()*120}, 80%, 65%, 0.22)`,
+      dy: 0.18 + Math.random() * 0.22,
+      phase: Math.random() * Math.PI * 2
+    }));
+    function drawOrbs(t = 0) {
+      orbCtx.clearRect(0, 0, orbWidth, orbHeight);
+      for (let orb of orbs) {
+        // Animate vertical falling
+        orb.y += orb.dy;
+        if (orb.y > orbHeight + orb.r) {
+          orb.y = -orb.r;
+          orb.x = Math.random() * orbWidth;
+        }
+        // Animate fade in/out with sine wave
+        let alpha = 0.25 + 0.55 * Math.abs(Math.sin(t*0.001 + orb.phase + orb.y*0.002));
+        // Glowing gradient
+        let grad = orbCtx.createRadialGradient(
+          orb.x, orb.y, orb.r * 0.18,
+          orb.x, orb.y, orb.r
+        );
+        grad.addColorStop(0, orb.color.replace('0.22', (alpha+0.18).toFixed(2)));
+        grad.addColorStop(0.18, orb.color.replace('0.22', (alpha*0.8).toFixed(2)));
+        grad.addColorStop(0.6, orb.color.replace('0.22', (alpha*0.4).toFixed(2)));
+        grad.addColorStop(1, 'rgba(10,10,19,0.01)');
+        orbCtx.save();
+        orbCtx.globalAlpha = alpha;
+        orbCtx.beginPath();
+        orbCtx.arc(orb.x, orb.y, orb.r, 0, Math.PI * 2);
+        orbCtx.closePath();
+        orbCtx.fillStyle = grad;
+        orbCtx.filter = 'blur(32px)';
+        orbCtx.fill();
+        orbCtx.filter = 'none';
+        orbCtx.globalAlpha = 1;
+        orbCtx.restore();
+      }
+    }
+    function animateOrbs() {
+      drawOrbs(performance.now());
+      requestAnimationFrame(animateOrbs);
+    }
+    animateOrbs();
+  </script>
+  <script>
+    // Dark purple gradient background for bg-canvas
+    const bgCanvas = document.getElementById('bg-canvas');
+    const bgCtx = bgCanvas.getContext('2d');
+    let bgWidth = window.innerWidth;
+    let bgHeight = window.innerHeight;
+    bgCanvas.width = bgWidth;
+    bgCanvas.height = bgHeight;
+    function resizeBgCanvas() {
+      bgWidth = window.innerWidth;
+      bgHeight = window.innerHeight;
+      bgCanvas.width = bgWidth;
+      bgCanvas.height = bgHeight;
+    }
+    window.addEventListener('resize', resizeBgCanvas);
+    function drawBgGradient() {
+      let grad = bgCtx.createLinearGradient(0, 0, 0, bgHeight);
+      grad.addColorStop(0, '#2a1457'); // deep purple
+      grad.addColorStop(0.5, '#1a0e2d'); // darker purple
+      grad.addColorStop(1, '#120a1c'); // near black
+      bgCtx.fillStyle = grad;
+      bgCtx.fillRect(0, 0, bgWidth, bgHeight);
+    }
+    function animateBg() {
+      drawBgGradient();
+      requestAnimationFrame(animateBg);
+    }
+    animateBg();
+  </script>
 </body>
+<script>
+// Typed subtitle effect
+const subtitles = ["University of Louisville CS Major", "Independant Coding Contractor", "Web Developer"];
+let subtitleIndex = 0;
+let charIndex = 0;
+let typing = true;
+const subtitleElem = document.getElementById("typed-subtitle");
+
+function typeSubtitle() {
+  const current = subtitles[subtitleIndex];
+  if (typing) {
+    if (charIndex < current.length) {
+      subtitleElem.textContent = current.slice(0, charIndex + 1);
+      charIndex++;
+      setTimeout(typeSubtitle, 55 + Math.random() * 60);
+    } else {
+      typing = false;
+      setTimeout(typeSubtitle, 1200);
+    }
+  } else {
+    if (charIndex > 0) {
+      subtitleElem.textContent = current.slice(0, charIndex - 1);
+      charIndex--;
+      setTimeout(typeSubtitle, 32 + Math.random() * 40);
+    } else {
+      typing = true;
+      subtitleIndex = (subtitleIndex + 1) % subtitles.length;
+      setTimeout(typeSubtitle, 400);
+    }
+  }
+}
+typeSubtitle();
+</script>
 </html>
