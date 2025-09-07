@@ -207,7 +207,17 @@
   box-shadow: 0 0 24px 0 #4db8ff, 0 0 32px 0 #142a4d;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
-/* Full-screen overlay */
+
+    .resume-btn {
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .resume-btn:hover {
+      filter: brightness(0.85);
+      transform: scale(1.08);
+      box-shadow: 0 4px 24px #23243a33;
+    }
+
+    /* Full-screen overlay */
 #loading-screen {
   position: fixed;
   top: 0; left: 0;
@@ -263,61 +273,23 @@
   </style>
 </head>
 <body>
-  <div id="loading-screen">
+    <div id="loading-screen">
   <div class="loader-glow"></div>
   <h1 class="loader-text">Loading...</h1>
 </div>
 
-
   <canvas id="smokey-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
-  <div class="portfolio-container" style="position:relative;z-index:1;">
-    <div class="portfolio-title">My Portfolio</div>
-    <div class="portfolio-card">
-      <img src="Screenshot 2025-07-11 012336.png" alt="Four Nights at Dingles 2" class="portfolio-image">
-      <div class="portfolio-info">
-        <div class="portfolio-project">FNAD 2</div>
-        <div class="portfolio-desc">My first official game, and the start of a legacy. What started as a silly game for me and my friends to play in high school turned into the spark that ignited my love for computer science.</div>
-        <div class="portfolio-skills">
-          <a href="https://en.wikipedia.org/wiki/Game_development" target="_blank" class="portfolio-skill">Game Development</a>
-          <a href="https://en.wikipedia.org/wiki/Graphical_user_interface" target="_blank" class="portfolio-skill">GUI Development</a>
-          <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank" class="portfolio-skill">Python</a>
-          <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" class="portfolio-skill">UX/UI Design</a>
-        </div>
-        <a href="fnad2.html"><button class="portfolio-btn">Click for more info!</button></a>
-      </div>
+  <div class="resume-container" style="position:relative;z-index:1;max-width:900px;margin:0 auto;padding:48px 16px 0 16px; min-height: 100%;max-height: 150%;">
+    <div class="resume-title" style="font-size:3rem;font-weight:900;color:#23243a;margin-bottom:32px;text-align:center;letter-spacing:-1px;">Resume</div>
+    <div class="resume-pdf-wrapper" style="display:flex;justify-content:center;align-items:center;margin-bottom:32px;background:#fff;overflow:hidden;padding:0;border:4px solid #4db8ff;border-radius:32px;">
+      <img src="Resume.docx (1).webp" alt="Resume" style="width:100%;max-width:700px;height:auto;border-radius:28px;border:none;background:#fff;display:block;margin:0;" />
     </div>
-    <div class="portfolio-card">
-      <img src="Screenshot 2025-08-21 164655.png" alt="Four Nights at Dingles World" class="portfolio-image">
-      <div class="portfolio-info">
-        <div class="portfolio-project">FNAD World</div>
-        <div class="portfolio-desc">One of my most ambitious projects to date, and my intro into managing data. This project was born from an undying curiosity to venture into CSV file maps, and served as a much needed refresher with excel. It would be no stretch to say that this game prepared me for eventually becoming the coding contractor I am today.</div>
-        <div class="portfolio-skills">
-          <a href="https://en.wikipedia.org/wiki/Game_development" target="_blank" class="portfolio-skill">Game Development</a>
-          <a href="https://en.wikipedia.org/wiki/Comma-separated_values" target="_blank" class="portfolio-skill">CSV File Formatting</a>
-          <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank" class="portfolio-skill">Python</a>
-          <a href="https://en.wikipedia.org/wiki/Graphical_user_interface" target="_blank" class="portfolio-skill">GUI Development</a>
-          <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" class="portfolio-skill">UX/UI Design</a>
-        </div>
-        <a href="fnadworld.html"><button class="portfolio-btn">Click for more info!</button></a>
-      </div>
-    </div>
-    <div class="portfolio-card">
-      <img src="Screenshot 2025-09-06 185923.png" alt="This Website" class="portfolio-image">
-      <div class="portfolio-info">
-        <div class="portfolio-project">This Website?!</div>
-        <div class="portfolio-desc">Who needs a static resume when you can have an interactive one... This website was created with my future in mind, but it turned out to be an absolute blast to make. I learned a remarkable amount about UX design and got a full refresher on all website oriented coding.</div>
-        <div class="portfolio-skills">
-          <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank" class="portfolio-skill">JavaScript</a>
-          <a href="https://en.wikipedia.org/wiki/HTML" target="_blank" class="portfolio-skill">HTML</a>
-          <a href="https://en.wikipedia.org/wiki/CSS" target="_blank" class="portfolio-skill">CSS</a>
-          <a href="https://en.wikipedia.org/wiki/Domain_Name_System" target="_blank" class="portfolio-skill">DNS Configuring</a>
-          <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" class="portfolio-skill">UX/UI Design</a>
-          <a href="https://en.wikipedia.org/wiki/Web_development" target="_blank" class="portfolio-skill">Website Development</a>
-        </div>
-        <a href="website.html"><button class="portfolio-btn">Click for more info!</button></a>
-      </div>
+    <div class="resume-btn-row" style="display:flex;justify-content:center;gap:32px;margin-bottom:24px;">
+      <a href="Resume.docx (1).pdf" target="_blank" class="resume-btn" style="font-size:1.1rem;background:linear-gradient(90deg,#4db8ff 0%,#bc6cff 100%);color:#fff;border:none;border-radius:12px;padding:12px 28px;box-shadow:0 2px 8px #4db8ff11;cursor:pointer;font-family:inherit;font-weight:600;text-decoration:none;transition:background 0.2s;">Open Resume in New Tab</a>
+      <a href="Resume.docx (1).pdf" download class="resume-btn" style="font-size:1.1rem;background:linear-gradient(90deg,#ff2d55 0%,#e74c3c 100%);color:#fff;border:none;border-radius:12px;padding:12px 28px;box-shadow:0 2px 8px #ff2d5511;cursor:pointer;font-family:inherit;font-weight:600;text-decoration:none;transition:background 0.2s;">Download Resume</a>
     </div>
   </div>
+</div>
 </body>
   
 </head>
@@ -368,8 +340,7 @@
   </footer>
 </html>
               
-
-<script>
+  <script>
     // Wait until all content (images, canvas, etc.) is loaded
 window.addEventListener('load', () => {
   const loader = document.getElementById('loading-screen');
@@ -383,6 +354,7 @@ window.addEventListener('load', () => {
       document.body.style.opacity = '1';
     });
   </script>
+    
   
   <script>
       // Navbar hamburger animation

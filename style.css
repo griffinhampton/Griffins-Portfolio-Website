@@ -1,3 +1,130 @@
+/* Hamburger menu styles (moved from index.html for global use) */
+
+
+.hamburger {
+  position: fixed;
+  right: 2vw;
+  top: 2vw;
+  width: 7vw;
+  height: 7vw;
+  min-width: 28px;
+  min-height: 28px;
+  background: rgba(30,30,50,0.7);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 2147483647;
+  box-shadow: 0 2px 8px 0 #0004;
+  pointer-events: auto;
+  margin-right: 48px;
+}
+.hamburger span {
+  display: block;
+  width: 5vw;
+  min-width: 16px;
+  height: 0.6vw;
+  min-height: 2px;
+  margin: 0.4vw 0;
+  background: #fff;
+  border-radius: 3px;
+  transition: transform 0.3s, opacity 0.3s;
+  box-shadow: 0 2px 8px #bc6cff44;
+}
+.hamburger.active span:nth-child(1),
+.menu-overlay.active ~ .hamburger span:nth-child(1) {
+  transform: translateY(1vw) rotate(45deg);
+  background: #bc6cff;
+}
+.hamburger.active span:nth-child(2),
+.menu-overlay.active ~ .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3),
+.menu-overlay.active ~ .hamburger span:nth-child(3) {
+  transform: translateY(-1vw) rotate(-45deg);
+  background: #bc6cff;
+}
+.menu-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: transparent;
+  pointer-events: none;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+}
+.menu-overlay.active {
+  background: rgba(30, 10, 40, 0.98);
+  pointer-events: all;
+}
+.menu-content {
+  position: relative;
+  z-index: 112;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 2.5vw;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
+}
+.menu-overlay.active .menu-content {
+  opacity: 1;
+  transform: scale(1);
+}
+.menu-content a {
+  font-size: 2.2vw;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: linear-gradient(90deg, #bc6cff 0%, #fff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 16px #bc6cff55;
+  transition: color 0.2s;
+}
+.menu-content a:hover {
+  color: #bc6cff;
+  -webkit-text-fill-color: #bc6cff;
+}
+/* Static decorative shapes for index page */
+.css-orb {
+  position: fixed;
+  top: 12vh;
+  left: 8vw;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 40%, #bc6cff 0%, #a259ff 80%, #23243a 100%);
+  box-shadow: 0 0 48px 12px #bc6cff44;
+  opacity: 0.7;
+  z-index: 0;
+  pointer-events: none;
+}
+.css-diamond {
+  position: fixed;
+  top: 60vh;
+  left: 80vw;
+  width: 0;
+  height: 0;
+  border: 40px solid transparent;
+  border-bottom: 60px solid #fff;
+  opacity: 0.6;
+  filter: drop-shadow(0 0 24px #bc6cff88);
+  z-index: 0;
+  pointer-events: none;
+}
 html, body {
 
   padding: 0;
@@ -201,4 +328,66 @@ html, body {
 .contact a {
   color: #222;
   text-decoration: underline;
+}
+.side-menu a,
+#side-menu a {
+  transition: box-shadow 0.2s, transform 0.2s, color 0.2s, background 0.2s;
+  box-shadow: none;
+}
+.side-menu a:hover,
+#side-menu a:hover {
+  box-shadow: 0 0 18px #bc6cff, 0 0 32px #a259ff;
+  transform: scale(1.12);
+  color: #fff;
+  background: #a259ff;
+}
+#gh-logo {
+  transition: box-shadow 0.2s, filter 0.2s;
+}
+#gh-logo:hover {
+  box-shadow: 0 0 32px #3a7bd5, 0 0 48px #3a7bd5;
+  filter: drop-shadow(0 0 24px #3a7bd5);
+}
+#hamburger {
+  transition: box-shadow 1.2s cubic-bezier(.68,-0.55,.27,1.55), filter 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+}
+#hamburger:hover {
+  box-shadow: 0 0 32px #3a7bd5, 0 0 48px #3a7bd5;
+  filter: drop-shadow(0 0 24px #3a7bd5);
+}
+.marquee {
+  width: 100vw;
+  height: 320px;
+  margin: 2.5rem auto;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.marquee-track {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: max-content;
+  animation: marquee-move 18s linear infinite;
+  will-change: transform;
+}
+.marquee-track img {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 0 18px #bc6cff44, 0 2px 8px #a259ff22;
+  border: 3px solid #a259ff;
+  background: #2a174d;
+}
+@keyframes marquee-move {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }

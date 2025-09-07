@@ -2,16 +2,575 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Website Project | Griffin Hampton Portfolio</title>
+  <title>About | Griffin Hampton</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="image__2_-removebg-preview (2).png" type="image/x-icon">
+  <style>
+    .about-photo {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .about-title {
+    font-size: 4.2rem;
+    margin-bottom: 0.3em;
+    color: #fff;
+    text-shadow: 0 0 32px #bc6cff, 0 0 12px #a259ff, 0 2px 8px #23243a, 0 0 2px #fff;
+    text-align: center;
+    width: 100%;
+    display: block;
+  }
+    .about-photo-img {
+  width: auto !important;
+  height: auto !important;
+      max-width: 100%;
+      max-height: 420px;
+      border-radius: 18px;
+      box-shadow: 0 0 18px #bc6cff44, 0 2px 8px #a259ff22;
+      border: 3px solid #a259ff;
+      background: #2a174d;
+      object-fit: contain !important;
+      display: block;
+    }
+    html, body {
+      background: linear-gradient(120deg, #2a174d 0%, #a259ff 100%);
+      min-height: 100vh;
+      font-family: 'Montserrat', 'Segoe UI', sans-serif;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    .about-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: radial-gradient(circle at 60% 20%, #bc6cff55 0%, #2a174d 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .about-main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 0;
+  padding: 48px 32px 48px 32px;
+    }
+    .about-hero {
+      display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: center;
+  width: auto !important;
+  max-width: 100vw;
+  min-width: 0;
+  padding: 0;
+  margin: 0 auto 2.5rem auto;
+      background: rgba(255,255,255,0.10);
+      border-radius: 24px;
+      box-shadow: 0 4px 24px 0 #bc6cff22;
+    }
+    .about-role {
+  font-size: 1.6rem;
+      font-weight: 600;
+      color: #e0b3ff;
+      margin-bottom: 0.7rem;
+      text-shadow: 0 0 6px #a259ff88;
+    }
+    .about-desc {
+  font-size: 1.3rem;
+      color: #e0b3ff;
+      max-width: 420px;
+      margin: 0 auto 1.2rem auto;
+      text-shadow: 0 0 6px #bc6cff44;
+    }
+    .about-card {
+  background: rgba(255,255,255,0.92);
+  border-radius: 18px;
+  box-shadow: 0 6px 24px 0 #a259ff22, 0 2px 18px 0 #bc6cff11;
+  backdrop-filter: blur(12px) saturate(180%);
+  padding: 2rem 2rem 1.5rem 2rem;
+  max-width: 650px;
+  margin: 0 auto 2rem auto;
+  color: #2a174d;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+    }
+    .about-section {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #a259ff;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 6px #bc6cff44;
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 8px 32px 0 #bc6cff22;
+  color: #2a174d;
+  border-radius: 24px;
+  padding: 2rem 2.5rem;
+    }
+    .about-text {
+  font-size: 1.15rem;
+  color: #2a174d;
+  margin-bottom: 1.1rem;
+  text-shadow: none;
+    }
+    .about-skills {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+    }
+    .about-skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7em;
+    margin-top: 0.7em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+    
+    .about-skill-title {
+    font-weight: 700;
+    color: #a259ff;
+    font-size: 1.2rem;
+    margin-right: 0.6rem;
+    text-shadow: none;
+    background: #fff;
+    padding: 0.7em 1.6em;
+    border-radius: 14px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px #bc6cff22;
+    transition: background 0.2s, color 0.2s;
+    display: inline-block;
+    }
+    .about-skill-title:hover {
+    background: #bc6cff;
+    color: #fff;
+    }
+    .about-skill-desc {
+  color: #2a174d;
+  font-size: 1.1rem;
+  text-shadow: none;
+    }
+    @media (max-width: 700px) {
+      .about-title { font-size: 2.1rem; }
+      .about-card { padding: 1.2rem 1.2rem 1rem 1.2rem; }
+      .about-main { min-height: 90vh; }
+    
+    }
+    .about-footer {
+  position: relative;
+  z-index: 3000;
+  width: 100%;
+  background: #142a4d;
+  color: #fff;
+  padding: 2rem 0 2.5rem 0;
+  text-align: center;
+  box-shadow: 0 -4px 24px 0 #1a2a6c44;
+  margin-top: 2rem;
+    }
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .footer-title {
+  font-size: 2.8rem;
+  color: #fff;
+  margin-bottom: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+    }
+    .footer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+  gap: 4rem;
+      flex-wrap: wrap;
+    }
+    .footer-link {
+  color: #fff;
+  opacity: 1;
+  font-size: 1.7rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 700;
+    }
+    .footer-link:hover {
+  color: #4db8ff;
+  text-decoration: underline;
+    }
+    .about-image-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 2rem 0;
+      justify-items: center;
+      align-items: center;
+    }
+    .about-image-col {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .about-image {
+      width: 100%;
+      height: 400px;
+      object-fit: fill;
+      border-radius: 18px;
+      box-shadow: 0 0 18px #bc6cff44, 0 2px 8px #a259ff22;
+      border: 3px solid #a259ff;
+      background: #2a174d;
+    }
+    /* Make image box stretch with image, not stretch image to fit box */
+.image-box {
+  display: inline-block;
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 0 24px 4px #bc6cff22;
+  border-radius: 16px;
+  background: none;
+}
+.image-box img {
+  display: block;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: unset !important;
+}
+/* Make hero holding box size adapt to its content */
+.hero-holding-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100vw;
+  max-height: 100vh;
+  padding: 0;
+  margin: 0 auto;
+  background: none;
+  box-sizing: content-box;
+}
+/* Full-screen overlay */
+#loading-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: linear-gradient(120deg, #2a174d 0%, #a259ff 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease;
+}
+
+/* Fade-out effect */
+#loading-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Glowy circle animation */
+.loader-glow {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #bc6cff;
+  box-shadow: 0 0 16px #bc6cff88, 0 0 32px #a259ff44, 0 0 48px #bc6cff33;
+  animation: pulse 1.4s ease-in-out infinite;
+  margin-bottom: 1.5rem;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* Loader text */
+.loader-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 0 12px #bc6cff, 0 0 24px #a259ff;
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+/* Text glow animation */
+@keyframes textGlow {
+  from { text-shadow: 0 0 12px #bc6cff, 0 0 24px #a259ff; }
+  to { text-shadow: 0 0 24px #bc6cff, 0 0 48px #a259ff; }
+}
+
+
+  </style>
 </head>
 <body>
-  <nav>
-    <a href="portfolio.html">← Back to Portfolio</a>
+  <div id="loading-screen">
+  <div class="loader-glow"></div>
+  <h1 class="loader-text">Griffin Hampton</h1>
+</div>
+
+
+  <canvas id="smokey-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
+  <nav id="main-navbar" style="position:fixed;top:36px;left:0;width:100vw;height:80px;z-index:2147483647;display:flex;align-items:center;justify-content:flex-end;padding:0 0 0 0;background:transparent;border:none;box-shadow:none;pointer-events:none;">
+    <button id="hamburger" aria-label="Open menu" style="width:60px;height:60px;background:rgba(30,30,50,0.7);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;z-index:2147483647;box-shadow:0 2px 8px 0 #0004;pointer-events:auto;margin-right:48px;position:fixed;top:36px;right:48px;">
+      <div id="hamburger-icon" style="width:36px;height:36px;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+        <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
+        <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:opacity 0.3s;"></span>
+        <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
+      </div>
+    </button>
   </nav>
-  <main>
-    <h1>Website Project</h1>
-    <p>This page is dedicated to the Website project. Add your project details, screenshots, and descriptions here.</p>
+  <div id="side-menu" style="position:fixed;top:0;left:0;height:100vh;width:0;z-index:2147483648;background:rgba(20,20,40,0.98);box-shadow:8px 0 32px 0 #0008;overflow:hidden;transition:width 0.4s cubic-bezier(.68,-0.55,.27,1.55);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:80px;">
+    <nav style="width:100%;">
+      <ul id="side-menu-list" style="list-style:none;padding:0;margin:0;width:100%;">
+        <li><a href="index.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Home</a></li>
+        <li><a href="about.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">About Me</a></li>
+        <li><a href="portfolio.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Portfolio</a></li>
+        <li><a href="resume.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Resume</a></li>
+        <li><a href="contact.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="crack crack1"></div>
+    <div class="crack crack2"></div>
+    <div class="crack crack3"></div>
+    <div class="menu-content">
+      <a href="contact.html">Contact</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">About Me</a>
+    </div>
+  </div>
+  <div class="about-bg"></div>
+  <main class="about-main">
+    <section class="about-hero" style="width:100%;max-width:900px;display:flex;flex-direction:row;align-items:center;justify-content:center;margin-bottom:2.5rem;background:rgba(255,255,255,0.10);border-radius:24px;box-shadow:0 4px 24px 0 #bc6cff22;">
+      <div class="about-photo" style="display:flex;align-items:center;justify-content:center;">
+        <img src="Screenshot 2025-09-06 185923.png" alt="Website Photo" class="about-photo-img" style="width:320px;height:320px;max-width:100%;border-radius:18px;box-shadow:0 0 18px #bc6cff44,0 2px 8px #a259ff22;border:3px solid #a259ff;background:#2a174d;" />
+      </div>
+      <div class="about-info" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:1.1em;padding:1.8em 1.5em 1.8em 1.5em;">
+  <h1 class="about-title" style="font-size:3.8rem;margin-bottom:0.3em;color:#fff;text-shadow:0 2px 8px #23243a,0 0 2px #fff;">This Website?!</h1>
+  <p class="about-role" style="font-size:1.25rem;color:#fff;margin-bottom:0.3em;text-shadow:0 2px 8px #23243a,0 0 2px #fff;">Who needs a static resume when you can have an interactive one...</p>
+  <p class="about-desc" style="font-size:1.08rem;color:#fff;max-width:600px;margin-bottom:0.7em;text-shadow:0 2px 8px #23243a,0 0 2px #fff;">This website was created with my future in mind, but it turned out to be an absolute blast to make. I learned a remarkable amount about UX design and got a full refresher on all website oriented coding.What started as a silly game for me and my friends to play in high school turned into the spark that ignited my love for computer science.</p>
+        <div class="about-skills-row" style="display:flex;flex-wrap:wrap;gap:0.7em;margin-top:0.7em;">
+          <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank" class="about-skill-title">JavaScript</a>
+          <a href="https://en.wikipedia.org/wiki/HTML" target="_blank" class="about-skill-title">HTML</a>
+          <a href="https://en.wikipedia.org/wiki/CSS" target="_blank" class="about-skill-title">CSS</a>
+          <a href="https://en.wikipedia.org/wiki/Domain_Name_System" target="_blank" class="about-skill-title">DNS Configuring</a>
+          <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" class="about-skill-title">UX/UI Design</a>
+          <a href="https://en.wikipedia.org/wiki/Web_development" target="_blank" class="about-skill-title">Website Development</a>
+  </div>
+      </div>
+    </section>
+    
+    <section class="about-section">
+      <h2 class="about-subtitle">Intro</h2>
+      <p class="about-text">This part of my portfolio may seem a bit meta (because of the portfolio inside of a portfolio website referencing the porfolio website), but for me, it’s one of my most rewarding projects to date. I built it not just to showcase my work, but also to push myself deeper into frontend web development. Along the way, I sharpened my skills in HTML, CSS, and JavaScript, while also experimenting with layout, design, and interactivity to make something that feels personal and uniquely mine. What started as “just a portfolio” quickly became a full-on creative exercise in both technical problem-solving and visual storytelling.</p>
+      <h3 class="about-section-title">Skills Applied</h3>
+      <p class="about-text">The technical side of this site was a crash course in modern web development. Using HTML and CSS, I built the site’s structure and styling from scratch, refining my ability to create responsive and accessible layouts. With JavaScript, I introduced interactivity and dynamic features to make the site feel alive rather than static. Beyond code, I also had to handle the less glamorous but equally important tasks: configuring DNS records, setting up the custom domain, and ensuring the site stayed functional across different browsers and devices. And while all of that was happening, I kept my focus on UX/UI design principles, making sure every choice — from typography to navigation — felt intentional and user-friendly.</p>
+      <h3 class="about-section-title">The Future of This Website</h3>
+      <p class="about-text">The best part about building your own website is that it’s never really finished. This site is a living project that I can continue to refine as I grow as a developer. I plan to expand it with more interactive features, cleaner animations, and possibly backend integrations down the line. But more importantly, it will remain a place to showcase my work in a way that feels authentic to who I am as both a coder and a designer.</p>
+      <h3 class="about-section-title">Conclusion</h3>
+      <p class="about-text">At first glance, this might just look like a simple portfolio website. But to me, it represents so much more — the culmination of technical skills, design choices, and persistence to make something that feels creative, functional, and personal. It’s not just a website; it’s proof that I can take an idea, work through every layer of its development, and deliver something that represents me.</p>
+    </section>
+    <div class="marquee">
+  <div class="marquee-track">
+    <div style="display:flex;gap:2rem;align-items:center;">
+      <div class="about-image-col">
+        <img src="Screenshot 2025-09-06 214757.png" alt="FNAD World Screenshot" class="about-image" />
+      </div>
+      <div class="about-image-col">
+        <img src="Screenshot 2025-09-06 215056.png" alt="FNAD World Screenshot" class="about-image" />
+      </div>
+      <div class="about-image-col">
+        <img src="Screenshot 2025-09-06 214814.png" alt="FNAD World Screenshot" class="about-image" />
+      </div>
+      <!-- Duplicate images for seamless loop -->
+      <div class="about-image-col">
+        <img src="Screenshot 2025-09-06 214757.png" alt="FNAD World Screenshot" class="about-image" />
+      </div>
+      <div class="about-image-col">
+        <img src="Screenshot 2025-09-06 215056.png" alt="FNAD World Screenshot" class="about-image" />
+      </div>
+      <div class="about-image-col">
+        <img src="Screenshot 2025-09-06 214814.png" alt="FNAD World Screenshot" class="about-image" />
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+    <script>
+    // Bounce animation for image row
+    const bounceRow = document.getElementById('bounce-image-row');
+    let bouncePos = -10; // vw
+    let bounceDir = 1;
+    const imageCols = bounceRow.querySelectorAll('.about-image-col');
+    function getImageBounds() {
+      const rowRect = bounceRow.getBoundingClientRect();
+      const firstRect = imageCols[0].getBoundingClientRect();
+      const lastRect = imageCols[imageCols.length-1].getBoundingClientRect();
+      return {
+        left: firstRect.left,
+        right: lastRect.right,
+        containerLeft: rowRect.left,
+        containerRight: rowRect.right
+      };
+    }
+    function animateBounce() {
+      bouncePos += bounceDir * 0.35;
+      bounceRow.style.marginLeft = bouncePos + 'vw';
+      // Check bounds
+      const bounds = getImageBounds();
+      // If first image hits left edge, reverse
+      if (bounds.left <= bounds.containerLeft + 8) bounceDir = 1;
+      // If last image hits right edge, reverse
+      if (bounds.right >= bounds.containerRight - 8) bounceDir = -1;
+      requestAnimationFrame(animateBounce);
+    }
+    animateBounce();
+    </script>
   </main>
+  <footer class="about-footer">
+    <div class="footer-content">
+      <h2 class="footer-title">Contact Me</h2>
+      <ul class="footer-list">
+        <li><a href="mailto:ghampton2005@gmail.com" class="footer-link">ghampton2005@gmail.com</a></li>
+        <li><a href="tel:+502-523-7093" class="footer-link">(502) 523-7093</a></li>
+        <li><a href="https://www.linkedin.com/in/griffin-hampton-56035235a" class="footer-link" target="_blank">LinkedIn</a></li>
+        <!-- Add more contacts as needed -->
+      </ul>
+    </div>
+  </footer>
+  <script>
+    // Smokey blue lights background
+    const smokeyCanvas = document.getElementById('smokey-bg');
+    const ctx = smokeyCanvas.getContext('2d');
+    function resizeCanvas() {
+      smokeyCanvas.width = window.innerWidth;
+      smokeyCanvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    // Blue glows config
+    function randomGlow(width, height) {
+      return {
+        x: Math.random() * width,
+        y: -Math.random() * height * 0.3,
+        r: Math.max(width, height) * (0.18 + Math.random() * 0.18),
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.5 + Math.random() * 0.5,
+        tOffset: performance.now()
+      };
+    }
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let blueGlowCount = 10;
+    let blueGlows = Array.from({length: blueGlowCount}).map(() => randomGlow(width, height));
+    function drawSmokeyBlueGlow(t = 0) {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < blueGlows.length; i++) {
+        const glow = blueGlows[i];
+        let alpha = 0.7 + 0.3 * Math.sin(t * 0.001 * glow.speed + glow.phase);
+        alpha = 0.45 + 0.65 * Math.pow(alpha, 1.5);
+        let fadeCycle = Math.PI * 2 / (0.001 * glow.speed);
+        let fallDistance = height + glow.r * 1.2;
+        let fallSpeed = fallDistance / fadeCycle;
+        let tLocal = t - (glow.tOffset || 0);
+        let fallPhase = ((tLocal * fallSpeed) % fallDistance) / fallDistance;
+        let yFallen = glow.y + fallPhase * fallDistance;
+        let fadeIn = Math.min(1, fallPhase * 2.5);
+        alpha *= fadeIn;
+        if (fallPhase < 0.01 && tLocal > 100) {
+          blueGlows[i] = randomGlow(width, height);
+        }
+        let grad = ctx.createRadialGradient(
+          glow.x, yFallen, glow.r * 0.22,
+          glow.x, yFallen, glow.r * 1.1
+        );
+        grad.addColorStop(0, 'rgba(30,144,255,0.55)'); // DodgerBlue
+        grad.addColorStop(0.18, 'rgba(0,191,255,0.38)'); // DeepSkyBlue
+        grad.addColorStop(0.38, 'rgba(123,192,255,0.28)'); // Lighter blue
+        grad.addColorStop(0.6, 'rgba(30,144,255,0.18)');
+        grad.addColorStop(1, 'rgba(10,10,19,0.01)');
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.beginPath();
+        ctx.arc(glow.x, yFallen, glow.r * 1.1, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fillStyle = grad;
+        ctx.filter = 'blur(24px)';
+        ctx.fill();
+        ctx.filter = 'none';
+        ctx.globalAlpha = 1;
+        ctx.restore();
+      }
+    }
+    function animateSmokey() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      drawSmokeyBlueGlow(performance.now());
+      requestAnimationFrame(animateSmokey);
+    }
+    animateSmokey();
+  </script>
+    
+  
+  <script>
+      // Navbar hamburger animation
+      const hamburger = document.getElementById('hamburger');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const sideMenu = document.getElementById('side-menu');
+      let menuOpen = false;
+      hamburger.onclick = function() {
+        menuOpen = !menuOpen;
+        const bars = hamburgerIcon.querySelectorAll('.hamburger-bar');
+        if (menuOpen) {
+          bars[0].style.transform = 'translateY(12px) rotate(45deg)';
+          bars[1].style.opacity = '0';
+          bars[2].style.transform = 'translateY(-12px) rotate(-45deg)';
+          sideMenu.style.width = '340px';
+        } else {
+          bars[0].style.transform = '';
+          bars[1].style.opacity = '1';
+          bars[2].style.transform = '';
+          sideMenu.style.width = '0';
+        }
+      };
+    // Close menu if user clicks outside the menu area
+    document.addEventListener('mousedown', function(e) {
+      if (menuOpen && sideMenu.style.width !== '0') {
+        if (!sideMenu.contains(e.target) && !hamburger.contains(e.target)) {
+          const bars = hamburgerIcon.querySelectorAll('.hamburger-bar');
+          bars[0].style.transform = '';
+          bars[1].style.opacity = '1';
+          bars[2].style.transform = '';
+          sideMenu.style.width = '0';
+          menuOpen = false;
+        }
+      }
+    });
+  </script>
 </body>
 </html>

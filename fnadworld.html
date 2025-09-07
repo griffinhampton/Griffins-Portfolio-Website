@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>About | Griffin Hampton</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="image__2_-removebg-preview (2).png" type="image/x-icon">
   <style>
     .about-photo {
       display: flex;
@@ -11,14 +12,25 @@
       justify-content: center;
       margin-bottom: 1.2rem;
     }
+    .about-title {
+    font-size: 4.2rem;
+    margin-bottom: 0.3em;
+    color: #fff;
+    text-shadow: 0 0 32px #bc6cff, 0 0 12px #a259ff, 0 2px 8px #23243a, 0 0 2px #fff;
+    text-align: center;
+    width: 100%;
+    display: block;
+  }
     .about-photo-img {
-  width: 400px;
-  height: 400px;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: 0 0 32px 0 #bc6cff88, 0 0 8px 0 #a259ff;
-      border: 4px solid #a259ff;
+  width: 520px;
+  height: 520px;
+      max-width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 0 18px #bc6cff44, 0 2px 8px #a259ff22;
+      border: 3px solid #a259ff;
       background: #2a174d;
+      display: block;
+      margin: 0 auto 2rem auto;
     }
     html, body {
       background: linear-gradient(120deg, #2a174d 0%, #a259ff 100%);
@@ -52,14 +64,6 @@
       margin-bottom: 2vh;
       text-align: center;
       padding: 5%;
-    }
-    .about-title {
-  font-size: 3.2rem;
-      font-weight: 900;
-      letter-spacing: -2px;
-      color: #fff;
-      text-shadow: 0 0 18px #bc6cff, 0 0 32px #a259ff;
-      margin-bottom: 0.3rem;
     }
     .about-role {
   font-size: 1.6rem;
@@ -114,12 +118,33 @@
   flex-direction: column;
   gap: 1rem;
     }
+    .about-skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7em;
+    margin-top: 0.7em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+    
     .about-skill-title {
-  font-weight: 700;
-  color: #a259ff;
-  font-size: 1.2rem;
-  margin-right: 0.6rem;
-  text-shadow: none;
+    font-weight: 700;
+    color: #a259ff;
+    font-size: 1.2rem;
+    margin-right: 0.6rem;
+    text-shadow: none;
+    background: #fff;
+    padding: 0.7em 1.6em;
+    border-radius: 14px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px #bc6cff22;
+    transition: background 0.2s, color 0.2s;
+    display: inline-block;
+    }
+    .about-skill-title:hover {
+    background: #bc6cff;
+    color: #fff;
     }
     .about-skill-desc {
   color: #2a174d;
@@ -133,6 +158,8 @@
     
     }
     .about-footer {
+  position: relative;
+  z-index: 3000;
   width: 100%;
   background: #142a4d;
   color: #fff;
@@ -197,9 +224,67 @@
       border: 3px solid #a259ff;
       background: #2a174d;
     }
+    /* Full-screen overlay */
+#loading-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: linear-gradient(120deg, #2a174d 0%, #a259ff 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease;
+}
+
+/* Fade-out effect */
+#loading-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Glowy circle animation */
+.loader-glow {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #bc6cff;
+  box-shadow: 0 0 16px #bc6cff88, 0 0 32px #a259ff44, 0 0 48px #bc6cff33;
+  animation: pulse 1.4s ease-in-out infinite;
+  margin-bottom: 1.5rem;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* Loader text */
+.loader-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 0 12px #bc6cff, 0 0 24px #a259ff;
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+/* Text glow animation */
+@keyframes textGlow {
+  from { text-shadow: 0 0 12px #bc6cff, 0 0 24px #a259ff; }
+  to { text-shadow: 0 0 24px #bc6cff, 0 0 48px #a259ff; }
+}
+
   </style>
 </head>
 <body>
+  <div id="loading-screen">
+  <div class="loader-glow"></div>
+  <h1 class="loader-text">Loading...</h1>
+</div>
+
   <canvas id="smokey-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
   <nav id="main-navbar" style="position:fixed;top:36px;left:0;width:100vw;height:80px;z-index:2147483647;display:flex;align-items:center;justify-content:flex-end;padding:0 0 0 0;background:transparent;border:none;box-shadow:none;pointer-events:none;">
     <button id="hamburger" aria-label="Open menu" style="width:60px;height:60px;background:rgba(30,30,50,0.7);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;z-index:2147483647;box-shadow:0 2px 8px 0 #0004;pointer-events:auto;margin-right:48px;position:fixed;top:36px;right:48px;">
@@ -216,6 +301,7 @@
         <li><a href="index.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Home</a></li>
         <li><a href="about.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">About Me</a></li>
         <li><a href="portfolio.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Portfolio</a></li>
+        <li><a href="resume.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Resume</a></li>
         <li><a href="contact.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Contact</a></li>
       </ul>
     </nav>
@@ -241,11 +327,11 @@
   <p class="about-role" style="font-size:1.25rem;color:#fff;margin-bottom:0.3em;text-shadow:0 2px 8px #23243a,0 0 2px #fff;">One of my most ambitious projects to date, and my intro into managing data.</p>
   <p class="about-desc" style="font-size:1.08rem;color:#fff;max-width:600px;margin-bottom:0.7em;text-shadow:0 2px 8px #23243a,0 0 2px #fff;">This project was born from an undying curiosity to venture into CSV file maps, and served as a much needed refresher with excel. It would be no stretch to say that this game prepared me for eventually becoming the coding contractor I am today. What started as a silly game for me and my friends to play in high school turned into the spark that ignited my love for computer science.</p>
         <div class="about-skills-row" style="display:flex;flex-wrap:wrap;gap:0.7em;margin-top:0.7em;">
-          <a href="https://en.wikipedia.org/wiki/Game_development" target="_blank" class="about-skill-title" style="background:#fff;padding:0.7em 1.6em;border-radius:14px;color:#23243a;font-weight:700;text-decoration:none;box-shadow:0 2px 8px #bc6cff22;">Game Development</a>
-          <a href="https://en.wikipedia.org/wiki/Comma-separated_values" target="_blank" class="about-skill-title" style="background:#fff;padding:0.7em 1.6em;border-radius:14px;color:#23243a;font-weight:700;text-decoration:none;box-shadow:0 2px 8px #bc6cff22;">CSV File Formatting</a>
-          <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank" class="about-skill-title" style="background:#fff;padding:0.7em 1.6em;border-radius:14px;color:#23243a;font-weight:700;text-decoration:none;box-shadow:0 2px 8px #bc6cff22;">Python</a>
-          <a href="https://en.wikipedia.org/wiki/Graphical_user_interface" target="_blank" class="about-skill-title" style="background:#fff;padding:0.7em 1.6em;border-radius:14px;color:#23243a;font-weight:700;text-decoration:none;box-shadow:0 2px 8px #bc6cff22;">GUI Development</a>
-          <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" class="about-skill-title" style="background:#fff;padding:0.7em 1.6em;border-radius:14px;color:#23243a;font-weight:700;text-decoration:none;box-shadow:0 2px 8px #bc6cff22;">UX/UI Design</a>
+          <a href="https://en.wikipedia.org/wiki/Game_development" target="_blank" class="about-skill-title">Game Development</a>
+          <a href="https://en.wikipedia.org/wiki/Comma-separated_values" target="_blank" class="about-skill-title">CSV File Formatting</a>
+          <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank" class="about-skill-title">Python</a>
+          <a href="https://en.wikipedia.org/wiki/Graphical_user_interface" target="_blank" class="about-skill-title">GUI Development</a>
+          <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" class="about-skill-title">UX/UI Design</a>
   </div>
       </div>
     </section>
@@ -258,10 +344,21 @@
       <h3 class="about-section-title">The Future of FNAD World</h3>
       <p class="about-text">While FNAD World is a finished project, the techniques I developed for it are skills I carry into nearly everything I build. The ability to take structured data (like a CSV file) and transform it into something interactive has obvious applications in software engineering, data processing, and automation. Looking forward, I see this project as a prototype for more advanced tools and systems that merge entertainment with real-world utility. And as with FNAD 2, it reinforced the simple truth that I love coding too much to stop at “good enough.”</p>
       <h3 class="about-section-title">Conclusion</h3>
-      <p class="about-text">FNAD World wasn’t just another game — it was a gateway into understanding how data can shape entire systems. It taught me that even something as simple as a spreadsheet can unlock creativity when paired with the right logic and design. Most importantly, it reminded me why I code: because I love solving problems, building experiences, and pushing myself to create things that didn’t exist before.</p>
+      <p class="about-text">When I first started experimenting with FNAD World, I didn’t expect a spreadsheet to feel creative. But as I layered logic onto data, I began to see how structure could turn into design and design into experience. That moment reignited what I enjoy most about coding—transforming challenges into creations that didn’t exist before.</p>
     </section>
-  <marquee behavior="scroll" direction="right" scrollamount="18" style="width:100%;margin-top:2rem;position:relative;left:50%;transform:translateX(-50%);loop:infinite;">
-    <div id="bounce-image-row" class="about-image-row" style="width:120vw; margin-left:-10vw;">
+    <div class="marquee">
+  <div class="marquee-track">
+    <div style="display:flex;gap:2rem;align-items:center;">
+      <div class="about-image-col">
+        <img src="Screenshot 2025-08-21 164725.png" alt="FNAD World Screenshot" class="about-image" />
+      </div>
+      <div class="about-image-col">
+        <img src="Screenshot 2025-08-21 165705.png" alt="FNAD World Screenshot" class="about-image" />
+      </div>
+      <div class="about-image-col">
+        <img src="Screenshot 2025-08-21 164709.png" alt="FNAD World Screenshot" class="about-image" />
+      </div>
+      <!-- Duplicate images for seamless loop -->
       <div class="about-image-col">
         <img src="Screenshot 2025-08-21 164725.png" alt="FNAD World Screenshot" class="about-image" />
       </div>
@@ -272,6 +369,23 @@
         <img src="Screenshot 2025-08-21 164709.png" alt="FNAD World Screenshot" class="about-image" />
       </div>
     </div>
+  </div>
+</div>
+  </div>
+    <script>
+    // Wait until all content (images, canvas, etc.) is loaded
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loading-screen');
+  loader.classList.add('hidden');
+  setTimeout(() => loader.remove(), 700); // remove from DOM after fade-out
+});
+    // Fade-in effect for body content
+    document.body.style.opacity = '0';
+    window.addEventListener('load', () => {
+      document.body.style.transition = 'opacity 1s ease-in-out';
+      document.body.style.opacity = '1';
+    });
+  </script>
     <script>
     // Bounce animation for image row
     const bounceRow = document.getElementById('bounce-image-row');
