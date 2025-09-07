@@ -1109,7 +1109,7 @@ window.addEventListener('load', () => {
     }
     animateShootingStar(performance.now());
   </script>
-  <script>
+<script>
   // Animated letters logic
   const lettersCanvas = document.getElementById('letters-canvas');
   const lettersCtx = lettersCanvas.getContext('2d');
@@ -1132,46 +1132,45 @@ window.addEventListener('load', () => {
   let fontSize = Math.min(lettersWidth, lettersHeight) / 7;
 
   function initLetters() {
-  letterObjs.length = 0; // reset
-  fontSize = Math.min(lettersWidth, lettersHeight) / 7;
-  lettersCtx.font = `900 ${fontSize}px Montserrat, sans-serif`;
+    letterObjs.length = 0; // reset
+    fontSize = Math.min(lettersWidth, lettersHeight) / 7;
+    lettersCtx.font = `900 ${fontSize}px Montserrat, sans-serif`;
 
-  // measure total width of the text
-  let totalWidth = 0;
-  for (let i = 0; i < nameText.length; i++) {
-    totalWidth += lettersCtx.measureText(nameText[i]).width;
-    if (i < nameText.length - 1) totalWidth += fontSize * 0.05;
+    // measure total width of the text
+    let totalWidth = 0;
+    for (let i = 0; i < nameText.length; i++) {
+      totalWidth += lettersCtx.measureText(nameText[i]).width;
+      if (i < nameText.length - 1) totalWidth += fontSize * 0.05;
+    }
+
+    // only render if it fits
+    if (totalWidth > lettersWidth * 0.9 || fontSize > lettersHeight * 0.4) {
+      return; // skip drawing if too big
+    }
+
+    let startX = lettersWidth / 2 - totalWidth / 2;
+    let y0 = lettersHeight / 2;
+
+    for (let i = 0; i < nameText.length; i++) {
+      let char = nameText[i];
+      let charWidth = lettersCtx.measureText(char).width;
+      letterObjs.push({
+        char,
+        x: startX + charWidth / 2,
+        y: y0,
+        vx: 0,
+        vy: 0,
+        baseX: startX + charWidth / 2,
+        baseY: y0,
+        offset: Math.random() * 1000,
+        fadeTimer: 0,
+        faded: false,
+        spawnTime: performance.now(),
+        locked: true
+      });
+      startX += charWidth + fontSize * 0.05;
+    }
   }
-
-  // only render if it fits
-  if (totalWidth > lettersWidth * 0.9 || fontSize > lettersHeight * 0.4) {
-    return; // skip drawing if too big
-  }
-
-  let startX = lettersWidth / 2 - totalWidth / 2;
-  let y0 = lettersHeight / 2;
-
-  for (let i = 0; i < nameText.length; i++) {
-    let char = nameText[i];
-    let charWidth = lettersCtx.measureText(char).width;
-    letterObjs.push({
-      char,
-      x: startX + charWidth / 2,
-      y: y0,
-      vx: 0,
-      vy: 0,
-      baseX: startX + charWidth / 2,
-      baseY: y0,
-      offset: Math.random() * 1000,
-      fadeTimer: 0,
-      faded: false,
-      spawnTime: performance.now(),
-      locked: true
-    });
-    startX += charWidth + fontSize * 0.05;
-  }
-}
-
 
   initLetters();
 
@@ -1180,7 +1179,7 @@ window.addEventListener('load', () => {
     const mx = e.clientX;
     const my = e.clientY;
     for (let l of letterObjs) {
-      if (l.locked && performance.now() - l.spawnTime < 3000) continue;
+      if (l.locked && performance.now() - l.spawnTime < 1500) continue; // lock for 1.5s
       l.locked = false;
       let dx = l.x - mx;
       let dy = l.y - my;
@@ -1194,8 +1193,23 @@ window.addEventListener('load', () => {
     }
   });
 
+  function respawnAllLetters() {
+    for (let l of letterObjs) {
+      l.x = l.baseX;
+      l.y = l.baseY;
+      l.vx = 0;
+      l.vy = 0;
+      l.fadeTimer = -1.2; // negative = fade-in over 1.2s
+      l.faded = false;
+      l.spawnTime = performance.now();
+      l.locked = true;
+    }
+  }
+
   function animateLetters(t) {
     lettersCtx.clearRect(0, 0, lettersWidth, lettersHeight);
+    let anyShouldRespawn = false;
+
     for (let l of letterObjs) {
       // clamp inside screen
       let minX = fontSize * 0.5;
@@ -1216,45 +1230,47 @@ window.addEventListener('load', () => {
       if (distFromStart > 8) {
         l.fadeTimer += 1 / 60;
         l.faded = true;
-      } else {
+      } else if (l.fadeTimer >= 0) {
         l.fadeTimer = 0;
         l.faded = false;
       }
 
-      let fade = l.faded ? Math.max(0, 0.98 - l.fadeTimer * 2.5) : 0.98;
-
-      // fade back after 10s
-      if (l.faded && l.fadeTimer > 10) {
-        l.x += (l.baseX - l.x) * 0.08;
-        l.y += (l.baseY - l.y) * 0.08;
-        fade += 0.08;
-        if (Math.abs(l.x - l.baseX) < 2 && Math.abs(l.y - l.baseY) < 2) {
-          l.x = l.baseX;
-          l.y = l.baseY;
-          l.fadeTimer = 0;
-          l.faded = false;
-          fade = 0.98;
-          l.spawnTime = performance.now();
-          l.locked = true;
-        }
+      let fade;
+      if (l.fadeTimer < 0) {
+        // fade-in mode (fadeTimer goes from -1.2 → 0)
+        fade = Math.min(0.98, ((1.2 + l.fadeTimer) / 1.2) * 0.98);
+        l.fadeTimer += 1 / 60; // progress toward 0
+      } else {
+        fade = l.faded ? Math.max(0, 0.98 - l.fadeTimer * 2.5) : 0.98;
       }
 
-      fade = Math.max(0, Math.min(0.98, fade));
+      // fade back after 10s away
+      if (l.faded && l.fadeTimer > 10) {
+        anyShouldRespawn = true;
+      }
 
       // draw
       lettersCtx.save();
       lettersCtx.font = `900 ${fontSize}px Montserrat, sans-serif`;
       lettersCtx.textAlign = 'center';
-      lettersCtx.textBaseline = 'alphabetic'; // proper baseline
+      lettersCtx.textBaseline = 'alphabetic';
       lettersCtx.fillStyle = 'white';
       lettersCtx.shadowColor = '#bc6cff';
       lettersCtx.shadowBlur = 16;
       lettersCtx.globalAlpha = fade;
-      lettersCtx.fillText(l.char, l.x, l.y);
+      lettersCtx.translate(l.x, l.y);
+      let swing = Math.sin(t / 1800) * 0.07;
+      lettersCtx.rotate(swing);
+      lettersCtx.fillText(l.char, 0, 0);
       lettersCtx.restore();
+    }
+
+    if (anyShouldRespawn) {
+      respawnAllLetters();
     }
     requestAnimationFrame(animateLetters);
   }
+
   animateLetters(performance.now());
 </script>
 
