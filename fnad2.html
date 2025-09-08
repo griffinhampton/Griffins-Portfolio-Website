@@ -37,11 +37,14 @@
       min-height: 100vh;
       font-family: 'Montserrat', 'Segoe UI', sans-serif;
       color: #fff;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      overflow-y: auto;
+      width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
     }
+    
     .about-bg {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
@@ -313,6 +316,67 @@
   from { text-shadow: 0 0 12px #bc6cff, 0 0 24px #a259ff; }
   to { text-shadow: 0 0 24px #bc6cff, 0 0 48px #a259ff; }
 }
+#hamburger {
+  width: 60px;
+  height: 60px;
+  background: rgba(30,30,50,0.7);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  z-index: 3001;
+  box-shadow: 0 2px 8px 0 #0004;
+  position: fixed;
+  top: 36px;
+  right: 48px;
+  pointer-events: auto;
+}
+
+/* Hover glow now works */
+#hamburger:hover {
+  box-shadow: 0 0 48px 12px #4db8ff,
+              0 0 32px 0 #bc6cff,
+              0 0 64px 0 #1e90ff;
+  background: rgba(77,184,255,0.85);
+}
+
+#hamburger-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 100%;
+  height: 6px;
+  background: #fff;
+  border-radius: 3px;
+  margin: 5px 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+#side-menu-list a:hover,
+.menu-content a:hover {
+  background: #4db8ff;
+  color: #fff;
+  text-decoration: underline;
+  border-radius: 8px;
+  box-shadow: 0 0 24px 0 #4db8ff, 0 0 32px 0 #142a4d;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+  .menu-content a {
+    font-size: 4vw;
+  }
+  #side-menu {
+    padding-top: 12vw;
+  }
+
 
   </style>
 </head>
@@ -322,15 +386,18 @@
   <h1 class="loader-text">Loading...</h1>
 </div>
 
-  <canvas id="smokey-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
-  <nav id="main-navbar" style="position:fixed;top:36px;left:0;width:100vw;height:80px;z-index:2147483647;display:flex;align-items:center;justify-content:flex-end;padding:0 0 0 0;background:transparent;border:none;box-shadow:none;pointer-events:none;">
-    <button id="hamburger" aria-label="Open menu" style="width:60px;height:60px;background:rgba(30,30,50,0.7);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;z-index:2147483647;box-shadow:0 2px 8px 0 #0004;pointer-events:auto;margin-right:48px;position:fixed;top:36px;right:48px;">
-      <div id="hamburger-icon" style="width:36px;height:36px;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+   <canvas id="smokey-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
+  <nav id="main-navbar" style="position:fixed;top:36px;left:0;width:100vw;height:80px;z-index:2147483647;display:flex;align-items:center;justify-content:flex-end;padding:0;background:transparent;border:none;box-shadow:none;pointer-events:none;">
+  <button id="hamburger" aria-label="Open menu">
+    <div id="hamburger-icon" style="width:36px;height:36px;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;">
         <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
         <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:opacity 0.3s;"></span>
         <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
       </div>
-    </button>
+  </button>
+</nav>
+
+
   </nav>
   <div id="side-menu" style="position:fixed;top:0;left:0;height:100vh;width:0;z-index:2147483648;background:rgba(20,20,40,0.98);box-shadow:8px 0 32px 0 #0008;overflow:hidden;transition:width 0.4s cubic-bezier(.68,-0.55,.27,1.55);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:80px;">
     <nav style="width:100%;">
@@ -347,11 +414,7 @@
     <div class="crack crack1"></div>
     <div class="crack crack2"></div>
     <div class="crack crack3"></div>
-    <div class="menu-content">
-      <a href="contact.html">Contact</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="about.html">About Me</a>
-    </div>
+    
   </div>
   <div class="about-bg"></div>
   <main class="about-main">
