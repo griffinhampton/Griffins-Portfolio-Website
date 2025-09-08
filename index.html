@@ -13,7 +13,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-size: 1vw;
+    
   }
   /* End of global body styles */
   body {
@@ -22,83 +22,7 @@
     box-sizing: border-box;
   }
   /* Removed stray JS lines. All CSS below is valid. */
-    #hamburger {
-  width: 60px;
-  height: 60px;
-  background: rgba(30,30,50,0.7);
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-  z-index: 3001;
-  box-shadow: 0 2px 8px 0 #0004;
-  position: fixed;
-  top: 36px;
-  right: 48px;
-  pointer-events: auto;
-}
-
-/* Hover glow */
-#hamburger:hover {
-  box-shadow: 0 0 48px 12px #4db8ff,
-              0 0 32px 0 #bc6cff,
-              0 0 64px 0 #1e90ff;
-  background: rgba(77,184,255,0.85);
-}
-
-/* Restore hover effects for menu links */
-/* Blue glow hover effect for hamburger menu items */
-#side-menu-list a:hover,
-.menu-content a:hover {
-  background: #4db8ff;
-  color: #fff;
-  text-decoration: underline;
-  border-radius: 8px;
-  box-shadow: 0 0 24px 0 #4db8ff, 0 0 32px 0 #142a4d;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-}
-    .center-content {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-      text-align: center;
-      width: max-content;
-      pointer-events: none;
-    }
-    .center-content h1 {
-      margin-bottom: 0.6em;
-      font-size: 4rem;
-      font-weight: 900;
-      letter-spacing: -2px;
-      background: linear-gradient(90deg, #ff2a2a 0%, #1a0e2d 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 2px 2px #fff;
-    }
-    .center-content .subtitle {
-      font-size: 2.2rem;
-      font-weight: 600;
-      line-height: 1.3;
-      background: linear-gradient(90deg, #ff2a2a 0%, #1a0e2d 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 2px 2px #fff;
-    }
-    @media (max-width: 600px) {
-      .navbar { padding: 0 2vw; height: 9vw; min-height: 36px; }
-      .nav-logo { font-size: 4vw; }
-      .hamburger { right: 2vw; top: 2vw; width: 7vw; height: 7vw; min-width: 28px; min-height: 28px; }
-      .hamburger span { width: 5vw; min-width: 16px; height: 0.6vw; min-height: 2px; }
-      .menu-content a { font-size: 4vw; }
-    }
-    @media (max-width: 700px) {
+  
 #hamburger {
   width: 60px;
   height: 60px;
@@ -153,6 +77,13 @@
   box-shadow: 0 0 24px 0 #4db8ff, 0 0 32px 0 #142a4d;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
+  .menu-content a {
+    font-size: 4vw;
+  }
+  #side-menu {
+    padding-top: 12vw;
+  }
+
     #gh-logo {
       transition: box-shadow 0.18s, background 0.18s, filter 0.18s;
       box-shadow: 0 0 10px 2px #a259ff55, 0 0 16px 3px #e0b3ff22;
@@ -223,18 +154,7 @@
   <h1 class="loader-text">Loading...</h1>
 </div>
 
-    <div class="center-content">
-      <div id="typed-subtitle" style="font-family:'Montserrat',sans-serif;font-size:3vw;font-weight:500;font-style: italic;color:#fff;line-height:1.2;text-shadow:0 2px 16px #0008,0 0 8px #fff;opacity:0.98;margin-top:0.1em;height:3.6vw;overflow:hidden;display:flex;align-items:center;justify-content:center;width:100%;"></div>
-    </div>
-    <nav id="main-navbar" style="position:fixed;top:36px;left:0;width:100vw;height:80px;z-index:2147483647;display:flex;align-items:center;justify-content:flex-end;padding:0 0 0 0;background:transparent;border:none;box-shadow:none;pointer-events:none;">
-      <button id="hamburger" aria-label="Open menu" style="width:60px;height:60px;background:rgba(30,30,50,0.7);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;z-index:2147483647;box-shadow:0 2px 8px 0 #0004;pointer-events:auto;margin-right:48px;position:fixed;top:36px;right:48px;">
-        <div id="hamburger-icon" style="width:36px;height:36px;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-          <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
-          <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:opacity 0.3s;"></span>
-          <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
-        </div>
-      </button>
-    </nav>
+    
     <a href="about.html"><div id="gh-logo" style="position:fixed;bottom:36px;left:88px;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 60% 40%,#e0b3ff 0%,#a259ff 60%,#3a1c71 100%);box-shadow:0 0 10px 2px #a259ff55,0 0 16px 3px #e0b3ff22;display:flex;align-items:center;justify-content:center;z-index:2147483647;">
       <span style="font-family:'Segoe UI',sans-serif;font-weight:900;font-size:2.2rem;color:#fff;letter-spacing:-2px;text-shadow:0 0 3px #fff,0 0 6px #a259ff;">GH</span>
     </div></a>  
@@ -675,52 +595,83 @@ window.addEventListener('load', () => {
       }
       drawSmokeyGlow(t);
   // Calculate orbiting diamonds' positions and z for sorting
-      let orbitDiamonds = diamonds.filter(d => d.orbit).map(d => {
-        let orbitSpeed = 0.7;
-        let theta = d.orbitAngle + t * 0.0005 * orbitSpeed;
-        let z = Math.sin(theta + d.orbitZ) * 0.7;
-        let scale = 0.7 + 0.5 * (z + 1);
-        let x = clumpCenter.x + Math.cos(theta) * d.orbitRadius;
-        let y = clumpCenter.y + Math.sin(theta) * d.orbitRadius * 0.38 + z * 18;
-        return { d, z, scale, x, y, theta };
-      });
-      // Find nearest orbit diamond to mouse
-      let minDist = Infinity, nearest = null;
-      for (let od of orbitDiamonds) {
-        let dx = od.x - mouse.x;
-        let dy = od.y - mouse.y;
-        let dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < minDist) {
-          minDist = dist;
-          nearest = od;
-        }
-      }
+      // --- Orbiting diamonds ---
+let orbitDiamonds = diamonds.filter(d => d.orbit).map(d => {
+  if (d.magnetized) {
+    // While pulled, keep using last pulled position instead of orbit math
+    return { 
+      d, 
+      z: 0, 
+      scale: 1, 
+      x: d.x, 
+      y: d.y, 
+      theta: d.theta || 0, 
+      angle: d.angle || 0 
+    };
+  } else {
+    // Normal orbit motion
+    let orbitSpeed = 0.7;
+    let theta = d.orbitAngle + t * 0.0005 * orbitSpeed;
+    let z = Math.sin(theta + d.orbitZ) * 0.7;
+    let scale = 0.7 + 0.5 * (z + 1);
+    let x = clumpCenter.x + Math.cos(theta) * d.orbitRadius;
+    let y = clumpCenter.y + Math.sin(theta) * d.orbitRadius * 0.38 + z * 18;
+    let angle = theta * 0.45;
+    // Save state so we can resume smoothly if it gets pulled
+    d.theta = theta;
+    d.angle = angle;
+    d.x = x;
+    d.y = y;
+    return { d, z, scale, x, y, theta, angle };
+  }
+});
 
-      // Smoother pull logic for nearest orbit diamond using velocity and damping
-      if (!nearest.d.vx) nearest.d.vx = 0;
-      if (!nearest.d.vy) nearest.d.vy = 0;
-      if (nearest && minDist < 120) {
-        let targetX = mouse.x;
-        let targetY = mouse.y;
-        let spring = minDist < 32 ? 0.18 : 0.06;
-        let damping = 0.82;
-        nearest.d.vx = nearest.d.vx * damping + (targetX - nearest.x) * spring;
-        nearest.d.vy = nearest.d.vy * damping + (targetY - nearest.y) * spring;
-        nearest.x += nearest.d.vx;
-        nearest.y += nearest.d.vy;
-        nearest.magnetized = minDist < 32;
-      } else if (nearest) {
-        // Return to orbit position smoothly if not near mouse
-        let orbitX = clumpCenter.x + Math.cos(nearest.theta) * nearest.d.orbitRadius;
-        let orbitY = clumpCenter.y + Math.sin(nearest.theta) * nearest.d.orbitRadius * 0.38 + nearest.z * 18;
-        let spring = 0.04;
-        let damping = 0.85;
-        nearest.d.vx = nearest.d.vx * damping + (orbitX - nearest.x) * spring;
-        nearest.d.vy = nearest.d.vy * damping + (orbitY - nearest.y) * spring;
-        nearest.x += nearest.d.vx;
-        nearest.y += nearest.d.vy;
-        nearest.magnetized = false;
-      }
+// --- Find nearest orbit diamond to mouse ---
+let minDist = Infinity, nearest = null;
+for (let od of orbitDiamonds) {
+  let dx = od.x - mouse.x;
+  let dy = od.y - mouse.y;
+  let dist = Math.sqrt(dx * dx + dy * dy);
+  if (dist < minDist) {
+    minDist = dist;
+    nearest = od;
+  }
+}
+
+// --- Handle pulling / releasing ---
+if (nearest && minDist < 120) {
+  let targetX = mouse.x;
+  let targetY = mouse.y;
+
+  let spring = minDist < 32 ? 0.08 : 0.04;
+  let damping = 0.88;
+
+  // Physics-based pull
+  nearest.d.vx = (nearest.d.vx || 0) * damping + (targetX - (nearest.d.x || nearest.x)) * spring;
+  nearest.d.vy = (nearest.d.vy || 0) * damping + (targetY - (nearest.d.y || nearest.y)) * spring;
+
+  nearest.d.x = (nearest.d.x || nearest.x) + nearest.d.vx;
+  nearest.d.y = (nearest.d.y || nearest.y) + nearest.d.vy;
+
+  nearest.x = nearest.d.x;
+  nearest.y = nearest.d.y;
+  nearest.d.magnetized = true;
+
+} else if (nearest) {
+  // Smoothly return to orbit
+  let orbitX = clumpCenter.x + Math.cos(nearest.theta) * nearest.d.orbitRadius;
+  let orbitY = clumpCenter.y + Math.sin(nearest.theta) * nearest.d.orbitRadius * 0.38 + nearest.z * 18;
+  let spring = 0.04;
+  let damping = 0.88;
+  nearest.d.vx = (nearest.d.vx || 0) * damping + (orbitX - nearest.x) * spring;
+  nearest.d.vy = (nearest.d.vy || 0) * damping + (orbitY - nearest.y) * spring;
+  nearest.d.x = (nearest.d.x || nearest.x) + nearest.d.vx;
+  nearest.d.y = (nearest.d.y || nearest.y) + nearest.d.vy;
+  nearest.x = nearest.d.x;
+  nearest.y = nearest.d.y;
+  nearest.d.magnetized = false;
+}
+
       // Info box logic for orbiting diamonds
       let infoBox = null;
       for (let i = 0; i < orbitDiamonds.length; i++) {
@@ -753,7 +704,7 @@ window.addEventListener('load', () => {
         ctx.filter = `blur(${(1-od.scale)*2.5}px)`;
         ctx.translate(od.x, od.y);
         ctx.scale(od.scale, od.scale);
-  drawDiamond(0, 0, od.d.size, od.d.color, od.d.angle);
+        drawDiamond(0, 0, od.d.size, od.d.color, od.angle);
         ctx.restore();
       }
       
@@ -769,7 +720,7 @@ window.addEventListener('load', () => {
         ctx.filter = `blur(${(1-od.scale)*2.5}px)`;
         ctx.translate(od.x, od.y);
         ctx.scale(od.scale, od.scale);
-        drawDiamond(0, 0, od.d.size, od.d.color, od.d.angle);
+        drawDiamond(0, 0, od.d.size, od.d.color, od.angle);
         ctx.restore();
       }
       // Draw info box if needed
