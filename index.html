@@ -199,11 +199,10 @@
  
   
   <script>
-    // Wait until all content (images, canvas, etc.) is loaded
 window.addEventListener('load', () => {
   const loader = document.getElementById('loading-screen');
   loader.classList.add('hidden');
-  setTimeout(() => loader.remove(), 700); // remove from DOM after fade-out
+  setTimeout(() => loader.remove(), 700);
 });
 
   </script>
