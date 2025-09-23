@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <link rel="icon" href="image__2_-removebg-preview (2).png" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      const params = new URLSearchParams(location.search);
+      const wantsDesktop = params.get('desktop') === '1';
+      const isCoarse = window.matchMedia && matchMedia('(pointer: coarse)').matches;
+      const smallSide = Math.min(window.innerWidth, window.innerHeight);
+      const isSmall = smallSide <= 820;
+      const isMobileUA = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (!wantsDesktop && (isCoarse || isSmall || isMobileUA)) {
+        location.replace('mobile.html');
+      }
+    })();
+  </script>
   <title>Griffin Hampton | Portfolio</title>
 
   <link rel="stylesheet" href="style.css">
