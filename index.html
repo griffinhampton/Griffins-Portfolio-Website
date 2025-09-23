@@ -1,11 +1,1213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+  <link rel="icon" href="image__2_-removebg-preview (2).png" type="image/x-icon">
   <meta charset="UTF-8">
-  <title>My Personal Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      const params = new URLSearchParams(location.search);
+      const wantsDesktop = params.get('desktop') === '1';
+      const isCoarse = window.matchMedia && matchMedia('(pointer: coarse)').matches;
+      const smallSide = Math.min(window.innerWidth, window.innerHeight);
+      const isSmall = smallSide <= 820;
+      const isMobileUA = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (!wantsDesktop && (isCoarse || isSmall || isMobileUA)) {
+        location.replace('mobile.html');
+      }
+    })();
+  </script>
+  <title>Griffin Hampton | Portfolio</title>
+
   <link rel="stylesheet" href="style.css">
+  <style>
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+  }
+  /* End of global body styles */
+  body {
+    min-height: 100vh;
+    min-width: 100vw;
+    box-sizing: border-box;
+  }
+  /* Removed stray JS lines. All CSS below is valid. */
+  
+#hamburger {
+  width: 60px;
+  height: 60px;
+  background: rgba(30,30,50,0.7);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  z-index: 99999;
+  box-shadow: 0 2px 8px 0 #0004;
+  position: absolute;
+  top: 36px;
+  right: 48px;
+  pointer-events: auto;
+}
+
+/* Hover glow now works */
+#hamburger:hover {
+  box-shadow: 0 0 48px 12px #4db8ff,
+              0 0 32px 0 #bc6cff,
+              0 0 64px 0 #1e90ff;
+  background: rgba(77,184,255,0.85);
+}
+
+#hamburger-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 100%;
+  height: 6px;
+  background: #fff;
+  border-radius: 3px;
+  margin: 5px 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+#side-menu-list a:hover,
+.menu-content a:hover {
+  background: #4db8ff;
+  color: #fff;
+  text-decoration: underline;
+  border-radius: 8px;
+  box-shadow: 0 0 24px 0 #4db8ff, 0 0 32px 0 #142a4d;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+  .menu-content a {
+    font-size: 4vw;
+  }
+  #side-menu {
+    padding-top: 12vw;
+  }
+
+    #gh-logo {
+      transition: box-shadow 0.18s, background 0.18s, filter 0.18s;
+      box-shadow: 0 0 10px 2px #a259ff55, 0 0 16px 3px #e0b3ff22;
+      filter: none;
+    }
+    #gh-logo:hover {
+      box-shadow: 0 0 18px 4px #a259ff88, 0 0 32px 8px #e0b3ff44;
+      filter: brightness(1.12) saturate(1.18);
+    }
+    /* Full-screen overlay */
+#loading-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: linear-gradient(120deg, #2a174d 0%, #a259ff 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease;
+}
+
+/* Fade-out effect */
+#loading-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Glowy circle animation */
+.loader-glow {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #bc6cff;
+  box-shadow: 0 0 16px #bc6cff88, 0 0 32px #a259ff44, 0 0 48px #bc6cff33;
+  animation: pulse 1.4s ease-in-out infinite;
+  margin-bottom: 1.5rem;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* Loader text */
+.loader-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 0 12px #bc6cff, 0 0 24px #a259ff;
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+/* Text glow animation */
+@keyframes textGlow {
+  from { text-shadow: 0 0 12px #bc6cff, 0 0 24px #a259ff; }
+  to { text-shadow: 0 0 24px #bc6cff, 0 0 48px #a259ff; }
+}
+
+</style>
 </head>
 <body>
-  <h1>hello</h1>
+  <div id="loading-screen">
+  <div class="loader-glow"></div>
+  <h1 class="loader-text">Loading...</h1>
+</div>
+
+    
+  <a href="about.html"><div id="gh-logo" style="position:fixed;bottom:36px;left:5vw;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 60% 40%,#e0b3ff 0%,#a259ff 60%,#3a1c71 100%);box-shadow:0 0 10px 2px #a259ff55,0 0 16px 3px #e0b3ff22;display:flex;align-items:center;justify-content:center;z-index:2147483647;">
+      <span style="font-family:'Segoe UI',sans-serif;font-weight:900;font-size:2.2rem;color:#fff;letter-spacing:-2px;text-shadow:0 0 3px #fff,0 0 6px #a259ff;">GH</span>
+    </div></a>  
+  
+      <canvas id="bg-orbs" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;"></canvas>
+      <canvas id="bg-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;"></canvas>
+      <canvas id="shooting-star-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;pointer-events:none;"></canvas>
+      <canvas id="diamond-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:2;"></canvas>
+      <canvas id="dust-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:3;pointer-events:none;"></canvas>
+  <canvas id="letters-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:12;pointer-events:none;"></canvas>
+  <canvas id="smokey-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
+  <nav id="main-navbar" style="position:fixed;top:36px;left:0;width:100vw;height:80px;z-index:2147483647;display:flex;align-items:center;justify-content:flex-end;padding:0;background:transparent;border:none;box-shadow:none;pointer-events:none;">
+  <button id="hamburger" aria-label="Open menu">
+    <div id="hamburger-icon" style="width:36px;height:36px;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+        <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
+        <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:opacity 0.3s;"></span>
+        <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
+      </div>
+  </button>
+</nav>
+
+
+  </nav>
+  <div id="side-menu" style="position:fixed;top:0;left:0;height:100vh;width:0;z-index:2147483648;background:rgba(20,20,40,0.98);box-shadow:8px 0 32px 0 #0008;overflow:hidden;transition:width 0.4s cubic-bezier(.68,-0.55,.27,1.55);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:80px;">
+    <nav style="width:100%;">
+      <ul id="side-menu-list" style="list-style:none;padding:0;margin:0;width:100%;">
+        <li><a href="index.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Home</a></li>
+        <li><a href="about.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">About Me</a></li>
+        <li><a href="portfolio.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Portfolio</a></li>
+        <li><a href="resume.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Resume</a></li>
+        <li><a href="contact.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="crack crack1"></div>
+    <div class="crack crack2"></div>
+    <div class="crack crack3"></div>
+    
+  </div>
+ 
+  
+  <script>
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loading-screen');
+  loader.classList.add('hidden');
+  setTimeout(() => loader.remove(), 700);
+});
+
+  </script>
+  <script>
+      // Navbar hamburger animation
+      const hamburger = document.getElementById('hamburger');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const sideMenu = document.getElementById('side-menu');
+      let menuOpen = false;
+      hamburger.onclick = function() {
+        menuOpen = !menuOpen;
+        const bars = hamburgerIcon.querySelectorAll('.hamburger-bar');
+        if (menuOpen) {
+          bars[0].style.transform = 'translateY(12px) rotate(45deg)';
+          bars[1].style.opacity = '0';
+          bars[2].style.transform = 'translateY(-12px) rotate(-45deg)';
+          sideMenu.style.width = '340px';
+        } else {
+          bars[0].style.transform = '';
+          bars[1].style.opacity = '1';
+          bars[2].style.transform = '';
+          sideMenu.style.width = '0';
+        }
+      };
+    // Close menu if user clicks outside the menu area
+    document.addEventListener('mousedown', function(e) {
+      if (menuOpen && sideMenu.style.width !== '0') {
+        if (!sideMenu.contains(e.target) && !hamburger.contains(e.target)) {
+          const bars = hamburgerIcon.querySelectorAll('.hamburger-bar');
+          bars[0].style.transform = '';
+          bars[1].style.opacity = '1';
+          bars[2].style.transform = '';
+          sideMenu.style.width = '0';
+          menuOpen = false;
+        }
+      }
+    });
+  </script>
+  <script>
+    // Diamond 3D clump animation
+    const canvas = document.getElementById('diamond-bg');
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    window.addEventListener('resize', resize);
+
+    // Diamond shape points (2D projection of 3D diamond)
+    function drawDiamond(x, y, size, color, angle = 0) {
+      // 3D diamond with 4 facets: top, left, right, bottom, with a potent static shadow and glow
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(angle);
+      // Colors for facets
+      const base = color;
+      const left = shadeColor(base, -18);
+      const right = shadeColor(base, 18);
+      const top = shadeColor(base, 32);
+      const bottom = shadeColor(base, -32);
+
+
+  // ...removed shadow under diamond...
+
+      // Top facet
+      ctx.beginPath();
+      ctx.moveTo(0, -size);
+      ctx.lineTo(size * 0.7, 0);
+      ctx.lineTo(0, 0);
+      ctx.lineTo(-size * 0.7, 0);
+      ctx.closePath();
+      ctx.fillStyle = top;
+      ctx.globalAlpha = 0.92;
+      ctx.fill();
+
+      // Left facet
+      ctx.beginPath();
+      ctx.moveTo(-size * 0.7, 0);
+      ctx.lineTo(0, 0);
+      ctx.lineTo(0, size);
+      ctx.closePath();
+      ctx.fillStyle = left;
+      ctx.globalAlpha = 0.88;
+      ctx.fill();
+
+      // Right facet
+      ctx.beginPath();
+      ctx.moveTo(size * 0.7, 0);
+      ctx.lineTo(0, 0);
+      ctx.lineTo(0, size);
+      ctx.closePath();
+      ctx.fillStyle = right;
+      ctx.globalAlpha = 0.88;
+      ctx.fill();
+
+      // Bottom facet
+      ctx.beginPath();
+      ctx.moveTo(-size * 0.7, 0);
+      ctx.lineTo(0, size);
+      ctx.lineTo(size * 0.7, 0);
+      ctx.closePath();
+      ctx.fillStyle = bottom;
+      ctx.globalAlpha = 0.82;
+      ctx.fill();
+
+      // Outline
+      ctx.globalAlpha = 0.5;
+      ctx.strokeStyle = shadeColor(base, -40);
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.moveTo(0, -size);
+      ctx.lineTo(size * 0.7, 0);
+      ctx.lineTo(0, size);
+      ctx.lineTo(-size * 0.7, 0);
+      ctx.closePath();
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    // Helper: shade a color (hsl string) by lightness delta
+    function shadeColor(hsl, delta) {
+      // hsl(hue, sat%, light%)
+      const m = hsl.match(/hsl\((\d+), ?(\d+)%?, ?(\d+)%?\)/);
+      if (!m) return hsl;
+      let h = +m[1], s = +m[2], l = +m[3];
+      l = Math.max(0, Math.min(100, l + delta));
+      return `hsl(${h}, ${s}%, ${l}%)`;
+    }
+
+    // Generate clump of diamonds
+    // Generate clump of diamonds
+  const diamonds = [];
+  // Always center the clump in the user's browser
+  let clumpCenter = { x: width / 2, y: height / 2 };
+    // Always keep the clump centered on resize
+    function recenterDiamonds() {
+      const newCenter = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+      const dx = newCenter.x - clumpCenter.x;
+      const dy = newCenter.y - clumpCenter.y;
+      for (let d of diamonds) {
+        d.baseX += dx;
+        d.baseY += dy;
+        d.x += dx;
+        d.y += dy;
+      }
+      clumpCenter = newCenter;
+    }
+    window.addEventListener('resize', () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      recenterDiamonds();
+    });
+
+
+    // Animate diamond colors over time
+    function animateDiamondColors(t) {
+      // Only animate the first half of non-orbit diamonds
+      const nonOrbit = diamonds.filter(d => !d.orbit);
+      const half = Math.floor(nonOrbit.length / 2);
+      for (let i = 0; i < nonOrbit.length; i++) {
+        let d = nonOrbit[i];
+        if (i < half) {
+          // Animate hue in a range (200-280)
+          let baseHue = 200 + (d.offset * 17) % 80;
+          let hue = baseHue + Math.sin(t / 1800 + d.offset) * 38;
+          d.color = `hsl(${hue}, 80%, 60%)`;
+        }
+        // else: keep color static
+      }
+    }
+  const clumpRadius = Math.min(width, height) / 2.2;
+  const diamondCount = 36;
+    // Eye shape: ellipse with sharper corners
+    for (let i = 0; i < diamondCount; i++) {
+      const angle = (Math.PI * 2 * i) / diamondCount;
+      let rx = clumpRadius * (0.7 + 0.3 * Math.abs(Math.cos(angle)));
+      let ry = clumpRadius * 0.55 * (0.9 + 0.2 * Math.abs(Math.sin(angle)));
+      if (Math.abs(Math.cos(angle)) > 0.92) rx *= 1.18;
+      if (Math.abs(Math.sin(angle)) > 0.92) ry *= 1.18;
+      const baseX = clumpCenter.x + Math.cos(angle) * rx;
+      const baseY = clumpCenter.y + Math.sin(angle) * ry;
+      diamonds.push({
+        baseX,
+        baseY,
+        x: baseX,
+        y: baseY,
+        vx: 0,
+        vy: 0,
+        size: 32 + Math.random() * 32,
+        color: `hsl(${200 + Math.random() * 80}, 80%, 60%)`,
+        angle: Math.random() * Math.PI * 2,
+        offset: Math.random() * 1000
+      });
+    }
+    // Add 3 white diamonds that orbit the red sphere along the z axis, not affected by mouse
+    const orbitDiamonds = 3;
+    // Orbiting diamond colors: red, yellow, blue
+    const orbitColors = [
+      'hsl(0, 80%, 60%)',    // red
+      'hsl(48, 90%, 60%)',   // yellow
+      'hsl(220, 80%, 60%)'   // blue
+    ];
+    for (let i = 0; i < orbitDiamonds; i++) {
+      diamonds.push({
+        orbit: true,
+        orbitAngle: (Math.PI * 2 * i) / orbitDiamonds,
+        orbitRadius: Math.min(width, height) / 8 + 38,
+        orbitZ: (i - 1) * 0.5, // -0.5, 0, 0.5 for z-depth
+        size: 18,
+        color: orbitColors[i],
+        angle: Math.random() * Math.PI * 2,
+        offset: Math.random() * 1000
+      });
+    }
+
+    let mouse = { x: width / 2, y: height / 2 };
+    let mouseNorm = { x: 0, y: 0 };
+    window.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouseNorm.x = (e.clientX / width - 0.5) * 2; // -1 to 1
+      mouseNorm.y = (e.clientY / height - 0.5) * 2;
+    });
+
+    // Sphere color palette
+    const sphereColors = [
+      ['#fff', '#bc6cff', '#a259ff', '#2d0a4d'], // purple
+      ['#fff', '#3ad0ff', '#1e90ff', '#1a1457'], // blue
+      ['#fff', '#ff6cbb', '#a259ff', '#2d0a4d'], // pink
+      ['#fff', '#ffe066', '#bc6cff', '#2d0a4d'], // gold
+      ['#fff', '#6cffbc', '#59ffa2', '#14572d']  // teal
+    ];
+    let sphereColorIdx = 0;
+
+    function drawRedSphere(centerX, centerY, radius, xRot, yRot) {
+      // Simulate a 3D sphere with a shadow, spinning on x and y axes (no glare)
+      // Calculate the highlight center based on xRot and yRot for a 3D effect
+      const highlightX = centerX + Math.sin(yRot) * radius * 0.4;
+      const highlightY = centerY - Math.sin(xRot) * radius * 0.4;
+      // Fortnite purple: #a259ff, #bc6cff, #fff
+      const grad = ctx.createRadialGradient(
+        highlightX,
+        highlightY,
+        radius * 0.08,
+        centerX,
+        centerY,
+        radius
+      );
+      grad.addColorStop(0, '#fff'); // Intense white center
+      grad.addColorStop(0.13, '#bc6cff'); // Bright Fortnite purple
+      grad.addColorStop(0.38, '#a259ff'); // Fortnite purple
+      grad.addColorStop(1, '#2d0a4d'); // Deep purple
+      ctx.save();
+      // Black hole event horizon glow: left/right stretching grape glow
+      let horizonGrad = ctx.createLinearGradient(centerX - radius * 3, centerY, centerX + radius * 3, centerY);
+      horizonGrad.addColorStop(0, 'rgba(200,160,255,0.01)');
+      horizonGrad.addColorStop(0.18, 'rgba(200,160,255,0.18)');
+      horizonGrad.addColorStop(0.48, 'rgba(200,160,255,0.32)');
+      horizonGrad.addColorStop(0.52, 'rgba(200,160,255,0.32)');
+      horizonGrad.addColorStop(0.82, 'rgba(200,160,255,0.18)');
+      ctx.globalAlpha = 0.7;
+      ctx.filter = 'blur(48px)';
+      ctx.beginPath();
+      ctx.ellipse(centerX, centerY, radius * 3, radius * 0.55, 0, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fillStyle = horizonGrad;
+      ctx.fill();
+      ctx.filter = 'none';
+      ctx.globalAlpha = 1;
+      ctx.restore();
+      // Sphere
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fillStyle = grad;
+      ctx.shadowColor = '#bc6cff';
+      ctx.shadowBlur = 80;
+      ctx.globalAlpha = 0.98;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur = 0;
+      ctx.restore();
+    }
+
+    // Animate glows: each has a phase and speed for fade in/out
+    // Persistent high glows state
+    const highGlowCount = 3;
+    let highGlows = Array.from({length: highGlowCount}).map(() => ({
+      x: Math.random() * width,
+      y: -Math.random() * height * 0.3,
+      r: Math.max(width, height) * (0.32 + Math.random() * 0.18),
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.22 + Math.random() * 0.18,
+      tOffset: performance.now() // track time offset for each glow
+    }));
+    const animatedGlows = [
+      // Eye corners
+  { x: () => clumpCenter.x - clumpRadius * 1.18, y: () => clumpCenter.y, r: () => clumpRadius * 0.55, phase: 0.0, speed: 0.32 },
+  { x: () => clumpCenter.x + clumpRadius * 1.18, y: () => clumpCenter.y, r: () => clumpRadius * 0.55, phase: 1.2, speed: 0.28 },
+  { x: () => clumpCenter.x, y: () => clumpCenter.y - clumpRadius * 0.65, r: () => clumpRadius * 0.55, phase: 2.1, speed: 0.36 },
+  { x: () => clumpCenter.x, y: () => clumpCenter.y + clumpRadius * 0.65, r: () => clumpRadius * 0.55, phase: 3.0, speed: 0.22 },
+  // Higher up glows
+  { x: () => clumpCenter.x - clumpRadius * 0.7, y: () => clumpCenter.y - clumpRadius * 1.1, r: () => clumpRadius * 0.38, phase: 0.8, speed: 0.32 },
+  { x: () => clumpCenter.x + clumpRadius * 0.7, y: () => clumpCenter.y - clumpRadius * 1.1, r: () => clumpRadius * 0.38, phase: 1.6, speed: 0.28 },
+  // Persistent high glows
+      ...highGlows.map(g => ({
+        x: () => g.x,
+        y: () => g.y,
+        r: () => g.r,
+        phase: g.phase,
+        speed: g.speed,
+        tOffset: g.tOffset
+      })),
+      // Page corners
+      { x: () => 0, y: () => 0, r: () => Math.max(width, height) * 0.32, phase: 0.5, speed: 0.4 },
+      { x: () => width, y: () => 0, r: () => Math.max(width, height) * 0.32, phase: 1.7, speed: 0.6 },
+      { x: () => 0, y: () => height, r: () => Math.max(width, height) * 0.32, phase: 2.5, speed: 0.5 },
+      { x: () => width, y: () => height, r: () => Math.max(width, height) * 0.32, phase: 3.2, speed: 0.7 }
+    ];
+
+    function drawSmokeyGlow(t) {
+      for (let i = 0; i < animatedGlows.length; i++) {
+        const glow = animatedGlows[i];
+        // Animate alpha with a faster sine wave
+        let alpha = 0.5 + 0.5 * Math.sin(t * 0.001 * glow.speed + glow.phase);
+        alpha = 0.25 + 0.65 * Math.pow(alpha, 1.5); // more time near 0, quick fade in
+        // Animate falling by drifting y downward over time
+        // Make fall speed proportional to fade speed, so glows cycle and reappear
+        let fadeCycle = Math.PI * 2 / (0.001 * glow.speed); // period of fade
+        let fallDistance = height + glow.r();
+        let fallSpeed = fallDistance / fadeCycle; // pixels per ms
+        let tLocal = t - (glow.tOffset || 0);
+        let fallPhase = ((tLocal * fallSpeed) % fallDistance) / fallDistance;
+        let yFallen = glow.y() + fallPhase * fallDistance;
+        // Fade in as they reappear at the top
+        let fadeIn = Math.min(1, fallPhase * 3); // fade in over first third
+        alpha *= fadeIn;
+        // If this is a persistent high glow and just respawned, randomize its position
+        if (glow.tOffset !== undefined && fallPhase < 0.01 && tLocal > 100) {
+          let idx = highGlows.findIndex(g => g.tOffset === glow.tOffset);
+          if (idx !== -1) {
+            highGlows[idx] = {
+              x: Math.random() * width,
+              y: -Math.random() * height * 0.3,
+              r: Math.max(width, height) * (0.18 + Math.random() * 0.18),
+              phase: Math.random() * Math.PI * 2,
+              speed: 0.5 + Math.random() * 0.5,
+              tOffset: t
+            };
+          }
+        }
+        let grad = ctx.createRadialGradient(
+          glow.x(), yFallen, glow.r() * 0.18,
+          glow.x(), yFallen, glow.r()
+        );
+        grad.addColorStop(0, 'rgba(123,92,255,0.32)');
+        grad.addColorStop(0.18, 'rgba(30,144,255,0.22)');
+        grad.addColorStop(0.38, 'rgba(123,92,255,0.18)');
+        grad.addColorStop(0.6, 'rgba(30,144,255,0.10)');
+        grad.addColorStop(1, 'rgba(10,10,19,0.01)');
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.beginPath();
+        ctx.arc(glow.x(), yFallen, glow.r(), 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fillStyle = grad;
+        ctx.filter = 'blur(40px)';
+        ctx.fill();
+        ctx.filter = 'none';
+        ctx.globalAlpha = 1;
+        ctx.restore();
+      }
+    }
+
+    function animateDiamonds(t) {
+      ctx.clearRect(0, 0, width, height);
+      // Draw shooting star behind everything
+      if (typeof drawShootingStar === 'function') {
+        drawShootingStar(t);
+      }
+      drawSmokeyGlow(t);
+  // Calculate orbiting diamonds' positions and z for sorting
+      let orbitDiamonds = diamonds.filter(d => d.orbit).map(d => {
+        let orbitSpeed = 0.7;
+        let theta = d.orbitAngle + t * 0.0005 * orbitSpeed;
+        let z = Math.sin(theta + d.orbitZ) * 0.7;
+        let scale = 0.7 + 0.5 * (z + 1);
+        let x = clumpCenter.x + Math.cos(theta) * d.orbitRadius;
+        let y = clumpCenter.y + Math.sin(theta) * d.orbitRadius * 0.38 + z * 18;
+        let angle = theta * 0.45; // Rotate faster as they spin
+        return { d, z, scale, x, y, theta, angle };
+      });
+      // Find nearest orbit diamond to mouse
+      let minDist = Infinity, nearest = null;
+      for (let od of orbitDiamonds) {
+        let dx = od.x - mouse.x;
+        let dy = od.y - mouse.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < minDist) {
+          minDist = dist;
+          nearest = od;
+        }
+      }
+
+      // Smoother pull logic for nearest orbit diamond using velocity and damping
+      if (!nearest.d.vx) nearest.d.vx = 0;
+      if (!nearest.d.vy) nearest.d.vy = 0;
+      if (nearest && minDist < 120) {
+        let targetX = mouse.x;
+        let targetY = mouse.y;
+        let spring = minDist < 32 ? 0.18 : 0.06;
+        let damping = 0.82;
+        nearest.d.vx = nearest.d.vx * damping + (targetX - nearest.x) * spring;
+        nearest.d.vy = nearest.d.vy * damping + (targetY - nearest.y) * spring;
+        nearest.x += nearest.d.vx;
+        nearest.y += nearest.d.vy;
+        nearest.magnetized = minDist < 32;
+      } else if (nearest) {
+        // Return to orbit position smoothly if not near mouse
+        let orbitX = clumpCenter.x + Math.cos(nearest.theta) * nearest.d.orbitRadius;
+        let orbitY = clumpCenter.y + Math.sin(nearest.theta) * nearest.d.orbitRadius * 0.38 + nearest.z * 18;
+        let spring = 0.04;
+        let damping = 0.85;
+        nearest.d.vx = nearest.d.vx * damping + (orbitX - nearest.x) * spring;
+        nearest.d.vy = nearest.d.vy * damping + (orbitY - nearest.y) * spring;
+        nearest.x += nearest.d.vx;
+        nearest.y += nearest.d.vy;
+        nearest.magnetized = false;
+      }
+      // Info box logic for orbiting diamonds
+      let infoBox = null;
+      for (let i = 0; i < orbitDiamonds.length; i++) {
+        let od = orbitDiamonds[i];
+        let dx = od.x - mouse.x;
+        let dy = od.y - mouse.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 48 || od.magnetized) {
+          let infoText = [
+            'University of Louisville CS Major',
+            'Independent Coding Contractor',
+            'Web Developer'
+          ][i];
+          let color = ['#ff2a2a', '#ffe066', '#3ad0ff'][i];
+          infoBox = {
+            x: od.x,
+            y: od.y - 54,
+            text: infoText,
+            color: color
+          };
+        }
+      }
+      // Sort by z (back to front)
+      orbitDiamonds.sort((a, b) => a.z - b.z);
+      // Draw those behind the sphere (z < 0)
+      for (let od of orbitDiamonds) {
+        if (od.z >= 0) continue;
+        ctx.save();
+        ctx.globalAlpha = 0.45 + 0.25 * od.scale;
+        ctx.filter = `blur(${(1-od.scale)*2.5}px)`;
+        ctx.translate(od.x, od.y);
+        ctx.scale(od.scale, od.scale);
+        drawDiamond(0, 0, od.d.size, od.d.color, od.angle);
+        ctx.restore();
+      }
+      
+  // Draw spinning red sphere in center, rotating on x and y axes with mouse
+  const xRot = -mouseNorm.y * Math.PI * 0.7; // Mirror up/down (x) rotation
+  const yRot = mouseNorm.x * Math.PI * 0.7; // Follow mouse for left/right (y) rotation
+  drawRedSphere(clumpCenter.x, clumpCenter.y, Math.min(width, height) / 8, xRot, yRot);
+      // Draw those in front of the sphere (z >= 0)
+      for (let od of orbitDiamonds) {
+        if (od.z < 0) continue;
+        ctx.save();
+        ctx.globalAlpha = 0.45 + 0.25 * od.scale;
+        ctx.filter = `blur(${(1-od.scale)*2.5}px)`;
+        ctx.translate(od.x, od.y);
+        ctx.scale(od.scale, od.scale);
+        drawDiamond(0, 0, od.d.size, od.d.color, od.angle);
+        ctx.restore();
+      }
+      // Draw info box if needed
+      if (infoBox) {
+        ctx.save();
+        ctx.globalAlpha = 0.98;
+        ctx.font = 'bold 1.3rem Montserrat, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = infoBox.color;
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 3.5;
+        // Draw rounded rect background
+        let pad = 18, w = 320, h = 44;
+        ctx.beginPath();
+        ctx.moveTo(infoBox.x - w/2 + pad, infoBox.y - h/2);
+        ctx.lineTo(infoBox.x + w/2 - pad, infoBox.y - h/2);
+        ctx.quadraticCurveTo(infoBox.x + w/2, infoBox.y - h/2, infoBox.x + w/2, infoBox.y - h/2 + pad);
+        ctx.lineTo(infoBox.x + w/2, infoBox.y + h/2 - pad);
+        ctx.quadraticCurveTo(infoBox.x + w/2, infoBox.y + h/2, infoBox.x + w/2 - pad, infoBox.y + h/2);
+        ctx.lineTo(infoBox.x - w/2 + pad, infoBox.y + h/2);
+        ctx.quadraticCurveTo(infoBox.x - w/2, infoBox.y + h/2, infoBox.x - w/2, infoBox.y + h/2 - pad);
+        ctx.lineTo(infoBox.x - w/2, infoBox.y - h/2 + pad);
+        ctx.quadraticCurveTo(infoBox.x - w/2, infoBox.y - h/2, infoBox.x - w/2 + pad, infoBox.y - h/2);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(30,30,50,0.98)';
+        ctx.shadowColor = infoBox.color;
+        ctx.shadowBlur = 18;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = infoBox.color;
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+        // Draw text
+        ctx.fillStyle = infoBox.color;
+        ctx.shadowColor = '#fff';
+        ctx.shadowBlur = 8;
+        ctx.fillText(infoBox.text, infoBox.x, infoBox.y);
+        ctx.restore();
+      }
+      // Draw main diamonds (in front of sphere)
+      animateDiamondColors(t);
+      // Only affect the 3-5 closest diamonds to the mouse
+      const nonOrbitDiamonds = diamonds.filter(d => !d.orbit);
+      const sortedByDist = nonOrbitDiamonds
+        .map(d => ({d, dist: Math.sqrt((d.x - mouse.x) ** 2 + (d.y - mouse.y) ** 2)}))
+        .sort((a, b) => a.dist - b.dist);
+      const affected = sortedByDist.slice(0, 5).map(obj => obj.d); // limit to 5
+      for (let d of nonOrbitDiamonds) {
+        let dx = d.x - mouse.x;
+        let dy = d.y - mouse.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        let repel = 0;
+        if (affected.includes(d) && dist < 140) {
+          let force = (140 - dist) * 0.18;
+          let angle = Math.atan2(dy, dx);
+          d.vx += Math.cos(angle) * force;
+          d.vy += Math.sin(angle) * force;
+        }
+        let toBaseX = d.baseX - d.x;
+        let toBaseY = d.baseY - d.y;
+        d.vx += toBaseX * 0.012;
+        d.vy += toBaseY * 0.012;
+        d.vx *= 0.88;
+        d.vy *= 0.88;
+        d.x += d.vx * 0.5;
+        d.y += d.vy * 0.5;
+        let float = Math.sin(t / 1200 + d.offset) * 6;
+        drawDiamond(d.x, d.y + float, d.size, d.color, d.angle + Math.sin(t / 900 + d.offset) * 0.2);
+      }
+      requestAnimationFrame(animateDiamonds);
+    }
+    animateDiamonds(performance.now());
+  </script>
+  <script>
+    // Glowing orbs background animation (now uses bg-orbs canvas)
+    const orbCanvas = document.getElementById('bg-orbs');
+    const orbCtx = orbCanvas.getContext('2d');
+    let orbWidth = window.innerWidth;
+    let orbHeight = window.innerHeight;
+    orbCanvas.width = orbWidth;
+    orbCanvas.height = orbHeight;
+    function resizeOrbCanvas() {
+  orbWidth = window.innerWidth;
+  orbHeight = window.innerHeight;
+  orbCanvas.width = orbWidth;
+  orbCanvas.height = orbHeight;
+
+  for (let orb of orbs) {
+    orb.x = Math.random() * orbWidth;
+    orb.y = Math.random() * orbHeight;
+  }
+}
+
+    window.addEventListener('resize', resizeOrbCanvas);
+    // Orb properties
+  const orbCount = 5;
+    // Generate random purple/blue/pink hues for each orb
+    function randomGlowHue() {
+      // Blue: 200-260, Purple: 260-290, Pink: 300-340
+      const ranges = [
+        [200, 260], // blue
+        [260, 290], // purple
+        [300, 340]  // pink
+      ];
+      const range = ranges[Math.floor(Math.random() * ranges.length)];
+      return Math.floor(range[0] + Math.random() * (range[1] - range[0]));
+    }
+    const orbs = Array.from({length: orbCount}).map(() => {
+      const hue = randomGlowHue();
+      return {
+        x: Math.random() * orbWidth,
+        y: Math.random() * orbHeight,
+        r: 220 + Math.random() * 120,
+        color: `hsla(${hue}, 80%, 68%, 0.38)`,
+        dy: 0.12 + Math.random() * 0.18,
+        phase: Math.random() * Math.PI * 2
+      };
+    });
+    function drawOrbs(t = 0) {
+      orbCtx.clearRect(0, 0, orbWidth, orbHeight);
+      for (let orb of orbs) {
+        // Animate vertical falling
+        orb.y += orb.dy;
+        if (orb.y > orbHeight + orb.r) {
+          orb.y = -orb.r;
+          orb.x = Math.random() * orbWidth;
+        }
+        // Animate fade in/out with sine wave
+        let alpha = 0.25 + 0.55 * Math.abs(Math.sin(t*0.001 + orb.phase + orb.y*0.002));
+        // Glowing gradient
+        let grad = orbCtx.createRadialGradient(
+          orb.x, orb.y, orb.r * 0.18,
+          orb.x, orb.y, orb.r
+        );
+        grad.addColorStop(0, orb.color.replace('0.38', (alpha+0.28).toFixed(2)));
+        grad.addColorStop(0.18, orb.color.replace('0.38', (alpha*0.9).toFixed(2)));
+        grad.addColorStop(0.6, orb.color.replace('0.38', (alpha*0.5).toFixed(2)));
+        grad.addColorStop(1, 'rgba(10,10,19,0.01)');
+        orbCtx.save();
+        orbCtx.globalAlpha = alpha;
+        orbCtx.beginPath();
+        orbCtx.arc(orb.x, orb.y, orb.r, 0, Math.PI * 2);
+        orbCtx.closePath();
+        orbCtx.fillStyle = grad;
+        orbCtx.filter = 'blur(56px)';
+        orbCtx.fill();
+        orbCtx.filter = 'none';
+        orbCtx.globalAlpha = 1;
+        orbCtx.restore();
+      }
+    }
+    function animateOrbs() {
+      drawOrbs(performance.now());
+      requestAnimationFrame(animateOrbs);
+    }
+    animateOrbs();
+  </script>
+  <script>
+    // Dark purple gradient background for bg-canvas
+    const bgCanvas = document.getElementById('bg-canvas');
+    const bgCtx = bgCanvas.getContext('2d');
+    let bgWidth = window.innerWidth;
+    let bgHeight = window.innerHeight;
+    bgCanvas.width = bgWidth;
+    bgCanvas.height = bgHeight;
+    function resizeBgCanvas() {
+      bgWidth = window.innerWidth;
+      bgHeight = window.innerHeight;
+      bgCanvas.width = bgWidth;
+      bgCanvas.height = bgHeight;
+    }
+    window.addEventListener('resize', resizeBgCanvas);
+    function drawBgGradient() {
+      let grad = bgCtx.createLinearGradient(0, 0, 0, bgHeight);
+      grad.addColorStop(0, '#2a1457'); // deep purple
+      grad.addColorStop(0.5, '#1a0e2d'); // darker purple
+      grad.addColorStop(1, '#120a1c'); // near black
+      bgCtx.fillStyle = grad;
+      bgCtx.fillRect(0, 0, bgWidth, bgHeight);
+    }
+    function animateBg() {
+      drawBgGradient();
+      requestAnimationFrame(animateBg);
+    }
+    animateBg();
+  </script>
+  <script>
+    // Tiny dust particles floating animation
+    const dustCanvas = document.getElementById('dust-canvas');
+    const dustCtx = dustCanvas.getContext('2d');
+    let dustWidth = window.innerWidth;
+    let dustHeight = window.innerHeight;
+    dustCanvas.width = dustWidth;
+    dustCanvas.height = dustHeight;
+    function resizeDustCanvas() {
+  dustWidth = window.innerWidth;
+  dustHeight = window.innerHeight;
+  dustCanvas.width = dustWidth;
+  dustCanvas.height = dustHeight;
+
+  // re-randomize particles to spread across new area
+  for (let p of dustParticles) {
+    p.x = Math.random() * dustWidth;
+    p.y = Math.random() * dustHeight;
+  }
+}
+
+    window.addEventListener('resize', resizeDustCanvas);
+    // Particle properties
+    const dustCount = 120;
+    const dustParticles = Array.from({length: dustCount}).map(() => {
+      return {
+        x: Math.random() * dustWidth,
+        y: Math.random() * dustHeight,
+        r: 0.5 + Math.random() * 1.2,
+        alpha: 0.18 + Math.random() * 0.22,
+        dx: (Math.random() - 0.5) * 0.18,
+        dy: (Math.random() - 0.5) * 0.18,
+        twinkle: Math.random() * Math.PI * 2,
+        twinkleSpeed: 0.5 + Math.random() * 1.2
+      };
+    });
+    function drawDustParticles(t = 0) {
+      dustCtx.clearRect(0, 0, dustWidth, dustHeight);
+      for (let p of dustParticles) {
+        // Move
+        p.x += p.dx;
+        p.y += p.dy;
+        // Wrap around edges
+        if (p.x < 0) p.x = dustWidth;
+        if (p.x > dustWidth) p.x = 0;
+        if (p.y < 0) p.y = dustHeight;
+        if (p.y > dustHeight) p.y = 0;
+        // Twinkle effect
+        let twinkleAlpha = p.alpha * (0.7 + 0.3 * Math.abs(Math.sin(t*0.001*p.twinkleSpeed + p.twinkle)));
+        dustCtx.save();
+        dustCtx.globalAlpha = twinkleAlpha;
+        dustCtx.beginPath();
+        dustCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        dustCtx.closePath();
+        dustCtx.fillStyle = '#fff';
+        dustCtx.shadowColor = '#fff';
+        dustCtx.shadowBlur = 6;
+        dustCtx.fill();
+        dustCtx.shadowBlur = 0;
+        dustCtx.globalAlpha = 1;
+        dustCtx.restore();
+      }
+    }
+    function animateDustParticles() {
+      drawDustParticles(performance.now());
+      requestAnimationFrame(animateDustParticles);
+    }
+    animateDustParticles();
+  </script>
+  <script>
+    // Shooting star animation
+    const starCanvas = document.getElementById('shooting-star-canvas');
+    const starCtx = starCanvas.getContext('2d');
+    let starWidth = window.innerWidth;
+    let starHeight = window.innerHeight;
+    starCanvas.width = starWidth;
+    starCanvas.height = starHeight;
+    function resizeStarCanvas() {
+      starWidth = window.innerWidth;
+      starHeight = window.innerHeight;
+      starCanvas.width = starWidth;
+      starCanvas.height = starHeight;
+    }
+    window.addEventListener('resize', resizeStarCanvas);
+    // Shooting star state
+    let shootingStar = null;
+    function spawnShootingStar() {
+      // Randomize start and end points (top left to bottom right, or top right to bottom left)
+      const direction = Math.random() > 0.5 ? 1 : -1;
+      const startX = direction === 1 ? -80 : starWidth + 80;
+      const startY = Math.random() * starHeight * 0.4 + 40;
+      const endX = direction === 1 ? starWidth + 80 : -80;
+      const endY = startY + Math.random() * starHeight * 0.3 + 120;
+      shootingStar = {
+        x: startX,
+        y: startY,
+        endX,
+        endY,
+        progress: 0,
+        duration: 1200 + Math.random() * 400,
+        size: 2.5 + Math.random() * 1.5,
+        tail: 120 + Math.random() * 40,
+        color: 'rgba(255,255,255,0.92)',
+        startTime: performance.now()
+      };
+    }
+    function drawShootingStar(t) {
+      starCtx.clearRect(0, 0, starWidth, starHeight);
+      if (!shootingStar) return;
+      const elapsed = t - shootingStar.startTime;
+      const p = Math.min(1, elapsed / shootingStar.duration);
+      // Interpolate position
+      const x = shootingStar.x + (shootingStar.endX - shootingStar.x) * p;
+      const y = shootingStar.y + (shootingStar.endY - shootingStar.y) * p;
+      // Draw tail
+      const tailX = shootingStar.x + (shootingStar.endX - shootingStar.x) * (p - 0.12);
+      const tailY = shootingStar.y + (shootingStar.endY - shootingStar.y) * (p - 0.12);
+      starCtx.save();
+      starCtx.globalAlpha = 0.7 * (1 - p);
+      starCtx.strokeStyle = 'rgba(255,255,255,0.7)';
+      starCtx.lineWidth = shootingStar.size;
+      starCtx.shadowColor = '#fff';
+      starCtx.shadowBlur = 16;
+      starCtx.beginPath();
+      starCtx.moveTo(tailX, tailY);
+      starCtx.lineTo(x, y);
+      starCtx.stroke();
+      starCtx.shadowBlur = 0;
+      // Draw head
+      starCtx.globalAlpha = 1 * (1 - p);
+      starCtx.beginPath();
+      starCtx.arc(x, y, shootingStar.size * 1.2, 0, Math.PI * 2);
+      starCtx.closePath();
+      starCtx.fillStyle = shootingStar.color;
+      starCtx.fill();
+      starCtx.restore();
+      // Remove star if finished
+      if (p >= 1) shootingStar = null;
+    }
+    let lastStarTime = performance.now();
+    function animateShootingStar(t) {
+      drawShootingStar(t);
+      // Spawn a new shooting star every 10-15 seconds if none is present
+      if (!shootingStar && t - lastStarTime > 10000 + Math.random() * 5000) {
+        spawnShootingStar();
+        lastStarTime = t;
+      }
+      requestAnimationFrame(animateShootingStar);
+    }
+    animateShootingStar(performance.now());
+  </script>
+<script>
+  // Animated letters logic
+  const lettersCanvas = document.getElementById('letters-canvas');
+  const lettersCtx = lettersCanvas.getContext('2d');
+  let lettersWidth = window.innerWidth;
+  let lettersHeight = window.innerHeight;
+  lettersCanvas.width = lettersWidth;
+  lettersCanvas.height = lettersHeight;
+
+  function resizeLettersCanvas() {
+    lettersWidth = window.innerWidth;
+    lettersHeight = window.innerHeight;
+    lettersCanvas.width = lettersWidth;
+    lettersCanvas.height = lettersHeight;
+    initLetters(); // re-init positions when screen resizes
+  }
+  window.addEventListener('resize', resizeLettersCanvas);
+
+  const nameText = 'GRIFFIN HAMPTON';
+  const letterObjs = [];
+  let fontSize = Math.min(lettersWidth, lettersHeight) / 7;
+
+  function initLetters() {
+    letterObjs.length = 0; // reset
+    fontSize = Math.min(lettersWidth, lettersHeight) / 7;
+    lettersCtx.font = `900 ${fontSize}px Montserrat, sans-serif`;
+
+    // measure total width of the text
+    let totalWidth = 0;
+    for (let i = 0; i < nameText.length; i++) {
+      totalWidth += lettersCtx.measureText(nameText[i]).width;
+      if (i < nameText.length - 1) totalWidth += fontSize * 0.05;
+    }
+
+    // only render if it fits
+    if (totalWidth > lettersWidth * 0.9 || fontSize > lettersHeight * 0.4) {
+      return; // skip drawing if too big
+    }
+
+    let startX = lettersWidth / 2 - totalWidth / 2;
+    let y0 = lettersHeight / 2;
+
+    for (let i = 0; i < nameText.length; i++) {
+      let char = nameText[i];
+      let charWidth = lettersCtx.measureText(char).width;
+      letterObjs.push({
+        char,
+        x: startX + charWidth / 2,
+        y: y0,
+        vx: 0,
+        vy: 0,
+        baseX: startX + charWidth / 2,
+        baseY: y0,
+        offset: Math.random() * 1000,
+        fadeTimer: 0,
+        faded: false,
+        spawnTime: performance.now(),
+        locked: true
+      });
+      startX += charWidth + fontSize * 0.05;
+    }
+  }
+
+  initLetters();
+
+  // Mouse repulsion
+  window.addEventListener('mousemove', e => {
+    const mx = e.clientX;
+    const my = e.clientY;
+    for (let l of letterObjs) {
+      if (l.locked && performance.now() - l.spawnTime < 1500) continue; // lock for 1.5s
+      l.locked = false;
+      let dx = l.x - mx;
+      let dy = l.y - my;
+      let dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 140) {
+        let force = (140 - dist) * 0.08;
+        let angle = Math.atan2(dy, dx);
+        l.vx += Math.cos(angle) * force;
+        l.vy += Math.sin(angle) * force;
+      }
+    }
+  });
+
+  function respawnAllLetters() {
+    for (let l of letterObjs) {
+      l.x = l.baseX;
+      l.y = l.baseY;
+      l.vx = 0;
+      l.vy = 0;
+      l.fadeTimer = -1.2; // negative = fade-in over 1.2s
+      l.faded = false;
+      l.spawnTime = performance.now();
+      l.locked = true;
+    }
+  }
+
+  function animateLetters(t) {
+    lettersCtx.clearRect(0, 0, lettersWidth, lettersHeight);
+    let anyShouldRespawn = false;
+
+    for (let l of letterObjs) {
+      // clamp inside screen
+      let minX = fontSize * 0.5;
+      let maxX = lettersWidth - fontSize * 0.5;
+      let minY = fontSize * 0.5;
+      let maxY = lettersHeight - fontSize * 0.5;
+      l.x = Math.max(minX, Math.min(maxX, l.x));
+      l.y = Math.max(minY, Math.min(maxY, l.y));
+
+      // motion
+      l.vx *= 0.92;
+      l.vy *= 0.92;
+      l.x += l.vx * 0.5;
+      l.y += l.vy * 0.5;
+
+      // fade logic
+      let distFromStart = Math.sqrt((l.x - l.baseX) ** 2 + (l.y - l.baseY) ** 2);
+      if (distFromStart > 8) {
+        l.fadeTimer += 1 / 60;
+        l.faded = true;
+      } else if (l.fadeTimer >= 0) {
+        l.fadeTimer = 0;
+        l.faded = false;
+      }
+
+      let fade;
+      if (l.fadeTimer < 0) {
+        // fade-in mode (fadeTimer goes from -1.2 → 0)
+        fade = Math.min(0.98, ((1.2 + l.fadeTimer) / 1.2) * 0.98);
+        l.fadeTimer += 1 / 60; // progress toward 0
+      } else {
+        fade = l.faded ? Math.max(0, 0.98 - l.fadeTimer * 2.5) : 0.98;
+      }
+
+      // fade back after 10s away
+      if (l.faded && l.fadeTimer > 10) {
+        anyShouldRespawn = true;
+      }
+
+      // draw
+      lettersCtx.save();
+      lettersCtx.font = `900 ${fontSize}px Montserrat, sans-serif`;
+      lettersCtx.textAlign = 'center';
+      lettersCtx.textBaseline = 'alphabetic';
+      lettersCtx.fillStyle = 'white';
+      lettersCtx.shadowColor = '#bc6cff';
+      lettersCtx.shadowBlur = 16;
+      lettersCtx.globalAlpha = fade;
+      lettersCtx.translate(l.x, l.y);
+      let swing = Math.sin(t / 1800) * 0.07;
+      lettersCtx.rotate(swing);
+      lettersCtx.fillText(l.char, 0, 0);
+      lettersCtx.restore();
+    }
+
+    if (anyShouldRespawn) {
+      respawnAllLetters();
+    }
+    requestAnimationFrame(animateLetters);
+  }
+
+  animateLetters(performance.now());
+</script>
+
 </body>
+
 </html>
