@@ -7,81 +7,173 @@
   <link rel="icon" href="image__2_-removebg-preview (2).png" type="image/x-icon">
   <style>
     :root {
-      --bg1: #1b1230;
-      --bg2: #0f0a18;
+      --bg1: #0f0a18;
+      --bg2: #142a4d;
       --accent: #a259ff;
       --accent-2: #4db8ff;
       --text: #ffffff;
-      --muted: #cfc7dd;
+      --muted: #cfd7ea;
+      --card: rgba(255,255,255,0.06);
+      --border: #ffffff1a;
     }
     * { box-sizing: border-box; }
     html, body {
-      margin: 0;
-      padding: 0;
       height: 100%;
-      background: radial-gradient(1200px 800px at 50% -10%, #2a174d 0%, #1a0e2d 40%, #0f0a18 100%), linear-gradient(180deg, var(--bg1), var(--bg2));
+      margin: 0;
       color: var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 800px at 50% -10%, #2a174d 0%, #1a0e2d 40%, var(--bg1) 100%),
+        linear-gradient(180deg, var(--bg2), var(--bg1));
     }
+
+    /* Floating navbar with hamburger (portfolio vibe) */
+    #main-navbar {
+      position: fixed;
+      top: 16px;
+      left: 0;
+      width: 100vw;
+      height: 64px;
+      z-index: 2147483647;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      pointer-events: none; /* lets the page be scrollable under it */
+    }
+    #hamburger {
+      width: 56px;
+      height: 56px;
+      background: rgba(30,30,50,0.7);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      z-index: 3001;
+      box-shadow: 0 2px 8px 0 #0004;
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      pointer-events: auto; /* clickable */
+    }
+    #hamburger:hover {
+      box-shadow: 0 0 36px 10px #4db8ff,
+                  0 0 24px 0 #bc6cff,
+                  0 0 54px 0 #1e90ff;
+      background: rgba(77,184,255,0.85);
+    }
+    #hamburger:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+    #hamburger-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .hamburger-bar {
+      display: block;
+      width: 100%;
+      height: 5px;
+      background: #fff;
+      border-radius: 3px;
+      margin: 4px 0;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* Slide-in side menu (mobile-tuned) */
+    #side-menu {
+      position: fixed;
+      top: 0; left: 0;
+      height: 100vh;
+      width: 0;
+      max-width: 88vw;
+      z-index: 2147483648;
+      background: rgba(20,20,40,0.98);
+      box-shadow: 8px 0 32px 0 #0008;
+      overflow: hidden;
+      transition: width 0.35s cubic-bezier(.68,-0.55,.27,1.55);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding-top: 72px;
+    }
+    #side-menu nav { width: 100%; }
+    #side-menu-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+    #side-menu-list a {
+      display: block;
+      padding: 20px 32px;
+      font-size: 1.6rem;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    #side-menu-list a:hover {
+      background: #4db8ff;
+      color: #fff;
+      text-decoration: underline;
+      border-radius: 8px;
+      box-shadow: 0 0 24px 0 #4db8ff, 0 0 32px 0 #142a4d;
+    }
+
+    /* Page layout */
     .wrap {
       min-height: 100%;
       display: flex;
       flex-direction: column;
       align-items: stretch;
+      padding-top: 84px; /* room for floating nav */
     }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text);
-    }
-    .logo {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: radial-gradient(circle at 60% 40%, #e0b3ff 0%, #a259ff 60%, #3a1c71 100%);
-      box-shadow: 0 0 12px #a259ff88, 0 0 24px #e0b3ff33;
-      display: grid; place-items: center;
-      font-weight: 900; letter-spacing: -1px;
-    }
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      padding: 10px 14px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.06);
-      margin-left: 8px;
-      display: inline-block;
-    }
-    nav a:active { transform: scale(0.98); }
+
     .hero {
-      padding: 28px 20px 8px;
+      padding: 20px 20px 8px;
       text-align: center;
     }
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 60px; height: 60px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 60% 40%, #e0b3ff 0%, #a259ff 60%, #3a1c71 100%);
+      box-shadow: 0 0 12px #a259ff88, 0 0 24px #e0b3ff33;
+      font-weight: 900; letter-spacing: -1px;
+    }
     .hero h1 {
-      font-size: clamp(24px, 6vw, 36px);
-      margin: 0 0 8px;
-      line-height: 1.15;
+      font-size: clamp(24px, 6.4vw, 34px);
+      margin: 8px 0 6px;
+      line-height: 1.18;
       text-shadow: 0 0 14px #bc6cff66, 0 0 28px #1e90ff33;
     }
     .hero p {
       color: var(--muted);
       margin: 0 auto;
-      max-width: 28ch;
-      line-height: 1.45;
+      max-width: 34ch;
+      line-height: 1.5;
       font-size: 15px;
     }
+
     .cta {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      padding: 22px 20px 8px;
+      padding: 18px 20px 8px;
       align-items: center;
     }
     .btn {
@@ -92,16 +184,26 @@
       border: 1px solid #ffffff22;
       background: linear-gradient(180deg, #2a2651, #1c1938);
       color: var(--text);
-      font-weight: 700;
+      font-weight: 800;
+      letter-spacing: 0.02em;
       text-decoration: none;
       text-align: center;
       box-shadow: 0 8px 20px #0006, inset 0 0 0 1px #ffffff0a;
+      transition: transform 0.08s ease, box-shadow 0.2s;
     }
+    .btn:active { transform: scale(0.98); }
     .btn--primary {
-      background: linear-gradient(180deg, #7a3dff, #5a25d6);
+      background: linear-gradient(90deg, var(--accent-2) 0%, var(--accent) 100%);
       border-color: #a259ffaa;
       box-shadow: 0 10px 28px #a259ff44, 0 0 0 1px #ffffff0a inset;
     }
+    .hint {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #a5a0b8;
+    }
+    .hint a { color: #cfe7ff; }
+
     .grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -111,73 +213,180 @@
     .card {
       border-radius: 14px;
       padding: 16px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid #ffffff1a;
+      background: var(--card);
+      border: 1px solid var(--border);
       box-shadow: 0 8px 24px #0007;
     }
     .card h3 { margin: 0 0 6px; font-size: 17px; }
-    .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.4; }
-    footer {
-      margin-top: auto;
-      padding: 20px;
+    .card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.42; }
+
+    /* Footer (aligned with portfolio vibe) */
+    .about-footer {
+      position: relative;
+      z-index: 3000;
+      width: 100%;
+      background: #142a4d;
+      color: #fff;
+      padding: 2rem 0 2.5rem 0;
       text-align: center;
-      color: #bfb6d6;
-      font-size: 13px;
+      box-shadow: 0 -4px 24px 0 #1a2a6c44;
+      margin-top: auto;
     }
-    .hint {
-      margin-top: 14px;
-      font-size: 12px;
-      color: #a5a0b8;
+    .footer-content { max-width: 640px; margin: 0 auto; }
+    .footer-title {
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+    .footer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .footer-link {
+      color: #fff;
+      opacity: 1;
+      font-size: 1.05rem;
+      text-decoration: none;
+      transition: color 0.2s;
+      font-weight: 700;
+    }
+    .footer-link:hover {
+      color: #4db8ff;
+      text-decoration: underline;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <a class="brand" href="mobile.html">
-        <div class="logo">GH</div>
-        <strong>Griffin Hampton</strong>
-      </a>
-      <nav>
-        <a href="about.html">About</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </header>
+  <!-- Floating navbar with hamburger -->
+  <nav id="main-navbar" aria-label="Primary">
+    <button id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <div id="hamburger-icon">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </div>
+    </button>
+  </nav>
 
+  <!-- Slide-in side menu -->
+  <div id="side-menu" role="dialog" aria-modal="true" aria-label="Site menu">
+    <nav>
+      <ul id="side-menu-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="wrap">
     <section class="hero">
-      <h1>Building clean, fast web experiences</h1>
-      <p>Compact mobile version without heavy shaders or canvas effects. Explore my work and get in touch.</p>
+      <div class="brand-mark">GH</div>
+      <h1>Clean, fast, mobile-first web experiences</h1>
+      <p>Professional UX on small screens. Explore my work and get in touch—no heavy effects required.</p>
     </section>
 
     <section class="cta">
       <a class="btn btn--primary" href="portfolio.html">View Portfolio</a>
-      <a class="btn" href="resume.html">View Resume</a>
       <a class="btn" href="contact.html">Contact Me</a>
+      <a class="btn" href="resume.html">View Resume</a>
       <div class="hint">
-        Need the full desktop visuals? <a href="index.html?desktop=1">Open desktop site</a>
+        Need desktop visuals? <a href="index.html?desktop=1">Open desktop site</a>
       </div>
     </section>
 
-    <section class="grid">
+    <section class="grid" aria-label="Highlights">
       <div class="card">
         <h3>Web Development</h3>
-        <p>Responsive sites and interactive UI without overloading mobile devices.</p>
+        <p>Responsive sites and interactive UI that stay smooth on mobile devices.</p>
       </div>
       <div class="card">
-        <h3>Canvas & Effects</h3>
-        <p>Enhanced visuals on desktop. Graceful fallbacks for touch devices.</p>
+        <h3>UX/UI Craft</h3>
+        <p>Clear flows, strong contrast, and accessible interactions users can trust.</p>
       </div>
       <div class="card">
         <h3>Freelance & Contract</h3>
-        <p>Available for scoped projects and ongoing support.</p>
+        <p>Available for scoped projects and ongoing support with clean deliverables.</p>
       </div>
     </section>
 
-    <footer>© <span id="y"></span> Griffin Hampton</footer>
-  </div>
+    <footer class="about-footer">
+      <div class="footer-content">
+        <h2 class="footer-title">Contact Me</h2>
+        <ul class="footer-list">
+          <li><a href="mailto:ghampton2005@gmail.com" class="footer-link">ghampton2005@gmail.com</a></li>
+          <li><a href="tel:+15025237093" class="footer-link">(502) 523-7093</a></li>
+          <li><a href="https://www.linkedin.com/in/griffin-hampton-56035235a" class="footer-link" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+        <div style="opacity:.8;margin-top:.75rem;font-size:.95rem;">© <span id="y"></span> Griffin Hampton</div>
+      </div>
+    </footer>
+  </main>
+
   <script>
+    // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Hamburger + side menu behavior (match portfolio feel)
+    const hamburger = document.getElementById('hamburger');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const sideMenu = document.getElementById('side-menu');
+    const bars = hamburgerIcon.querySelectorAll('.hamburger-bar');
+    let menuOpen = false;
+
+    function setMenu(state) {
+      menuOpen = state;
+      hamburger.setAttribute('aria-expanded', String(menuOpen));
+      if (menuOpen) {
+        bars[0].style.transform = 'translateY(9px) rotate(45deg)';
+        bars[1].style.opacity = '0';
+        bars[2].style.transform = 'translateY(-9px) rotate(-45deg)';
+        sideMenu.style.width = '320px';
+      } else {
+        bars[0].style.transform = '';
+        bars[1].style.opacity = '1';
+        bars[2].style.transform = '';
+        sideMenu.style.width = '0';
+      }
+    }
+
+    hamburger.addEventListener('click', () => setMenu(!menuOpen));
+
+    // Close on outside click
+    document.addEventListener('mousedown', (e) => {
+      if (menuOpen && sideMenu.style.width !== '0') {
+        if (!sideMenu.contains(e.target) && !hamburger.contains(e.target)) {
+          setMenu(false);
+        }
+      }
+    });
+
+    // Close on Esc
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOpen) setMenu(false);
+    });
+
+    // Subtle page fade-in
+    document.body.style.opacity = '0';
+    window.addEventListener('load', () => {
+      document.body.style.transition = 'opacity 400ms ease-in-out';
+      document.body.style.opacity = '1';
+    });
   </script>
 </body>
 </html>
