@@ -9,11 +9,17 @@
     (function () {
       const params = new URLSearchParams(location.search);
       const wantsDesktop = params.get('desktop') === '1';
-      const isCoarse = window.matchMedia && matchMedia('(pointer: coarse)').matches;
-      const smallSide = Math.min(window.innerWidth, window.innerHeight);
-      const isSmall = smallSide <= 820;
-      const isMobileUA = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-      if (!wantsDesktop && (isCoarse || isSmall || isMobileUA)) {
+      
+      // Skip redirect if user explicitly wants desktop
+      if (wantsDesktop) return;
+      
+      // More precise mobile detection
+      const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth <= 768 || window.innerHeight <= 600;
+      
+      // Only redirect if it's clearly a mobile device
+      if (isMobileUA && (isTouch || isSmallScreen)) {
         location.replace('mobile.html');
       }
     })();
