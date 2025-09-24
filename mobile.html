@@ -368,6 +368,7 @@
       margin-bottom: 12px;
     }
     .linkedin-logo {
+      align-self: flex-end;
       width: 28px;
       height: 28px;
       background: #0077b5;
@@ -379,6 +380,7 @@
       color: white;
       font-size: 16px;
       flex-shrink: 0;
+      box-shadow: 0 0 8px #0077b5aa, 0 0 16px #0077b533;
     }
     .cert-info {
       flex: 1;
@@ -405,19 +407,19 @@
       margin-bottom: 12px;
     }
     .cert-skills {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
       margin-bottom: 16px;
-      height: 80px;
+      height: auto;
       overflow: hidden;
     }
     .cert-skill {
       background: rgba(0,119,181,0.1);
       color: #0077b5;
-      padding: 6px 8px;
-      border-radius: 14px;
-      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 10px;
+      font-size: 10px;
       font-weight: 500;
       text-decoration: none;
       transition: background 0.2s, transform 0.08s ease;
@@ -426,13 +428,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      line-height: 1.2;
-      height: fit-content;
-    }
-    .cert-skill:hover {
-      background: rgba(0,119,181,0.15);
-      transform: scale(1.02);
-      text-decoration: none;
+      line-height: 1.1;
+      height: 24px;
+      white-space: nowrap;
     }
     .cert-credential {
       display: flex;
@@ -649,8 +647,8 @@
           <div class="carousel-item active">
             <div class="certification-card">
               <div class="cert-header">
-                <div class="linkedin-logo">in</div>
                 <div class="cert-info">
+                  <div class="linkedin-logo">in</div>
                   <div class="cert-title">Ethics in the Age of Generative AI</div>
                   <div class="cert-provider">LinkedIn Learning</div>
                   <div class="cert-date">Issued Sep 2025</div>
@@ -670,8 +668,8 @@
           <div class="carousel-item">
             <div class="certification-card">
               <div class="cert-header">
-                <div class="linkedin-logo">in</div>
                 <div class="cert-info">
+                  <div class="linkedin-logo">in</div>
                   <div class="cert-title">Generative AI for Business Leaders</div>
                   <div class="cert-provider">LinkedIn Learning</div>
                   <div class="cert-date">Issued Sep 2025</div>
@@ -692,8 +690,8 @@
           <div class="carousel-item">
             <div class="certification-card">
               <div class="cert-header">
-                <div class="linkedin-logo">in</div>
                 <div class="cert-info">
+                  <div class="linkedin-logo">in</div>
                   <div class="cert-title">Generative AI: The Evolution of Thoughtful Online Search</div>
                   <div class="cert-provider">LinkedIn Learning</div>
                   <div class="cert-date">Issued Sep 2025</div>
@@ -714,8 +712,8 @@
           <div class="carousel-item">
             <div class="certification-card">
               <div class="cert-header">
-                <div class="linkedin-logo">in</div>
                 <div class="cert-info">
+                  <div class="linkedin-logo">in</div>
                   <div class="cert-title">Learning Microsoft 365 Copilot for Work (2024)</div>
                   <div class="cert-provider">LinkedIn Learning</div>
                   <div class="cert-date">Issued Sep 2025</div>
@@ -735,8 +733,8 @@
           <div class="carousel-item">
             <div class="certification-card">
               <div class="cert-header">
-                <div class="linkedin-logo">in</div>
                 <div class="cert-info">
+                  <div class="linkedin-logo">in</div>
                   <div class="cert-title">Streamlining Your Work with Microsoft Copilot</div>
                   <div class="cert-provider">LinkedIn Learning</div>
                   <div class="cert-date">Issued Sep 2025</div>
@@ -757,8 +755,8 @@
           <div class="carousel-item">
             <div class="certification-card">
               <div class="cert-header">
-                <div class="linkedin-logo">in</div>
                 <div class="cert-info">
+                  <div class="linkedin-logo">in</div>
                   <div class="cert-title">What Is Generative AI?</div>
                   <div class="cert-provider">LinkedIn Learning</div>
                   <div class="cert-date">Issued Sep 2025</div>
