@@ -270,6 +270,42 @@
   to { text-shadow: 0 0 24px #bc6cff, 0 0 48px #a259ff; }
 }
 
+/* Responsive button styles */
+.resume-btn {
+  font-size: 1.3rem;
+  padding: 18px 44px;
+  border-radius: 16px;
+  color: #fff;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px;
+}
+
+.resume-btn:hover {
+  filter: brightness(0.85);
+  transform: scale(1.05);
+  box-shadow: 0 4px 24px #23243a33;
+}
+
+@media (max-width: 700px) {
+  .resume-btn {
+    font-size: 1rem;
+    padding: 12px 24px;
+    margin: 8px 4px;
+  }
+  
+  .resume-btn-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px !important;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -291,8 +327,8 @@
       </div>
     </a>
     <div class="resume-btn-row" style="display:flex;justify-content:center;gap:32px;margin-bottom:24px;">
-  <a href="Resume.docx (1).pdf" target="_blank" class="resume-btn" style="font-size:1.3rem;padding:18px 44px;border-radius:16px;background:linear-gradient(90deg,#4db8ff 0%,#a259ff 100%);color:#fff;font-weight:800;box-shadow:0 4px 24px #4db8ff44,0 2px 12px #a259ff22;border:none;cursor:pointer;transition:background 0.2s,transform 0.2s;letter-spacing:0.04em;text-decoration:none;">↑ Open Resume in New Tab</a>
-  <a href="Resume.docx (1).pdf" download class="resume-btn" style="font-size:1.3rem;padding:18px 44px;border-radius:16px;background:linear-gradient(90deg,#ff9900 0%,#ff2d55 100%);color:#fff;font-weight:800;box-shadow:0 4px 24px #ff990044,0 2px 12px #ff2d5522;border:none;cursor:pointer;transition:background 0.2s,transform 0.2s;letter-spacing:0.04em;text-decoration:none;">Download Resume ↑</a>
+  <a href="Resume.docx (1).pdf" target="_blank" class="resume-btn" style="background:linear-gradient(90deg,#4db8ff 0%,#a259ff 100%);box-shadow:0 4px 24px #4db8ff44,0 2px 12px #a259ff22;">↑ Open Resume in New Tab</a>
+  <a href="Resume.docx (1).pdf" download class="resume-btn" style="background:linear-gradient(90deg,#ff9900 0%,#ff2d55 100%);box-shadow:0 4px 24px #ff990044,0 2px 12px #ff2d5522;">Download Resume ↑</a>
     </div>
   </div>
 </div>
@@ -369,6 +405,9 @@ window.addEventListener('load', () => {
       const sideMenu = document.getElementById('side-menu');
       let menuOpen = false;
       hamburger.onclick = function() {
+        // Remove focus to prevent glow persistence on mobile
+        this.blur();
+        
         menuOpen = !menuOpen;
         const bars = hamburgerIcon.querySelectorAll('.hamburger-bar');
         if (menuOpen) {

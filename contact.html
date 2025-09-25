@@ -207,6 +207,36 @@
       to { text-shadow: 0 0 24px #bc6cff, 0 0 48px #a259ff; }
     }
 
+    
+    /* Responsive button styles */
+    .nav-button {
+      font-size: 1.3rem;
+      padding: 18px 44px;
+      border-radius: 16px;
+      color: #fff;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .nav-button-home {
+      background: linear-gradient(90deg, #4db8ff 0%, #a259ff 100%);
+      box-shadow: 0 4px 24px #4db8ff44, 0 2px 12px #a259ff22;
+    }
+    
+    .nav-button-resume {
+      background: linear-gradient(90deg, #ff9900 0%, #ff2d55 100%);
+      box-shadow: 0 4px 24px #ff990044, 0 2px 12px #ff2d5522;
+    }
+    
+    .nav-button:hover {
+      transform: scale(1.05);
+    }
+
     @media (max-width: 700px) {
       .contact-container {
         margin: 24px auto 0 auto;
@@ -216,6 +246,20 @@
       
       .contact-title {
         font-size: 2.2rem;
+      }
+      
+      /* Mobile button styles */
+      .nav-button {
+        font-size: 1rem;
+        padding: 12px 24px;
+        margin: 4px;
+      }
+      
+      /* Mobile button container */
+      div[style*="gap:24px"] {
+        gap: 12px !important;
+        flex-direction: column;
+        align-items: center;
       }
       
       .contact-form input,
@@ -299,6 +343,9 @@
     const sideMenu = document.getElementById('side-menu');
     let menuOpen = false;
     hamburger.onclick = function() {
+      // Remove focus to prevent glow persistence on mobile
+      this.blur();
+      
       menuOpen = !menuOpen;
       const bars = hamburgerIcon.querySelectorAll('.hamburger-bar');
       if (menuOpen) {

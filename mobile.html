@@ -851,7 +851,11 @@
       }
     }
 
-    hamburger.addEventListener('click', () => setMenu(!menuOpen));
+    hamburger.addEventListener('click', () => {
+      // Remove focus to prevent glow persistence on mobile
+      hamburger.blur();
+      setMenu(!menuOpen);
+    });
 
     // Close on outside click
     document.addEventListener('mousedown', (e) => {

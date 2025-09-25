@@ -249,6 +249,9 @@ window.addEventListener('load', () => {
       const sideMenu = document.getElementById('side-menu');
       let menuOpen = false;
       hamburger.onclick = function() {
+        // Remove focus to prevent glow persistence on mobile
+        this.blur();
+        
         menuOpen = !menuOpen;
         const bars = hamburgerIcon.querySelectorAll('.hamburger-bar');
         if (menuOpen) {
