@@ -104,15 +104,6 @@
     padding-top: 12vw;
   }
 
-    #gh-logo {
-      transition: box-shadow 0.18s, background 0.18s, filter 0.18s;
-      box-shadow: 0 0 10px 2px #a259ff55, 0 0 16px 3px #e0b3ff22;
-      filter: none;
-    }
-    #gh-logo:hover {
-      box-shadow: 0 0 18px 4px #a259ff88, 0 0 32px 8px #e0b3ff44;
-      filter: brightness(1.12) saturate(1.18);
-    }
     /* Full-screen overlay */
 #loading-screen {
   position: fixed;
@@ -166,6 +157,7 @@
   to { text-shadow: 0 0 24px #bc6cff, 0 0 48px #a259ff; }
 }
 
+
 </style>
 </head>
 <body>
@@ -173,20 +165,18 @@
   <div class="loader-glow"></div>
   <h1 class="loader-text">Loading...</h1>
 </div>
-
+<script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+<zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmfyrnmwc00js7o1viwuoadfg' height='600px' width='400px' style="position: fixed; bottom: 20px; left: 20px; z-index: 10000; border: none; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.3);"></zapier-interfaces-chatbot-embed>
     
-  <a href="about.html"><div id="gh-logo" style="position:fixed;bottom:36px;left:5vw;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 60% 40%,#e0b3ff 0%,#a259ff 60%,#3a1c71 100%);box-shadow:0 0 10px 2px #a259ff55,0 0 16px 3px #e0b3ff22;display:flex;align-items:center;justify-content:center;z-index:2147483647;">
-      <span style="font-family:'Segoe UI',sans-serif;font-weight:900;font-size:2.2rem;color:#fff;letter-spacing:-2px;text-shadow:0 0 3px #fff,0 0 6px #a259ff;">GH</span>
-    </div></a>  
-  
-      <canvas id="bg-orbs" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;"></canvas>
-      <canvas id="bg-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;"></canvas>
-      <canvas id="shooting-star-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;pointer-events:none;"></canvas>
-      <canvas id="diamond-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:2;"></canvas>
-      <canvas id="dust-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:3;pointer-events:none;"></canvas>
+  <canvas id="bg-orbs" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;"></canvas>
+  <canvas id="bg-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;"></canvas>
+  <canvas id="shooting-star-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;pointer-events:none;"></canvas>
+  <canvas id="diamond-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:2;"></canvas>
+  <canvas id="dust-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:3;pointer-events:none;"></canvas>
   <canvas id="letters-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:12;pointer-events:none;"></canvas>
   <canvas id="smokey-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
-  <nav id="main-navbar" style="position:fixed;top:36px;left:0;width:100vw;height:80px;z-index:2147483647;display:flex;align-items:center;justify-content:flex-end;padding:0;background:transparent;border:none;box-shadow:none;pointer-events:none;">
+
+  <nav id="main-navbar" style="position:fixed;top:0;left:0;right:-19px;width:105vw;height:80px;z-index:2147483647;display:flex;align-items:center;justify-content:flex-end;padding:0;background:transparent;border:none;box-shadow:none;pointer-events:none;">
   <button id="hamburger" aria-label="Open menu">
     <div id="hamburger-icon" style="width:36px;height:36px;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;">
         <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
@@ -1215,5 +1205,4 @@ window.addEventListener('load', () => {
 
 </body>
 
-</html>
 </html>
