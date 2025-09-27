@@ -82,6 +82,16 @@
       font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
       margin: 0;
       color: #23243a;
+      overscroll-behavior: none;
+    }
+    
+    /* Mobile-specific overscroll prevention */
+    @media (max-width: 768px) {
+      html, body {
+        overscroll-behavior: none;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+      }
     }
     .portfolio-container {
       max-width: 900px;

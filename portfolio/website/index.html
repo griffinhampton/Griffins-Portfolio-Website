@@ -63,6 +63,16 @@
       color: #23243a;
       font-size: 1.1em;
       letter-spacing: 0.02em;
+      overscroll-behavior: none;
+    }
+    
+    /* Mobile-specific overscroll prevention */
+    @media (max-width: 768px) {
+      html, body {
+        overscroll-behavior: none;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+      }
     }
     
     /* Enhanced typography for serif text elements */
