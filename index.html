@@ -800,21 +800,41 @@ window.addEventListener('load', () => {
         ctx.font = 'bold 1.3rem Montserrat, sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
+        
+        // Measure text to make box dynamic
+        const textMetrics = ctx.measureText(infoBox.text);
+        const textWidth = textMetrics.width;
+        const minWidth = 280;
+        const maxWidth = Math.min(width * 0.9, 420); // Responsive max width
+        let w = Math.max(minWidth, Math.min(maxWidth, textWidth + 60)); // Dynamic width with padding
+        let h = 44;
+        let pad = 18;
+        
+        // Adjust position if box would go off screen
+        let boxX = infoBox.x;
+        let boxY = infoBox.y;
+        
+        // Keep box within screen bounds
+        if (boxX - w/2 < 10) boxX = w/2 + 10;
+        if (boxX + w/2 > width - 10) boxX = width - w/2 - 10;
+        if (boxY - h/2 < 10) boxY = h/2 + 10;
+        if (boxY + h/2 > height - 10) boxY = height - h/2 - 10;
+        
         ctx.fillStyle = infoBox.color;
         ctx.strokeStyle = '#fff';
         ctx.lineWidth = 3.5;
-        // Draw rounded rect background
-        let pad = 18, w = 320, h = 44;
+        
+        // Draw rounded rect background with dynamic dimensions
         ctx.beginPath();
-        ctx.moveTo(infoBox.x - w/2 + pad, infoBox.y - h/2);
-        ctx.lineTo(infoBox.x + w/2 - pad, infoBox.y - h/2);
-        ctx.quadraticCurveTo(infoBox.x + w/2, infoBox.y - h/2, infoBox.x + w/2, infoBox.y - h/2 + pad);
-        ctx.lineTo(infoBox.x + w/2, infoBox.y + h/2 - pad);
-        ctx.quadraticCurveTo(infoBox.x + w/2, infoBox.y + h/2, infoBox.x + w/2 - pad, infoBox.y + h/2);
-        ctx.lineTo(infoBox.x - w/2 + pad, infoBox.y + h/2);
-        ctx.quadraticCurveTo(infoBox.x - w/2, infoBox.y + h/2, infoBox.x - w/2, infoBox.y + h/2 - pad);
-        ctx.lineTo(infoBox.x - w/2, infoBox.y - h/2 + pad);
-        ctx.quadraticCurveTo(infoBox.x - w/2, infoBox.y - h/2, infoBox.x - w/2 + pad, infoBox.y - h/2);
+        ctx.moveTo(boxX - w/2 + pad, boxY - h/2);
+        ctx.lineTo(boxX + w/2 - pad, boxY - h/2);
+        ctx.quadraticCurveTo(boxX + w/2, boxY - h/2, boxX + w/2, boxY - h/2 + pad);
+        ctx.lineTo(boxX + w/2, boxY + h/2 - pad);
+        ctx.quadraticCurveTo(boxX + w/2, boxY + h/2, boxX + w/2 - pad, boxY + h/2);
+        ctx.lineTo(boxX - w/2 + pad, boxY + h/2);
+        ctx.quadraticCurveTo(boxX - w/2, boxY + h/2, boxX - w/2, boxY + h/2 - pad);
+        ctx.lineTo(boxX - w/2, boxY - h/2 + pad);
+        ctx.quadraticCurveTo(boxX - w/2, boxY - h/2, boxX - w/2 + pad, boxY - h/2);
         ctx.closePath();
         ctx.fillStyle = 'rgba(30,30,50,0.98)';
         ctx.shadowColor = infoBox.color;
@@ -824,11 +844,12 @@ window.addEventListener('load', () => {
         ctx.strokeStyle = infoBox.color;
         ctx.lineWidth = 2.5;
         ctx.stroke();
+        
         // Draw text
         ctx.fillStyle = infoBox.color;
         ctx.shadowColor = '#fff';
         ctx.shadowBlur = 8;
-        ctx.fillText(infoBox.text, infoBox.x, infoBox.y);
+        ctx.fillText(infoBox.text, boxX, boxY);
         ctx.restore();
       }
       // Draw main diamonds (in front of sphere)
