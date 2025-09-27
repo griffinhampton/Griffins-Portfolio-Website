@@ -173,6 +173,11 @@
       background: linear-gradient(90deg, #ff9900 0%, #ff2d55 100%);
       box-shadow: 0 4px 24px #ff990044, 0 2px 12px #ff2d5522;
     }
+
+    .nav-button-github {
+      background: linear-gradient(90deg, #24292e 0%, #586069 100%);
+      box-shadow: 0 4px 24px #24292e44, 0 2px 12px #58606922;
+    }
     
     .nav-button:hover {
       transform: scale(1.05);
@@ -414,15 +419,20 @@
       <h3 class="about-section-title">Conclusion</h3>
       <p class="about-text">FNAD 2 wasn’t just a game — it was the foundation of everything I’ve built since. It taught me how to take an idea from concept to execution, how to adapt when problems arise, and most importantly, how to find joy in creating something that others can experience. What started as a high school experiment turned into a defining milestone in my career path.</p>
     </section>
+    <div style="text-align:center;margin-top:16px;">
+        <a href="https://github.com/griffinhampton/FNAD-World.git" target="_blank" rel="noopener" class="nav-button nav-button-github">
+            View on GitHub
+        </a>
+    </div>
   </div>
 </div>
 <div style="width:100%;display:flex;justify-content:center;gap:24px;margin:32px 0 0 0;flex-wrap:wrap;">
         <a href="../../" class="nav-button nav-button-home">
             ← Back to Home
         </a>
+        
         <a href="../../resume" class="nav-button nav-button-resume">
-            Go to Resume →
-        </a>
+            Go to Resume →</a>
       </div>
       </div>
     </div>
@@ -438,11 +448,11 @@
   <div id="side-menu" style="position:fixed;top:0;left:0;height:100vh;width:0;z-index:2000;background:rgba(20,20,40,0.98);box-shadow:8px 0 32px 0 #0008;overflow:hidden;transition:width 0.4s cubic-bezier(.68,-0.55,.27,1.55);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:80px;">
     <nav style="width:100%;">
       <ul id="side-menu-list" style="list-style:none;padding:0;margin:0;width:100%;">
-        <li><a href="index.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Home</a></li>
-        <li><a href="about.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">About Me</a></li>
-        <li><a href="portfolio.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Portfolio</a></li>
-        <li><a href="resume.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Resume</a></li>
-        <li><a href="contact.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Contact</a></li>
+        <li><a href="../../" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Home</a></li>
+        <li><a href="../../about" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">About Me</a></li>
+        <li><a href="../../portfolio" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Portfolio</a></li>
+        <li><a href="../../resume" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Resume</a></li>
+        <li><a href="../../contact" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -604,8 +614,8 @@ window.addEventListener('load', () => {
       height = window.innerHeight;
       drawSmokeyBlueGlow(performance.now());
       requestAnimationFrame(animateSmokey);
-    }
     animateSmokey();
-  </script>
+  </script>Smokey();
+</body>ipt>
 </body>
 
