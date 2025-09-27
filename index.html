@@ -7,6 +7,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     (function () {
+      // Clear any old cookies that might interfere with redirects
+      function clearOldCookies() {
+        // List of potential old cookie names that might have been used
+        const oldCookieNames = ['redirect_preference', 'mobile_redirect', 'site_version', 'user_preference'];
+        oldCookieNames.forEach(name => {
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname};`;
+        });
+      }
+      
+      // Clear old localStorage entries that might interfere
+      function clearOldStorage() {
+        const oldStorageKeys = ['redirectUrl', 'siteVersion', 'lastVisit', 'mobileRedirect'];
+        oldStorageKeys.forEach(key => {
+          localStorage.removeItem(key);
+        });
+      }
+      
+      // Clean up current URL if it has old .html extension
+      function cleanupUrl() {
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
+        const currentSearch = window.location.search;
+        
+        // Check if we're on an old .html URL and redirect to clean version
+        if (currentPath.endsWith('.html') && currentPath !== '/index.html') {
+          const newPath = currentPath.replace('.html', '/');
+          const newUrl = newPath + currentSearch + currentHash;
+          window.location.replace(newUrl);
+          return true; // Indicate we're redirecting
+        }
+        
+        // Special handling for index.html in subdirectories
+        if (currentPath.includes('/index.html')) {
+          const newPath = currentPath.replace('/index.html', '/');
+          const newUrl = newPath + currentSearch + currentHash;
+          window.location.replace(newUrl);
+          return true; // Indicate we're redirecting
+        }
+        
+        return false; // No redirect needed
+      }
+      
+      // Run cleanup functions
+      clearOldCookies();
+      clearOldStorage();
+      
+      // If URL cleanup caused a redirect, stop here
+      if (cleanupUrl()) {
+        return;
+      }
+      
       const params = new URLSearchParams(location.search);
       const wantsDesktop = params.get('desktop') === '1';
       

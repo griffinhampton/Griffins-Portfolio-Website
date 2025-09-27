@@ -4,6 +4,19 @@
   <link rel="icon" href="../src/image__2_-removebg-preview (2).png" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function() {
+      const currentPath = window.location.pathname;
+      if (currentPath.endsWith('.html') && currentPath !== '/resume/index.html') {
+        const newPath = currentPath.replace('.html', '/');
+        window.location.replace(newPath + window.location.search + window.location.hash);
+      }
+      if (currentPath.includes('/index.html')) {
+        const newPath = currentPath.replace('/index.html', '/');
+        window.location.replace(newPath + window.location.search + window.location.hash);
+      }
+    })();
+  </script>
   <title>Portfolio</title>
   <style>
     .about-footer {
