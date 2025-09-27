@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Griffin Hampton | Mobile</title>
-  <link rel="icon" href="image__2_-removebg-preview (2).png" type="image/x-icon">
+  <link rel="icon" href="../src/image__2_-removebg-preview (2).png" type="image/x-icon">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
@@ -383,6 +383,31 @@
       flex-shrink: 0;
       box-shadow: 0 0 8px #0077b5aa, 0 0 16px #0077b533;
     }
+    .microsoft-logo {
+      margin-bottom: 20px;
+      align-self: flex-end;
+      width: 28px;
+      height: 28px;
+      background: 
+        linear-gradient(#f25022 0%, #f25022 100%) top left / 50% 50% no-repeat,
+        linear-gradient(#7fba00 0%, #7fba00 100%) top right / 50% 50% no-repeat,
+        linear-gradient(#00a4ef 0%, #00a4ef 100%) bottom left / 50% 50% no-repeat,
+        linear-gradient(#ffb900 0%, #ffb900 100%) bottom right / 50% 50% no-repeat;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: transparent;
+      font-size: 16px;
+      flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(242, 80, 34, 0.3), 0 0 16px rgba(0, 164, 239, 0.2);
+    }
+    .microsoft-logo::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+    }
     .cert-info {
       flex: 1;
       display: flex;
@@ -555,12 +580,12 @@
   <!-- Slide-in side menu -->
   <div id="side-menu" role="dialog" aria-modal="true" aria-label="Site menu">
     <nav>
-      <ul id="side-menu-list">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Me</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="contact.html">Contact</a></li>
+      <ul id="side-menu-list" style="list-style:none;padding:0;margin:0;width:100%;">
+        <li><a href="../" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Home</a></li>
+        <li><a href="../about/" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">About Me</a></li>
+        <li><a href="../portfolio/" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Portfolio</a></li>
+        <li><a href="../resume/" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Resume</a></li>
+        <li><a href="../contact/" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -568,7 +593,7 @@
   <main class="wrap">
     <!-- Hero Section -->
     <section class="hero">
-      <img src="image__2_-removebg-preview (2).png" alt="Griffin Hampton Logo" class="brand-icon">
+      <img src="../src/image__2_-removebg-preview (2).png" alt="Griffin Hampton Logo" class="brand-icon">
       <h1>Griffin Hampton</h1>
       <h3>Welcome to my mobile webpage!</h2>
       <p>I do recommend viewing this website on a computer for the best experience, but since you're already here, take a look around!</p>
@@ -645,6 +670,7 @@
           <button type="button" data-bs-target="#certificationsCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
           <button type="button" data-bs-target="#certificationsCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
           <button type="button" data-bs-target="#certificationsCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+          <button type="button" data-bs-target="#certificationsCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
         </div>
         
         <div class="carousel-inner">
@@ -768,6 +794,27 @@
                     <a href="https://en.wikipedia.org/wiki/Generative_artificial_intelligence" target="_blank" rel="noopener" class="cert-skill">Generative AI Tools</a>
                   </div>
                   <a href="https://www.linkedin.com/learning/certificates/5212ed3b06ba821137aaf0d7fe34f6a4aebbdfc0d95118735705681bfcdb1f0f?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3B3F9mIw76RoSLpCXASPCbMg%3D%3D" target="_blank" rel="noopener" class="cert-credential">
+                    Show Credential
+                    <span class="external-icon"></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="certification-card">
+              <div class="cert-header">
+                <div class="cert-info">
+                  <div class="microsoft-logo">M</div>
+                  <div class="cert-title">Career Essentials in Generative AI by Microsoft and LinkedIn</div>
+                  <div class="cert-provider">Microsoft</div>
+                  <div class="cert-date">Issued Sep 2025</div>
+                  <div class="cert-skills">
+                    <a href="https://en.wikipedia.org/wiki/Prompt_engineering" target="_blank" rel="noopener" class="cert-skill">Prompt Engineering</a>
+                    <a href="https://en.wikipedia.org/wiki/Generative_artificial_intelligence" target="_blank" rel="noopener" class="cert-skill">Generative AI</a>
+                  </div>
+                  <a href="https://www.linkedin.com/learning/certificates/b693f15b060433f54c367316d971f5d1408143e6e5bee8a97b05af15cbbab8d8" target="_blank" rel="noopener" class="cert-credential">
                     Show Credential
                     <span class="external-icon"></span>
                   </a>

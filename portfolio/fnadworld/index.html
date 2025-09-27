@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="image__2_-removebg-preview (2).png" type="image/x-icon">
+  <link rel="icon" href="../../src/image__2_-removebg-preview (2).png" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
+  <title>About Me!</title>
   <style>
     .about-footer {
       position: relative;
-      z-index: 3000;
+      z-index: 1999;
       width: 100%;
       background: #142a4d;
       color: #fff;
@@ -57,9 +57,11 @@
       color: #23243a;
     }
     .portfolio-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 48px 16px 0 16px;
+  max-width: 900px;
+  margin: 48px auto 0 auto;
+  width: 80vw;
+  box-sizing: border-box;
+  padding: 0;
     }
     .portfolio-title {
       font-size: 3rem;
@@ -177,7 +179,7 @@
     }
 
     @media (max-width: 700px) {
-      .portfolio-container { padding: 24px 4px 0 4px; }
+  .portfolio-container { margin: 24px auto 0 auto; width: 80vw; max-width: 900px; box-sizing: border-box; padding: 0; }
       .portfolio-title { font-size: 2.1rem; }
       .portfolio-card { flex-direction: column; padding: 18px 10px; gap: 18px; }
       .portfolio-image { width: 100%; height: 140px; }
@@ -208,11 +210,11 @@
   justify-content: center;
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s;
-  z-index: 3001;
+  z-index: 2147483650;
   box-shadow: 0 2px 8px 0 #0004;
-  position: fixed;
-  top: 36px;
-  right: 48px;
+  position: absolute;
+  top: 0;
+  right: 5vw;
   pointer-events: auto;
 }
 
@@ -304,6 +306,65 @@
   to { text-shadow: 0 0 24px #bc6cff, 0 0 48px #a259ff; }
 }
 
+.about-photo-img {
+  width: 50%;
+  max-width: none;
+  min-width: 180px;
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px #23243a18;
+  background: #eaeaea;
+  display: block;
+  margin: 0 auto 18px auto;
+}
+.about-image-row {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin: 18px 0;
+  overflow-x: hidden;
+}
+.about-image-col {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+.about-image-col.big {
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+.about-image-col.big .about-image {
+  min-width: 120px;
+}
+.about-image {
+  width: 100%;
+  max-width: none;
+  min-width: 90px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #23243a18;
+  background: #eaeaea;
+  display: block;
+  margin: 0 auto;
+}
+@media (max-width: 700px) {
+  .portfolio-container { margin: 24px auto 0 auto; width: 80vw; max-width: 900px; box-sizing: border-box; padding: 0;}
+  .portfolio-title { font-size: 2.1rem; }
+  .portfolio-card { flex-direction: column; padding: 18px 10px; gap: 18px; }
+  .portfolio-image { width: 100%; height: 140px; }
+  .about-photo-img {
+    width: 90%;
+    min-width: 120px;
+  }
+  .about-image-col {
+    overflow-x: hidden;
+    max-width: 33%;
+    flex: 0 0 33%;
+  }
+  .about-image {
+    min-width: 60px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -311,87 +372,70 @@
   <div class="loader-glow"></div>
   <h1 class="loader-text">Loading...</h1>
 </div>
-<script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
-<zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmfyrnmwc00js7o1viwuoadfg' height='600px' width='400px' style="position: fixed; bottom: 20px; left: 20px; z-index: 10000; border: none; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.3);"></zapier-interfaces-chatbot-embed>
-    
+
+
   <canvas id="smokey-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
   <div class="portfolio-container" style="position:relative;z-index:1;">
-    <div class="portfolio-title">My Portfolio</div>
-      <div style="width:100%;display:flex;justify-content:center;margin-top:8px;margin-bottom:5vh;">
-        <div style="width:80%;height:2px;background:linear-gradient(90deg,#ff9900 0%,#ff2d55 100%);border-radius:2px;"></div>
-      </div>
-    <div class="portfolio-card">
-      <img src="Screenshot 2025-07-11 012336.png" alt="Four Nights at Dingles 2" class="portfolio-image">
-      <div class="portfolio-info">
-        <div class="portfolio-project">FNAD 2</div>
-        <div class="portfolio-desc">My first official game, and the start of a legacy. What started as a silly game for me and my friends to play in high school turned into the spark that ignited my love for computer science.</div>
-        <div class="portfolio-skills">
-          <a href="https://en.wikipedia.org/wiki/Game_development" target="_blank" class="portfolio-skill">Game Development</a>
-          <a href="https://en.wikipedia.org/wiki/Graphical_user_interface" target="_blank" class="portfolio-skill">GUI Development</a>
-          <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank" class="portfolio-skill">Python</a>
-          <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" class="portfolio-skill">UX/UI Design</a>
-        </div>
-        <a href="fnad2.html"><button class="portfolio-btn">Click for more info!</button></a>
-      </div>
-    </div>
-    <div class="portfolio-card">
-      <img src="Screenshot 2025-08-21 164655.png" alt="Four Nights at Dingles World" class="portfolio-image">
-      <div class="portfolio-info">
-        <div class="portfolio-project">FNAD World</div>
-        <div class="portfolio-desc">One of my most ambitious projects to date, and my intro into managing data. This project was born from an undying curiosity to venture into CSV file maps, and served as a much needed refresher with excel. It would be no stretch to say that this game prepared me for eventually becoming the coding contractor I am today.</div>
-        <div class="portfolio-skills">
-          <a href="https://en.wikipedia.org/wiki/Game_development" target="_blank" class="portfolio-skill">Game Development</a>
+    <div class="portfolio-title" style="display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;">
+      <span>Skills Applied: </span>
+    
+  <div class="portfolio-skills" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:0.4em;justify-content:center;">
+    <a href="https://en.wikipedia.org/wiki/Game_development" target="_blank" class="portfolio-skill">Game Development</a>
           <a href="https://en.wikipedia.org/wiki/Comma-separated_values" target="_blank" class="portfolio-skill">CSV File Formatting</a>
           <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank" class="portfolio-skill">Python</a>
           <a href="https://en.wikipedia.org/wiki/Graphical_user_interface" target="_blank" class="portfolio-skill">GUI Development</a>
           <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" class="portfolio-skill">UX/UI Design</a>
-        </div>
-        <a href="fnadworld.html"><button class="portfolio-btn">Click for more info!</button></a>
+      </div>
+      <div style="width:100%;display:flex;justify-content:center;margin-top:8px;">
+        <div style="width:80%;height:2px;background:linear-gradient(90deg,#ff9900 0%,#ff2d55 100%);border-radius:2px;"></div>
       </div>
     </div>
     <div class="portfolio-card">
-      <img src="Screenshot 2025-09-06 185923.png" alt="This Website" class="portfolio-image">
-      <div class="portfolio-info">
-        <div class="portfolio-project">This Website?!</div>
-        <div class="portfolio-desc">Who needs a static resume when you can have an interactive one... This website was created with my future in mind, but it turned out to be an absolute blast to make. I learned a remarkable amount about UX design and got a full refresher on all website oriented coding.</div>
-        <div class="portfolio-skills">
-          <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank" class="portfolio-skill">JavaScript</a>
-          <a href="https://en.wikipedia.org/wiki/HTML" target="_blank" class="portfolio-skill">HTML</a>
-          <a href="https://en.wikipedia.org/wiki/CSS" target="_blank" class="portfolio-skill">CSS</a>
-          <a href="https://en.wikipedia.org/wiki/Domain_Name_System" target="_blank" class="portfolio-skill">DNS Configuring</a>
-          <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" class="portfolio-skill">UX/UI Design</a>
-          <a href="https://en.wikipedia.org/wiki/Web_development" target="_blank" class="portfolio-skill">Website Development</a>
-        </div>
-        <a href="website.html"><button class="portfolio-btn">Click for more info!</button></a>
+  <div class="about-photo">
+    <img src="../../src/Screenshot 2025-08-21 164655.png" alt="fnad-profile-photo" class="about-photo-img" />
+  </div>
+  <div class="portfolio-info">
+    <h1 class="about-title" style="font-size: 3em;">FNAD World</h1>
+    <p class="about-role" style="font-size: 2em;">One of my most ambitious projects to date, and my intro into managing data.</p>
+    <p class="about-desc"></p>
+    <section>
+      <h2 class="about-subtitle">This project was born from an undying curiosity to venture into CSV file maps, and served as a much needed refresher with excel. It would be no stretch to say that this game prepared me for eventually becoming the coding contractor I am today. What started as a silly game for me and my friends to play in high school turned into the spark that ignited my love for computer science.</h2>
+      <h3 class="about-section-title">Intro</h3>
+      <p class="about-text">FNAD World was the natural evolution of a high school idea that started as nothing more than a fun project between friends. Originally, “Four Nights at Dingles” was my attempt to capture the same sense of tension and creativity that made Five Nights at Freddy’s so memorable, but with my own spin. What began as an inside joke quickly grew into something more serious — my first real game. Building FNAD World was the first time I took programming beyond the classroom, pushing myself to design not just a game, but a full experience. This was the spark that made me realize computer science was more than a hobby — it was the career path I wanted to pursue.</p>
+      <h3 class="about-section-title">Skills Applied</h3>
+      <p class="about-text">Developing FNAD World required me to step into unfamiliar territory and adapt quickly. I used Python as the core language, but this time I focused heavily on data management. By leveraging CSV parsing, I built a system that could dynamically read, interpret, and generate large maps from raw spreadsheet data — essentially automating what would have otherwise been hours of manual work. Along the way, I reinforced my understanding of Excel data structures, file I/O operations, and modular program design. This project was also a lesson in balancing GUI design and gameplay logic, ensuring the game was both functional and fun to interact with.</p>
+      <div class="about-image-row">
+        <div class="about-image-col "><img src="https://cdn.prod.website-files.com/68a146f81a953b87bd761234/68a7861ea95985fad0eaa4af_Screenshot%202025-08-21%20164709.png" alt="fnad-photo-2" class="about-image" /></div>
+        <div class="about-image-col big"><img src="../../src/Screenshot 2025-08-26 152631.png" alt="fnad-photo-1" class="about-image" /></div>
+        <div class="about-image-col"><img src="../../src/Screenshot 2025-08-21 164725.png" alt="fnad-photo-1" class="about-image" /></div>
       </div>
-    </div>
-    <div style="width:100%;display:flex;justify-content:center;gap:24px;margin:32px 0 0 0;flex-wrap:wrap;">
-        <a href="index.html" class="nav-button nav-button-home">
+      <h3 class="about-section-title">The Future of FNAD</h3>
+      <p class="about-text">While FNAD 2 marked my first major project, it was far from the end. The lessons I learned from its development continue to influence my projects today, whether I’m designing applications, experimenting with new frameworks, or thinking critically about how users interact with software. I still look back at FNAD 2 as proof of what can happen when curiosity meets persistence. In the future, I hope to revisit the FNAD series with new tools and skills, pushing it into something even bigger while honoring its role in shaping my journey as a developer.</p>
+      <h3 class="about-section-title">Conclusion</h3>
+      <p class="about-text">FNAD 2 wasn’t just a game — it was the foundation of everything I’ve built since. It taught me how to take an idea from concept to execution, how to adapt when problems arise, and most importantly, how to find joy in creating something that others can experience. What started as a high school experiment turned into a defining milestone in my career path.</p>
+    </section>
+  </div>
+</div>
+<div style="width:100%;display:flex;justify-content:center;gap:24px;margin:32px 0 0 0;flex-wrap:wrap;">
+        <a href="../../" class="nav-button nav-button-home">
             ← Back to Home
         </a>
-        <a href="resume.html" class="nav-button nav-button-resume">
+        <a href="../../resume" class="nav-button nav-button-resume">
             Go to Resume →
         </a>
       </div>
+      </div>
+    </div>
   </div>
 </body>
   
 </head>
 <body>
-  <canvas id="smokey-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
-  <nav id="main-navbar" style="position:fixed;top:36px;left:0;width:100vw;height:80px;z-index:2147483647;display:flex;align-items:center;justify-content:flex-end;padding:0;background:transparent;border:none;box-shadow:none;pointer-events:none;">
-  <button id="hamburger" aria-label="Open menu">
-    <div id="hamburger-icon" style="width:36px;height:36px;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-        <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
-        <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:opacity 0.3s;"></span>
-        <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
-      </div>
-  </button>
-</nav>
+  
 
 
   </nav>
-  <div id="side-menu" style="position:fixed;top:0;left:0;height:100vh;width:0;z-index:2147483648;background:rgba(20,20,40,0.98);box-shadow:8px 0 32px 0 #0008;overflow:hidden;transition:width 0.4s cubic-bezier(.68,-0.55,.27,1.55);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:80px;">
+  <div id="side-menu" style="position:fixed;top:0;left:0;height:100vh;width:0;z-index:2000;background:rgba(20,20,40,0.98);box-shadow:8px 0 32px 0 #0008;overflow:hidden;transition:width 0.4s cubic-bezier(.68,-0.55,.27,1.55);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding-top:80px;">
     <nav style="width:100%;">
       <ul id="side-menu-list" style="list-style:none;padding:0;margin:0;width:100%;">
         <li><a href="index.html" style="display:block;padding:24px 48px;font-size:2rem;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.08em;transition:background 0.2s;">Home</a></li>
@@ -408,20 +452,33 @@
     <div class="crack crack3"></div>
     
   </div>
+  <canvas id="smokey-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
+  <nav id="main-navbar" style="position:fixed;top:36px;left:0;width:100vw;height:80px;z-index:2147483647;display:flex;align-items:center;justify-content:flex-end;padding:0;background:transparent;border:none;box-shadow:none;pointer-events:none;">
+  <button id="hamburger" aria-label="Open menu">
+    <div id="hamburger-icon" style="width:36px;height:36px;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+        <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
+        <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:opacity 0.3s;"></span>
+        <span class="hamburger-bar" style="display:block;width:100%;height:6px;background:#fff;border-radius:3px;margin:5px 0;transition:transform 0.3s, opacity 0.3s;"></span>
+      </div>
+  </button>
+</nav>
   <div class="about-bg"></div>
   <main class="about-main">
     
-  <footer class="about-footer">
-    <div class="footer-content">
-      <h2 class="footer-title">Contact Me</h2>
-      <ul class="footer-list">
-        <li><a href="mailto:ghampton2005@gmail.com" class="footer-link">ghampton2005@gmail.com</a></li>
-        <li><a href="tel:+502-523-7093" class="footer-link">(502) 523-7093</a></li>
-        <li><a href="https://www.linkedin.com/in/griffin-hampton-56035235a" class="footer-link" target="_blank">LinkedIn</a></li>
-        <!-- Add more contacts as needed -->
-      </ul>
-    </div>
-  </footer>
+</footer>
+
+
+<footer class="about-footer">
+  <div class="footer-content">
+    <h2 class="footer-title">Contact Me</h2>
+    <ul class="footer-list">
+      <li><a href="mailto:ghampton2005@gmail.com" class="footer-link">ghampton2005@gmail.com</a></li>
+      <li><a href="tel:+502-523-7093" class="footer-link">(502) 523-7093</a></li>
+      <li><a href="https://www.linkedin.com/in/griffin-hampton-56035235a" class="footer-link" target="_blank">LinkedIn</a></li>
+      <!-- Add more contacts as needed -->
+    </ul>
+  </div>
+</footer>
 </html>
               
 
@@ -551,4 +608,4 @@ window.addEventListener('load', () => {
     animateSmokey();
   </script>
 </body>
-</html>
+

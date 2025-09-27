@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="image__2_-removebg-preview (2).png" type="image/x-icon">
+  <link rel="icon" href="../../src/image__2_-removebg-preview (2).png" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Me!</title>
@@ -373,44 +373,55 @@
   <h1 class="loader-text">Loading...</h1>
 </div>
 
-
+<script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+<zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmfyrnmwc00js7o1viwuoadfg' height='600px' width='400px' style="position: fixed; bottom: 20px; left: 20px; z-index: 10000; border: none; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.3);"></zapier-interfaces-chatbot-embed>
+    
   <canvas id="smokey-bg" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
   <div class="portfolio-container" style="position:relative;z-index:1;">
-    <div class="portfolio-title">About Me!</div>
-    <div style="width:100%;display:flex;justify-content:center;margin-top:8px;margin-bottom:5vh;">
-      <div style="width:80%;height:2px;background:linear-gradient(90deg,#ff9900 0%,#ff2d55 100%);border-radius:2px;"></div>
+    <div class="portfolio-title" style="display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;">
+      <span>Skills Applied: </span>
+    
+  <div class="portfolio-skills" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:0.4em;justify-content:center;">
+    <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank" class="portfolio-skill">JavaScript</a>
+          <a href="https://en.wikipedia.org/wiki/HTML" target="_blank" class="portfolio-skill">HTML</a>
+          <a href="https://en.wikipedia.org/wiki/CSS" target="_blank" class="portfolio-skill">CSS</a>
+          <a href="https://en.wikipedia.org/wiki/Domain_Name_System" target="_blank" class="portfolio-skill">DNS Configuring</a>
+          <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" class="portfolio-skill">UX/UI Design</a>
+          <a href="https://en.wikipedia.org/wiki/Web_development" target="_blank" class="portfolio-skill">Website Development</a>
+      </div>
+      <div style="width:100%;display:flex;justify-content:center;margin-top:8px;">
+        <div style="width:80%;height:2px;background:linear-gradient(90deg,#ff9900 0%,#ff2d55 100%);border-radius:2px;"></div>
+      </div>
     </div>
     <div class="portfolio-card">
   <div class="about-photo">
-    <img src="IMG_5171.webp" alt="Profile Photo" class="about-photo-img" />
+    <img src="../../src/Screenshot 2025-09-06 185923.png" alt="index page photo" class="about-photo-img" />
   </div>
   <div class="portfolio-info">
-  <h1 class="about-title" style="font-size: 3em;">ABOUT ME!!</h1>
-    <p class="about-role" style="font-size: 2em;">The Incredible Life of Griffin Hampton!!</p>
+    <h1 class="about-title" style="font-size: 3em;">This Website?!</h1>
+    <p class="about-role" style="font-size: 2em;">Who needs a static resume when you can have an interactive one...</p>
     <p class="about-desc"></p>
     <section>
-      <h2 class="about-subtitle">I Hope You're Ready to Read....</h2>
+      <h2 class="about-subtitle">This website was created with my future in mind, but it turned out to be an absolute blast to make. I learned a remarkable amount about UX design and got a full refresher on all website oriented coding.What started as a silly game for me and my friends to play in high school turned into the spark that ignited my love for computer science.</h2>
       <h3 class="about-section-title">Intro</h3>
-      <p class="about-text">I guess I'd start an intro from the beginning of my life, well to start I was GOING to be named Apollo (which is like the coolest name ever) but my parents decided that a mythical creature was better.. Sigh... Wait that's a bit TOO early of an intro. I guess my life really started when I realized the direction I wanted to take with it, the meaning of life is finding meaning in your life I suppose. That direction for me came from my love of anything and everything on computers. It showed itself in strange ways at first, like the only time I got in trouble in Junior High was when my teacher kept catching me poking around in the inspect element of webpages. She thought I was some sort of kid hacker, which like I WISH?? (I'm still mad that she sent me to the principals office) (not really) (kinda). But from there it just kept growing, and growing, and growing, and growing, and now I'm sitting here making a website for fun. Imagine what I could do if I was employed...</p>
-      <h3 class="about-section-title">Places I've Been</h3>
-      <p class="about-text">I love talking about travel because it is what I want to make money to do. I want to see as much of the world as I see fit, and that love for travel definitely came from my parents. Shoutout mom and dad, I doubt you'll read this but maybe someone will. Anyways, I've been to the Dominican Republic, Japan, Germany, Belgium, England, France, Canada, and the Czech Republic. Every single one of those countries showed me something I had never seen prior, and I adore expanding my worldview. It makes me more creative, and understanding, just through immersing myself in a foreign culture.</p>
+      <p class="about-text">This part of my portfolio may seem a bit meta (because of the portfolio inside of a portfolio website referencing the porfolio website), but for me, it’s one of my most rewarding projects to date. I built it not just to showcase my work, but also to push myself deeper into frontend web development. Along the way, I sharpened my skills in HTML, CSS, and JavaScript, while also experimenting with layout, design, and interactivity to make something that feels personal and uniquely mine. What started as “just a portfolio” quickly became a full-on creative exercise in both technical problem-solving and visual storytelling.</p>
+      <h3 class="about-section-title">Skills Applied</h3>
+      <p class="about-text">The technical side of this site was a crash course in modern web development. Using HTML and CSS, I built the site’s structure and styling from scratch, refining my ability to create responsive and accessible layouts. With JavaScript, I introduced interactivity and dynamic features to make the site feel alive rather than static. Beyond code, I also had to handle the less glamorous but equally important tasks: configuring DNS records, setting up the custom domain, and ensuring the site stayed functional across different browsers and devices. And while all of that was happening, I kept my focus on UX/UI design principles, making sure every choice — from typography to navigation — felt intentional and user-friendly.</p>
       <div class="about-image-row">
-        <div class="about-image-col"><img src="IMG_8242.jpeg" alt="Travel 1" class="about-image" /></div>
-        <div class="about-image-col big"><img src="IMG_3907.jpeg" alt="Travel 3" class="about-image" /></div>
-        <div class="about-image-col"><img src="IMG_7395.jpeg" alt="Travel 2" class="about-image" /></div>
+        <div><img src="../../src/Screenshot 2025-09-10 001051.png" alt="website-photo-2" class="about-image" /></div>
       </div>
-      <h3 class="about-section-title">Hopes For the Future</h3>
-      <p class="about-text">My only wish for the future is that I land in a place where I can do what I love happily, I'm aiming as high as I can for now but at the end of the day all I want is to code for my career. Even if it means I have to make a startup of my own, I am willing to do anything I can to secure that one hope.</p>
+      <h3 class="about-section-title">The Future of This Website</h3>
+      <p class="about-text">The best part about building your own website is that it’s never really finished. This site is a living project that I can continue to refine as I grow as a developer. I plan to expand it with more interactive features, cleaner animations, and possibly backend integrations down the line. But more importantly, it will remain a place to showcase my work in a way that feels authentic to who I am as both a coder and a designer.</p>
       <h3 class="about-section-title">Conclusion</h3>
-      <p class="about-text">Well I hope you enjoyed getting to know more about me, feel free to browse my website as long as you want! (I don't pay for the bandwidth xD)</p>
+      <p class="about-text">At first glance, this might just look like a simple portfolio website. But to me, it represents so much more — the culmination of technical skills, design choices, and persistence to make something that feels creative, functional, and personal. It’s not just a website; it’s proof that I can take an idea, work through every layer of its development, and deliver something that represents me.</p>
     </section>
   </div>
 </div>
-      <div style="width:100%;display:flex;justify-content:center;gap:24px;margin:32px 0 0 0;flex-wrap:wrap;">
-        <a href="index.html" class="nav-button nav-button-home">
+<div style="width:100%;display:flex;justify-content:center;gap:24px;margin:32px 0 0 0;flex-wrap:wrap;">
+        <a href="../../" class="nav-button nav-button-home">
             ← Back to Home
         </a>
-        <a href="resume.html" class="nav-button nav-button-resume">
+        <a href="../../resume" class="nav-button nav-button-resume">
             Go to Resume →
         </a>
       </div>
@@ -455,17 +466,20 @@
   <div class="about-bg"></div>
   <main class="about-main">
     
-  <footer class="about-footer">
-    <div class="footer-content">
-      <h2 class="footer-title">Contact Me</h2>
-      <ul class="footer-list">
-        <li><a href="mailto:ghampton2005@gmail.com" class="footer-link">ghampton2005@gmail.com</a></li>
-        <li><a href="tel:+502-523-7093" class="footer-link">(502) 523-7093</a></li>
-        <li><a href="https://www.linkedin.com/in/griffin-hampton-56035235a" class="footer-link" target="_blank">LinkedIn</a></li>
-        <!-- Add more contacts as needed -->
-      </ul>
-    </div>
-  </footer>
+</footer>
+
+
+<footer class="about-footer">
+  <div class="footer-content">
+    <h2 class="footer-title">Contact Me</h2>
+    <ul class="footer-list">
+      <li><a href="mailto:ghampton2005@gmail.com" class="footer-link">ghampton2005@gmail.com</a></li>
+      <li><a href="tel:+502-523-7093" class="footer-link">(502) 523-7093</a></li>
+      <li><a href="https://www.linkedin.com/in/griffin-hampton-56035235a" class="footer-link" target="_blank">LinkedIn</a></li>
+      <!-- Add more contacts as needed -->
+    </ul>
+  </div>
+</footer>
 </html>
               
 
@@ -596,3 +610,4 @@ window.addEventListener('load', () => {
   </script>
 </body>
 
+</html>
